@@ -6,6 +6,7 @@ import { createRoot } from "react-dom/client";
 import { Route, BrowserRouter as Router, Routes } from "react-router";
 
 import App from "./App.tsx";
+import ThemeProvider from "./context/theme/ThemeProvider.tsx";
 
 const root = document.getElementById("root");
 if (!root) {
@@ -14,10 +15,12 @@ if (!root) {
 
 createRoot(root).render(
   <StrictMode>
-    <Router>
-      <Routes>
-        <Route path='/*' element={<App />} />
-      </Routes>
-    </Router>
+    <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
+      <Router>
+        <Routes>
+          <Route path='/*' element={<App />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   </StrictMode>,
 );
