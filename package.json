@@ -8,7 +8,8 @@
     "dev:web": "turbo dev --filter=@bump/web",
     "build": "turbo build",
     "typecheck": "turbo typecheck",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "tokens": "turbo build --filter=@bump/ui-tokens"
   },
   "keywords": [],
   "author": "",

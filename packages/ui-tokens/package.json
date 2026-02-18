@@ -1,0 +1,17 @@
+{
+  "name": "@bump/ui-tokens",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsx ./scripts/generate-css.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.13",
+    "tsx": "^4.21.0",
+    "typescript": "~5.9.3"
+  }
+}

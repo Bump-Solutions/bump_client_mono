@@ -1,7 +1,26 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-})
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom", "react-router-dom"],
+        },
+      },
+    },
+  },
+  server: {
+    port: 3000,
+    proxy: {
+      "/api": {
+        target: "https://api.bumpmarket.hu",
+        changeOrigin: true,
+        secure: true,
+      },
+    },
+  },
+});

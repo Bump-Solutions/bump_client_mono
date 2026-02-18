@@ -1,0 +1,33 @@
+@use "sass:map";
+
+// PALETTE
+$clr-white: token(white);
+$clr-black: token(black);
+$clr-font: token(font);
+$clr-font-headline: token(font-headline);
+$clr-font-light: token(font-light);
+
+$bg-dark: token(bg-dark);
+$bg-dark-transparent: token(bg-dark-transparent);
+
+@function color($color, $tone) {
+  @return var(--clr-#{$color}-#{$tone});
+}
+
+@function token($name) {
+  @return var(--color-#{$name});
+}
+
+/* EXAMPLES
+  .myText {
+    color: token(font);
+  }
+
+  .card {
+    background: token(bg-dark);
+  }
+
+  .btn {
+    background: color(primary, 500);
+  }
+*/
