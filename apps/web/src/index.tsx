@@ -3,6 +3,8 @@ import "./styles/css/index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
+import { Route, BrowserRouter as Router, Routes } from "react-router";
+
 import App from "./App.tsx";
 
 const root = document.getElementById("root");
@@ -12,6 +14,10 @@ if (!root) {
 
 createRoot(root).render(
   <StrictMode>
-    <App />
+    <Router>
+      <Routes>
+        <Route path='/*' element={<App />} />
+      </Routes>
+    </Router>
   </StrictMode>,
 );
