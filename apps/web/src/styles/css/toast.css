@@ -1,0 +1,54 @@
+/* EXAMPLES
+  .myText {
+    color: token(font);
+  }
+
+  .card {
+    background: token(bg-dark);
+  }
+
+  .btn {
+    background: color(primary, 500);
+  }
+*/
+.toast {
+  font-family: "Nunito Sans", sans-serif !important;
+  color: token(font) !important;
+  letter-spacing: -0.008em !important;
+  font-size: 0.875rem !important;
+}
+
+.toast--success {
+  color: var(--clr-green-600) !important;
+  background-color: var(--clr-green-50) !important;
+  border: 1px solid var(--clr-green-100) !important;
+}
+
+.toast--error {
+  color: var(--clr-red-500) !important;
+  background-color: var(--clr-red-50) !important;
+  border: 1px solid var(--clr-red-100) !important;
+}
+
+.toast--info {
+  color: var(--clr-blue-700) !important;
+  background-color: var(--clr-blue-50) !important;
+  border: 1px solid var(--clr-blue-100) !important;
+}
+
+.toast--warning {
+  color: var(--clr-yellow-600) !important;
+  background-color: var(--clr-yellow-50) !important;
+  border: 1px solid var(--clr-yellow-100) !important;
+}
+
+.toast--loading .sonner-loader {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 1rem;
+  height: 1rem;
+}
+.toast--loading .sonner-loader svg {
+  animation: spin 0.75s linear infinite;
+}/*# sourceMappingURL=toast.css.map */

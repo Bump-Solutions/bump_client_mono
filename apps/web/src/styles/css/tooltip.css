@@ -1,0 +1,24 @@
+/* EXAMPLES
+  .myText {
+    color: token(font);
+  }
+
+  .card {
+    background: token(bg-dark);
+  }
+
+  .btn {
+    background: color(primary, 500);
+  }
+*/
+.tooltip {
+  background: var(--clr-gray-900);
+  color: token(font-light);
+  pointer-events: none;
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  max-width: 400px;
+  z-index: 9999999999;
+}/*# sourceMappingURL=tooltip.css.map */

@@ -1,8 +1,26 @@
-import { Suspense, type JSX, type LazyExoticComponent } from "react";
+import { ENUM } from "@bump/utils";
+import {
+  lazy,
+  Suspense,
+  type ComponentType,
+  type LazyExoticComponent,
+} from "react";
+
+import { Route } from "react-router";
 
 import Fallback from "../components/Fallback";
+import PersistLogin from "../modules/auth/PersistLogin";
+import RequireAuth from "../modules/auth/RequireAuth";
 
-const withSuspense = (Component: LazyExoticComponent<any>) => {
+import Home from "../modules/home/Home";
+import Main from "../modules/home/Main";
+
+const Authentication = lazy(() => import("../modules/auth/Authentication"));
+const GoogleCallback = lazy(() => import("../modules/auth/GoogleCallback"));
+
+const withSuspense = (
+  Component: LazyExoticComponent<ComponentType<unknown>>,
+) => {
   return (
     <Suspense fallback={<Fallback />}>
       <Component />
@@ -10,6 +28,7 @@ const withSuspense = (Component: LazyExoticComponent<any>) => {
   );
 };
 
+/*
 const withSuspenseProps = <T extends object>(
   Component: LazyExoticComponent<(props: T) => JSX.Element>,
   props: T,
@@ -20,24 +39,37 @@ const withSuspenseProps = <T extends object>(
     </Suspense>
   );
 };
+*/
 
 export const publicRoutes = () => {
   return (
     <>
-      {/* AUTHENTICATION 
+      {/* AUTHENTICATION */}
       <Route path='/auth' element={withSuspense(Authentication)}></Route>
 
       <Route
         path='/auth/google/callback'
         element={withSuspense(GoogleCallback)}
       />
-      */}
     </>
   );
 };
 
 export const privateRoutes = () => {
-  return <></>;
+  return (
+    <>
+      <Route element={<PersistLogin />}>
+        <Route element={<RequireAuth allowedRoles={ENUM.AUTH.ROLES.All} />}>
+          {/* PROVIDERS FOR AUTHENTICATED USERS */}
+
+          {/* HOME */}
+          <Route path='/' element={<Main />}>
+            <Route index element={<Home />} />
+          </Route>
+        </Route>
+      </Route>
+    </>
+  );
 };
 
 export const errorRoutes = () => {
@@ -45,5 +77,14 @@ export const errorRoutes = () => {
 };
 
 export const modalRoutes = (background: Location) => {
-  return <></>;
+  return (
+    <>
+      <Route element={<PersistLogin />}>
+        <Route
+          element={<RequireAuth allowedRoles={ENUM.AUTH.ROLES.Validated} />}>
+          {/* PROVIDERS FOR AUTHENTICATED USERS */}
+        </Route>
+      </Route>
+    </>
+  );
 };

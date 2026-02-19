@@ -1,6 +1,8 @@
 import { fromRefreshResponseDTO } from "@bump/core/mappers";
 import type { AuthModel } from "@bump/core/models";
+
 import axios from "axios";
+
 import { useAuth } from "../../context/auth/useAuth";
 import { API } from "../../utils/api";
 

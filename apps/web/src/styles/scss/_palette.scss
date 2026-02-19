@@ -15,7 +15,7 @@ $bg-dark-transparent: token(bg-dark-transparent);
 }
 
 @function token($name) {
-  @return var(--color-#{$name});
+  @return var(--clr-#{$name});
 }
 
 /* EXAMPLES

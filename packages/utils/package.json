@@ -5,9 +5,6 @@
   "type": "module",
   "main": "src/index.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "./functions": "./src/functions.ts",
-    "./time": "./src/time.ts",
-    "./regex": "./src/regex.ts"
+    ".": "./src/index.ts"
   }
 }

@@ -1,0 +1,46 @@
+/* EXAMPLES
+  .myText {
+    color: token(font);
+  }
+
+  .card {
+    background: token(bg-dark);
+  }
+
+  .btn {
+    background: color(primary, 500);
+  }
+*/
+div.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--clr-gray-600);
+  text-align: center;
+  padding: 5rem;
+}
+div.empty .empty__media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-gray-100);
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+div.empty .empty__media svg {
+  color: var(--clr-gray-900);
+}
+div.empty h4 {
+  color: var(--clr-gray-900);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+div.empty p {
+  color: var(--clr-gray-600) !important;
+  max-width: 500px;
+  font-size: 1rem;
+}/*# sourceMappingURL=empty.css.map */

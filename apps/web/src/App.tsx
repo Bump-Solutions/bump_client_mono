@@ -3,6 +3,13 @@ import { Routes, useLocation } from "react-router";
 
 import Fallback from "./components/Fallback";
 
+import {
+  errorRoutes,
+  modalRoutes,
+  privateRoutes,
+  publicRoutes,
+} from "./routes/Routing";
+
 function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
@@ -10,10 +17,19 @@ function App() {
   return (
     <Suspense fallback={<Fallback />}>
       {/* Main Routes */}
-      <Routes location={background || location}></Routes>
+      <Routes location={background || location}>
+        {/* Public Routes */}
+        {publicRoutes()}
+
+        {/* Private Routes */}
+        {privateRoutes()}
+
+        {/* Catch all */}
+        {errorRoutes()}
+      </Routes>
 
       {/* Modal Routes */}
-      {background && <Routes></Routes>}
+      {background && <Routes>{modalRoutes(background)}</Routes>}
     </Suspense>
   );
 }
