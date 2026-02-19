@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { Dispatch, ReactNode, SetStateAction } from "react";
 
 export type Theme = "light" | "dark" | "system";
 
@@ -10,5 +10,5 @@ export type ThemeProviderProps = {
 
 export type ThemeContextValue = {
   theme: Theme;
-  setTheme: (theme: Theme) => void;
+  setTheme: Dispatch<SetStateAction<Theme>>;
 };
