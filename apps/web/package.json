@@ -13,6 +13,7 @@
     "@bump/core": "workspace:*",
     "@bump/theme": "workspace:*",
     "@bump/utils": "workspace:*",
+    "@bump/assets": "workspace:*",
     "@react-oauth/google": "^0.13.4",
     "@tanstack/react-query": "^5.90.21",
     "axios": "^1.13.5",

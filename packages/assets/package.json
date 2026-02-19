@@ -1,0 +1,13 @@
+{
+  "name": "@bump/assets",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "react-native": "./src/index.native.ts",
+      "default": "./src/index.web.ts"
+    }
+  }
+}

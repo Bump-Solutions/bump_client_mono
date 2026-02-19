@@ -4,6 +4,11 @@ import { defineConfig } from "vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".web.ts"],
+  },
+
   build: {
     rollupOptions: {
       output: {
@@ -13,6 +18,7 @@ export default defineConfig({
       },
     },
   },
+
   server: {
     port: 3000,
     proxy: {
@@ -22,5 +28,9 @@ export default defineConfig({
         secure: true,
       },
     },
+  },
+
+  optimizeDeps: {
+    exclude: ["@bump/assets"],
   },
 });

@@ -17,6 +17,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@bump/assets':
+        specifier: workspace:*
+        version: link:../../packages/assets
       '@bump/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -96,6 +99,8 @@ importers:
       vite:
         specifier: ^7.3.1
         version: 7.3.1(@types/node@24.10.13)(tsx@4.21.0)
+
+  packages/assets: {}
 
   packages/core: {}
 

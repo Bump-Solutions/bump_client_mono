@@ -42,7 +42,7 @@
   left: var(--container-x-padding);
   font-size: 1rem;
   margin: 0;
-  color: token(font-headline);
+  color: var(--clr-font-headline);
   z-index: 100;
 }
 .error__wrapper article {
@@ -62,7 +62,7 @@
   text-align: center;
 }
 .error__wrapper article p {
-  color: token(font);
+  color: var(--clr-font);
   text-align: center;
   font-size: clamp(1.25rem, 1vw, 1.5rem);
   max-width: 800px;

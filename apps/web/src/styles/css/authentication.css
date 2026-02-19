@@ -29,7 +29,7 @@
   transform: scale(1.175);
   isolation: isolate;
   overflow: hidden;
-  background-color: token(black);
+  background-color: var(--clr-black);
 }
 .authentication .hero::after {
   content: "";
@@ -48,7 +48,7 @@
   align-items: center;
   justify-content: space-between;
   z-index: 100;
-  color: token(font-light);
+  color: var(--clr-font-light);
 }
 .authentication .hero .hero__wrapper .hero__title {
   font-size: clamp(8rem, 8vw, 10rem);
@@ -58,7 +58,7 @@
   letter-spacing: -0.024em;
   text-align: center;
   text-transform: uppercase;
-  color: token(font-light);
+  color: var(--clr-font-light);
   margin: 1rem 0 0 0;
 }
 .authentication .hero .hero__wrapper .hero__subtitle {
@@ -85,7 +85,7 @@
 }
 .authentication .hero .hero__wrapper .hero__footer h4 {
   font-weight: 500;
-  color: token(font-light);
+  color: var(--clr-font-light);
 }
 .authentication .hero .hero__wrapper .hero__footer .hero__links {
   display: flex;
@@ -97,7 +97,7 @@
 }
 .authentication .hero .hero__wrapper .hero__footer .hero__links a {
   font-weight: 500;
-  color: token(font-light);
+  color: var(--clr-font-light);
   opacity: 1;
   transition: color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -165,7 +165,7 @@
   display: flex;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: token(white);
+  background-color: var(--clr-white);
   padding: 3rem;
 }
 .authentication .authentication__wrapper .title--brand {
@@ -174,7 +174,7 @@
   font-family: "Bebas Neue";
   font-size: clamp(5rem, 5vw, 7rem);
   font-style: italic;
-  color: token(font-light);
+  color: var(--clr-font-light);
   text-align: center;
   text-transform: uppercase;
   letter-spacing: -0.024em;
@@ -193,7 +193,7 @@
 .authentication .authentication__wrapper .login h1,
 .authentication .authentication__wrapper .signup h1 {
   font-size: 2.75rem;
-  color: token(font-headline);
+  color: var(--clr-font-headline);
   font-weight: 700;
 }
 .authentication .authentication__wrapper .login .social-signup,
@@ -220,9 +220,9 @@
 }
 .authentication .authentication__wrapper .login .bg-line h4,
 .authentication .authentication__wrapper .signup .bg-line h4 {
-  color: token(font);
+  color: var(--clr-font);
   text-align: center;
-  background-color: token(white);
+  background-color: var(--clr-white);
   padding: 0 1rem;
   z-index: 100;
   font-weight: 400;
@@ -257,7 +257,7 @@
 .authentication .forgot-password .forgot-password__wrapper h1 {
   margin: 2rem 0 1rem 0;
   font-size: 2rem;
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .authentication .forgot-password .forgot-password__wrapper p:not(.error-msg) {
   color: var(--clr-gray-700);

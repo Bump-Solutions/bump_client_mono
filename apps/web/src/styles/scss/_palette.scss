@@ -1,5 +1,13 @@
 @use "sass:map";
 
+@function color($color, $tone) {
+  @return var(--clr-#{$color}-#{$tone});
+}
+
+@function token($name) {
+  @return var(--clr-#{$name});
+}
+
 // PALETTE
 $clr-white: token(white);
 $clr-black: token(black);
@@ -9,14 +17,6 @@ $clr-font-light: token(font-light);
 
 $bg-dark: token(bg-dark);
 $bg-dark-transparent: token(bg-dark-transparent);
-
-@function color($color, $tone) {
-  @return var(--clr-#{$color}-#{$tone});
-}
-
-@function token($name) {
-  @return var(--clr-#{$name});
-}
 
 /* EXAMPLES
   .myText {

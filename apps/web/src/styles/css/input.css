@@ -25,7 +25,7 @@
   color: var(--clr-red-500);
 }
 .field:has(.field__input input:not(:placeholder-shown)) .field__label, .field:has(.field__input textarea:not(:placeholder-shown)) .field__label, .field:has(.field__input input:-webkit-autofill) .field__label, .field:has(.field__input textarea:-webkit-autofill) .field__label {
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .field:has(.field__input input:not(:placeholder-shown)) .field__label span.required, .field:has(.field__input textarea:not(:placeholder-shown)) .field__label span.required, .field:has(.field__input input:-webkit-autofill) .field__label span.required, .field:has(.field__input textarea:-webkit-autofill) .field__label span.required {
   color: var(--clr-red-500);
@@ -103,12 +103,12 @@
   background-color: var(--clr-gray-100);
 }
 .field .field__input input:not(:-moz-placeholder) ~ .input__svg, .field .field__input textarea:not(:-moz-placeholder) ~ .input__svg {
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .field .field__input input:invalid ~ .input__svg, .field .field__input input:not(:placeholder-shown) ~ .input__svg,
 .field .field__input textarea:invalid ~ .input__svg,
 .field .field__input textarea:not(:placeholder-shown) ~ .input__svg {
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .field .field__input input:not(:-moz-placeholder):focus, .field .field__input textarea:not(:-moz-placeholder):focus {
   border: 2px solid var(--clr-blue-500);
@@ -133,7 +133,7 @@
 .field .field__input input:-webkit-autofill, .field .field__input input:-webkit-autofill:hover,
 .field .field__input textarea:-webkit-autofill,
 .field .field__input textarea:-webkit-autofill:hover {
-  -webkit-text-fill-color: token(font-headline);
+  -webkit-text-fill-color: var(--clr-font-headline);
   -webkit-box-shadow: 0 0 0px 1000px var(--clr-gray-100) inset;
   outline: none;
   border: none;
@@ -146,7 +146,7 @@
 }
 .field .field__input input:-webkit-autofill:focus,
 .field .field__input textarea:-webkit-autofill:focus {
-  -webkit-text-fill-color: token(font-headline);
+  -webkit-text-fill-color: var(--clr-font-headline);
   -webkit-box-shadow: 0 0 0px 1000px var(--clr-gray-100) inset;
   outline: 2px solid var(--clr-blue-50);
   border: 2px solid var(--clr-blue-500);
@@ -223,14 +223,14 @@
   outline: 1px solid var(--clr-blue-500);
 }
 .field .field__input .toggle:hover label {
-  color: token(font);
+  color: var(--clr-font);
 }
 .field .field__input .toggle.toggled:hover {
   border: 1px solid var(--clr-blue-500);
   outline: 1px solid var(--clr-blue-500);
 }
 .field .field__input .toggle.toggled label {
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .field .field__input .toggle.toggled .required {
   color: var(--clr-red-500);
@@ -285,7 +285,7 @@
   width: 1.25rem;
   height: 1.25rem;
   border-radius: 50%;
-  background-color: token(white);
+  background-color: var(--clr-white);
   transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .field .field__input .currency__wrapper {
@@ -318,7 +318,7 @@
 }
 .field .field__input .currency__wrapper .input__field:focus {
   border: 2px solid var(--clr-blue-500);
-  background-color: token(white);
+  background-color: var(--clr-white);
 }
 .field .field__input .currency__wrapper .input__field:focus ~ .input__svg {
   color: var(--clr-gray-700);
@@ -338,10 +338,10 @@
   background-color: var(--clr-gray-100);
 }
 .field .field__input .currency__wrapper .input__field:not(:-moz-placeholder) ~ .input__svg {
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .field .field__input .currency__wrapper .input__field:invalid ~ .input__svg, .field .field__input .currency__wrapper .input__field:not(:placeholder-shown) ~ .input__svg {
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .field .field__input .currency__wrapper .input__field:not(:-moz-placeholder):focus {
   border: 2px solid var(--clr-blue-500);
@@ -360,7 +360,7 @@
   outline: 2px solid var(--clr-red-50);
 }
 .field .field__input .currency__wrapper .input__field:-webkit-autofill, .field .field__input .currency__wrapper .input__field:-webkit-autofill:hover {
-  -webkit-text-fill-color: token(font-headline);
+  -webkit-text-fill-color: var(--clr-font-headline);
   -webkit-box-shadow: 0 0 0px 1000px var(--clr-gray-100) inset;
   outline: none;
   border: none;
@@ -370,7 +370,7 @@
   border: 2px solid var(--clr-red-500);
 }
 .field .field__input .currency__wrapper .input__field:-webkit-autofill:focus {
-  -webkit-text-fill-color: token(font-headline);
+  -webkit-text-fill-color: var(--clr-font-headline);
   -webkit-box-shadow: 0 0 0px 1000px var(--clr-gray-100) inset;
   outline: 2px solid var(--clr-blue-50);
   border: 2px solid var(--clr-blue-500);
@@ -438,7 +438,7 @@
   color: var(--clr-red-500);
 }
 .input label.filled {
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .input label.filled.focused {
   color: var(--clr-blue-500);
@@ -488,8 +488,8 @@
   text-align: center;
 }
 .input .otp__wrapper .input__field:-webkit-autofill, .input .otp__wrapper .input__field:-webkit-autofill:hover, .input .otp__wrapper .input__field:-webkit-autofill:focus {
-  -webkit-text-fill-color: token(font-headline);
-  -webkit-box-shadow: 0 0 0px 1000px token(white) inset;
+  -webkit-text-fill-color: var(--clr-font-headline);
+  -webkit-box-shadow: 0 0 0px 1000px var(--clr-white) inset;
 }
 .input .otp__wrapper .input__field:disabled {
   background-color: var(--clr-gray-100);
@@ -497,15 +497,15 @@
 }
 .input .otp__wrapper .input__field:focus {
   border: 2px solid var(--clr-blue-500);
-  background-color: token(white);
+  background-color: var(--clr-white);
 }
 .input .otp__wrapper .input__field:not(:-moz-placeholder) {
   border: 1px solid var(--clr-gray-700);
-  background-color: token(white);
+  background-color: var(--clr-white);
 }
 .input .otp__wrapper .input__field:invalid, .input .otp__wrapper .input__field:not(:placeholder-shown) {
   border: 1px solid var(--clr-gray-700);
-  background-color: token(white);
+  background-color: var(--clr-white);
 }
 .input .otp__wrapper .input__field:not(:-moz-placeholder):focus {
   border: 2px solid var(--clr-blue-500);
@@ -638,14 +638,14 @@
   outline: 1px solid var(--clr-blue-500);
 }
 .input .input__wrapper .toggle:hover label {
-  color: token(font);
+  color: var(--clr-font);
 }
 .input .input__wrapper .toggle.toggled:hover {
   border: 1px solid var(--clr-blue-500);
   outline: 1px solid var(--clr-blue-500);
 }
 .input .input__wrapper .toggle.toggled label {
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .input .input__wrapper .toggle.toggled .required {
   color: var(--clr-red-500);
@@ -700,7 +700,7 @@
   width: 1.25rem;
   height: 1.25rem;
   border-radius: 50%;
-  background-color: token(white);
+  background-color: var(--clr-white);
   transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .input .input__wrapper .input__svg {
@@ -751,7 +751,7 @@
 }
 .input .input__wrapper .input__field:focus {
   border: 2px solid var(--clr-blue-500);
-  background-color: token(white);
+  background-color: var(--clr-white);
 }
 .input .input__wrapper .input__field:focus ~ .input__svg {
   color: var(--clr-gray-700);
@@ -773,10 +773,10 @@
   background-color: var(--clr-gray-100);
 }
 .input .input__wrapper .input__field:not(:-moz-placeholder) ~ .input__svg {
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .input .input__wrapper .input__field:invalid ~ .input__svg, .input .input__wrapper .input__field:not(:placeholder-shown) ~ .input__svg {
-  color: token(font-headline);
+  color: var(--clr-font-headline);
 }
 .input .input__wrapper .input__field:not(:-moz-placeholder):focus {
   border: 2px solid var(--clr-blue-500);
@@ -795,7 +795,7 @@
   outline: 2px solid var(--clr-red-50);
 }
 .input .input__wrapper .input__field:-webkit-autofill, .input .input__wrapper .input__field:-webkit-autofill:hover {
-  -webkit-text-fill-color: token(font-headline);
+  -webkit-text-fill-color: var(--clr-font-headline);
   -webkit-box-shadow: 0 0 0px 1000px var(--clr-gray-100) inset;
   outline: none;
   border: none;
@@ -805,7 +805,7 @@
   border: 2px solid var(--clr-red-500);
 }
 .input .input__wrapper .input__field:-webkit-autofill:focus {
-  -webkit-text-fill-color: token(font-headline);
+  -webkit-text-fill-color: var(--clr-font-headline);
   -webkit-box-shadow: 0 0 0px 1000px var(--clr-gray-100) inset;
   outline: 2px solid var(--clr-blue-50);
   border: 2px solid var(--clr-blue-500);
@@ -911,7 +911,7 @@
 }
 
 .dropdown__menu {
-  background-color: token(white);
+  background-color: var(--clr-white);
   border: 1px solid var(--clr-gray-400);
   border-radius: 1rem;
   overflow: hidden;
@@ -924,7 +924,7 @@
 .dropdown__menu .search-box {
   position: sticky;
   top: 0;
-  background-color: token(white);
+  background-color: var(--clr-white);
   padding: 0.5rem 0.4rem;
   display: flex;
   align-items: center;
@@ -959,22 +959,22 @@
 }
 .dropdown__menu .dropdown__item:hover {
   background-color: var(--clr-gray-100);
-  color: token(font);
+  color: var(--clr-font);
 }
 .dropdown__menu .dropdown__item.selected {
   background-color: var(--clr-gray-100);
-  color: token(font);
+  color: var(--clr-font);
 }
 .dropdown__menu .dropdown__item.selected:hover {
   background-color: var(--clr-gray-200);
 }
 .dropdown__menu.multi .dropdown__item.selected {
   background-color: var(--clr-gray-100);
-  color: token(font);
+  color: var(--clr-font);
 }
 .dropdown__menu.multi .dropdown__item.selected:hover {
   background-color: var(--clr-gray-200);
-  color: token(font);
+  color: var(--clr-font);
 }
 
 .dropzone {

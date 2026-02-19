@@ -13,7 +13,7 @@
 */
 .toast {
   font-family: "Nunito Sans", sans-serif !important;
-  color: token(font) !important;
+  color: var(--clr-font) !important;
   letter-spacing: -0.008em !important;
   font-size: 0.875rem !important;
 }

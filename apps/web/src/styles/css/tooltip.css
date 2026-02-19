@@ -13,7 +13,7 @@
 */
 .tooltip {
   background: var(--clr-gray-900);
-  color: token(font-light);
+  color: var(--clr-font-light);
   pointer-events: none;
   border-radius: 0.5rem;
   padding: 0.375rem 0.75rem;
