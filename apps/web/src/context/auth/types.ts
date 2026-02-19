@@ -1,3 +1,4 @@
+import type { AuthModel } from "@bump/core/models";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 
 export type AuthProviderProps = {
@@ -5,6 +6,6 @@ export type AuthProviderProps = {
 };
 
 export type AuthContextValue = {
-  auth: boolean | null; // TODO: replace with actual auth model
-  setAuth: Dispatch<SetStateAction<boolean | null>>;
+  auth: AuthModel | null;
+  setAuth: Dispatch<SetStateAction<AuthModel | null>>;
 };

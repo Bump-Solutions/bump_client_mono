@@ -1,6 +1,5 @@
 import "./styles/css/index.css";
 
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -27,17 +26,15 @@ if (!root) {
 }
 
 createRoot(root).render(
-  <StrictMode>
-    <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
-      <QueryClientProvider client={queryClient}>
-        <Router>
-          <AuthProvider>
-            <Routes>
-              <Route path='/*' element={<App />} />
-            </Routes>
-          </AuthProvider>
-        </Router>
-      </QueryClientProvider>
-    </ThemeProvider>
-  </StrictMode>,
+  <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <AuthProvider>
+          <Routes>
+            <Route path='/*' element={<App />} />
+          </Routes>
+        </AuthProvider>
+      </Router>
+    </QueryClientProvider>
+  </ThemeProvider>,
 );

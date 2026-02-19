@@ -16,6 +16,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.30.0",
   "devDependencies": {
+    "jwt-decode": "^4.0.0",
     "turbo": "^2.8.10"
   }
 }
