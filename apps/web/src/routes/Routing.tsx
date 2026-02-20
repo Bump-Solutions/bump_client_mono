@@ -16,6 +16,8 @@ import Home from "../modules/home/Home";
 import Main from "../modules/home/Main";
 
 const Authentication = lazy(() => import("../modules/auth/Authentication"));
+const Login = lazy(() => import("../modules/auth/Login"));
+const Signup = lazy(() => import("../modules/auth/Signup"));
 const GoogleCallback = lazy(() => import("../modules/auth/GoogleCallback"));
 
 const withSuspense = (
@@ -45,7 +47,10 @@ export const publicRoutes = () => {
   return (
     <>
       {/* AUTHENTICATION */}
-      <Route path='/auth' element={withSuspense(Authentication)}></Route>
+      <Route path='/auth' element={withSuspense(Authentication)}>
+        <Route index element={<Login />} />
+        <Route path='signup' element={<Signup />} />
+      </Route>
 
       <Route
         path='/auth/google/callback'

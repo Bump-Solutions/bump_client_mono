@@ -35,7 +35,7 @@ export const formatPhoneNumber = (number: string): string => {
   if (sanitized.startsWith("+36")) {
     sanitized = sanitized.replace(
       /(\+36)(\d{0,2})?(\d{0,3})?(\d{0,4})?/,
-      (match, p1, p2, p3, p4) => {
+      (_match, p1, p2, p3, p4) => {
         let result = p1; // Start with the country code
         if (p2) result += p2;
         if (p3) result += `-${p3}`;

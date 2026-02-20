@@ -207,7 +207,7 @@
       &:focus {
         @include cbb(
           color(blue, 600),
-          color-mix(in srgb, var(--clr-blue-50) 95%, black 5%),
+          color-mix(in srgb, #{color(blue, 50)} 95%, black 5%),
           1px solid color(blue, 200)
         );
       }
@@ -220,7 +220,7 @@
       &:focus {
         @include cbb(
           color(red, 600),
-          color-mix(in srgb, var(--clr-red-50) 95%, black 5%),
+          color-mix(in srgb, #{color(red, 50)} 95%, black 5%),
           1px solid color(red, 200)
         );
       }

@@ -1,17 +1,19 @@
 import "./styles/css/button.css";
+import "./styles/css/dtable.css";
 import "./styles/css/empty.css";
+import "./styles/css/image.css";
 import "./styles/css/index.css";
 import "./styles/css/input.css";
+import "./styles/css/modal.css";
 import "./styles/css/toast.css";
 import "./styles/css/tooltip.css";
 
 import { createPortal } from "react-dom";
 import { createRoot } from "react-dom/client";
+import { Route, BrowserRouter as Router, Routes } from "react-router";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-import { Route, BrowserRouter as Router, Routes } from "react-router";
 
 import { Toaster } from "sonner";
 import { QueryParamProvider } from "use-query-params";
