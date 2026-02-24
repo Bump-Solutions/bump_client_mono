@@ -15,15 +15,13 @@ export const makePaths = (version = "v1") => {
   const q = (url: string, query?: Record<string, unknown>) => {
     if (!query) return url;
 
-    const qs = new URLSearchParams();
-    Object.entries(query).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
-        qs.set(key, String(value));
-      }
-    });
+    const parts: string[] = [];
+    for (const [k, v] of Object.entries(query)) {
+      if (v === undefined || v === null) continue;
+      parts.push(`${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`);
+    }
 
-    const s = qs.toString();
-    return s ? `${url}?${s}` : url;
+    return parts.length ? `${url}?${parts.join("&")}` : url;
   };
 
   return {
@@ -217,4 +215,5 @@ export const makePaths = (version = "v1") => {
   } as const;
 };
 
+export const PATHS = makePaths("v1"); // default
 export type ApiPaths = ReturnType<typeof makePaths>;

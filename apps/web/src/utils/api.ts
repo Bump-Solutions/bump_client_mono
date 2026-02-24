@@ -1,6 +1,6 @@
-import { makePaths } from "@bump/core/api";
+import { PATHS } from "@bump/core/api";
 
-const VERSION = import.meta.env.VITE_API_VERSION ?? "v1"; // pl. v1, v2
+// const VERSION = import.meta.env.VITE_API_VERSION ?? "v1"; // pl. v1, v2
 const ORIGIN = import.meta.env.VITE_ORIGIN ?? ""; // "" => same-origin
 const WS_ORIGIN = import.meta.env.VITE_WS_ORIGIN ?? ""; // "" => auto from location
 
@@ -18,5 +18,5 @@ export const API = {
   WS_BASE_URL: WS_BASE_URL,
   MEDIA_URL: "",
 
-  PATHS: makePaths(VERSION),
+  PATHS: PATHS,
 } as const;

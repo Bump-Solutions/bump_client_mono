@@ -11,7 +11,8 @@
     "./models": "./src/models/index.ts",
     "./dtos": "./src/dtos/index.ts",
     "./mappers": "./src/mappers/index.ts",
-    "./schemas": "./src/schemas/index.ts"
+    "./schemas": "./src/schemas/index.ts",
+    "./services": "./src/services/index.ts"
   },
   "dependencies": {
     "@bump/utils": "workspace:*",
