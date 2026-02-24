@@ -1,11 +1,11 @@
 import type { MouseEvent } from "react";
-import { useDropzone, type Accept } from "react-dropzone";
+import { useDropzone, type Accept, type FileRejection } from "react-dropzone";
 
 import { CloudUpload } from "lucide-react";
 
 type DropzoneProps = {
   onDrop: (acceptedFiles: File[]) => void;
-  onDropRejected?: (fileRejections: unknown[]) => void;
+  onDropRejected?: (fileRejections: FileRejection[]) => void;
   onFileDialogCancel?: () => void;
   accept?: Accept;
   multiple?: boolean;
