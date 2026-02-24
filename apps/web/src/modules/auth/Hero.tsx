@@ -46,8 +46,6 @@ const Hero = () => {
 
   const shuffledBackgrounds = useMemo(() => shuffleArray(heroBackgrounds), []);
 
-  console.log(heroBackgrounds);
-
   return (
     <div className='hero'>
       <Gallery images={shuffledBackgrounds} columns={9} />

@@ -10,6 +10,11 @@
     "./http": "./src/http/types.ts",
     "./models": "./src/models/index.ts",
     "./dtos": "./src/dtos/index.ts",
-    "./mappers": "./src/mappers/index.ts"
+    "./mappers": "./src/mappers/index.ts",
+    "./schemas": "./src/schemas/index.ts"
+  },
+  "dependencies": {
+    "@bump/utils": "workspace:*",
+    "zod": "^4.3.6"
   }
 }

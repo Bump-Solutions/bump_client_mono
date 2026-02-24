@@ -23,6 +23,9 @@ importers:
       '@bump/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@bump/forms':
+        specifier: workspace:*
+        version: link:../../packages/forms
       '@bump/hooks':
         specifier: workspace:*
         version: link:../../packages/hooks
@@ -44,6 +47,9 @@ importers:
       '@react-oauth/google':
         specifier: ^0.13.4
         version: 0.13.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@stepperize/react':
+        specifier: ^6.1.0
+        version: 6.1.0(react@19.2.4)(typescript@5.9.3)
       '@tanstack/react-form':
         specifier: ^1.28.3
         version: 1.28.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -71,6 +77,9 @@ importers:
       react-dropzone:
         specifier: ^15.0.0
         version: 15.0.0(react@19.2.4)
+      react-icons:
+        specifier: ^5.5.0
+        version: 5.5.0(react@19.2.4)
       react-responsive:
         specifier: ^10.0.1
         version: 10.0.1(react@19.2.4)
@@ -92,6 +101,9 @@ importers:
       use-query-params:
         specifier: ^2.2.2
         version: 2.2.2(react-dom@19.2.4(react@19.2.4))(react-router-dom@7.13.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
     devDependencies:
       '@eslint/js':
         specifier: ^9.39.1
@@ -132,7 +144,23 @@ importers:
 
   packages/assets: {}
 
-  packages/core: {}
+  packages/core:
+    dependencies:
+      '@bump/utils':
+        specifier: workspace:*
+        version: link:../utils
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
+
+  packages/forms:
+    dependencies:
+      '@tanstack/react-form':
+        specifier: ^1.28.3
+        version: 1.28.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
 
   packages/hooks:
     devDependencies:
@@ -652,6 +680,16 @@ packages:
     resolution: {integrity: sha512-mxRFDdHIWRxg3UfIIAwCm6NzvxG0jDX/wBN6KsQFTvKFqqg9vTrWUE68qEjHt19A5wwx5X5aUi2zuZT7YR0jrA==}
     cpu: [x64]
     os: [win32]
+
+  '@stepperize/core@2.1.0':
+    resolution: {integrity: sha512-edzIlkAUDrqan3G7XhY32PvciyQoJtyX3Fz8G1LBgSHIg2rMTBsZk8oz39NxT7XFxqibRXf2rvsH81iwg+Dd6w==}
+    peerDependencies:
+      typescript: '>=5.0.2'
+
+  '@stepperize/react@6.1.0':
+    resolution: {integrity: sha512-ywTt0OQDoBKcdzeBK9V1hTsMAQ+zAoIF/au9fcATspdGWfYr/z+mDGZm2cA2rzMJF79J+fUbjZPb+7Js4PtKBA==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
 
   '@tanstack/devtools-event-client@0.4.0':
     resolution: {integrity: sha512-RPfGuk2bDZgcu9bAJodvO2lnZeHuz4/71HjZ0bGb/SPg8+lyTA+RLSKQvo7fSmPSi8/vcH3aKQ8EM9ywf1olaw==}
@@ -1360,6 +1398,11 @@ packages:
     engines: {node: '>= 10.13'}
     peerDependencies:
       react: '>= 16.8 || 18.0.0'
+
+  react-icons@5.5.0:
+    resolution: {integrity: sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==}
+    peerDependencies:
+      react: '*'
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -2072,6 +2115,17 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.57.1':
     optional: true
+
+  '@stepperize/core@2.1.0(typescript@5.9.3)':
+    dependencies:
+      typescript: 5.9.3
+
+  '@stepperize/react@6.1.0(react@19.2.4)(typescript@5.9.3)':
+    dependencies:
+      '@stepperize/core': 2.1.0(typescript@5.9.3)
+      react: 19.2.4
+    transitivePeerDependencies:
+      - typescript
 
   '@tanstack/devtools-event-client@0.4.0': {}
 
@@ -2809,6 +2863,10 @@ snapshots:
       attr-accept: 2.2.5
       file-selector: 2.1.2
       prop-types: 15.8.1
+      react: 19.2.4
+
+  react-icons@5.5.0(react@19.2.4):
+    dependencies:
       react: 19.2.4
 
   react-is@16.13.1: {}
