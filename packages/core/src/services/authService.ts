@@ -64,5 +64,5 @@ export const googleLogin = async (
 // ======================================== LOGOUT ========================================
 
 export const logout = async (http: HttpClient): Promise<void> => {
-  await http.post(PATHS.AUTH.LOGOUT, undefined, { withCredentials: true });
+  await http.get(PATHS.AUTH.LOGOUT, { withCredentials: true });
 };
