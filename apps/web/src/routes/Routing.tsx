@@ -6,7 +6,9 @@ import {
   type LazyExoticComponent,
 } from "react";
 
-import { Route } from "react-router";
+import { Outlet, Route } from "react-router";
+
+import CartProvider from "../context/cart/CartProvider";
 
 import Fallback from "../components/Fallback";
 import PersistLogin from "../modules/auth/PersistLogin";
@@ -19,6 +21,8 @@ const Authentication = lazy(() => import("../modules/auth/Authentication"));
 const Login = lazy(() => import("../modules/auth/Login"));
 const Signup = lazy(() => import("../modules/auth/Signup"));
 const GoogleCallback = lazy(() => import("../modules/auth/GoogleCallback"));
+
+const Cart = lazy(() => import("../modules/cart/Cart"));
 
 const withSuspense = (
   Component: LazyExoticComponent<ComponentType<unknown>>,
@@ -66,10 +70,19 @@ export const privateRoutes = () => {
       <Route element={<PersistLogin />}>
         <Route element={<RequireAuth allowedRoles={ENUM.AUTH.ROLES.All} />}>
           {/* PROVIDERS FOR AUTHENTICATED USERS */}
+          <Route
+            element={
+              <CartProvider>
+                <Outlet />
+              </CartProvider>
+            }>
+            {/* HOME */}
+            <Route path='/' element={<Main />}>
+              <Route index element={<Home />} />
+            </Route>
 
-          {/* HOME */}
-          <Route path='/' element={<Main />}>
-            <Route index element={<Home />} />
+            {/* CART */}
+            <Route path='/cart' element={withSuspense(Cart)} />
           </Route>
         </Route>
       </Route>
@@ -88,6 +101,14 @@ export const modalRoutes = (background: Location) => {
         <Route
           element={<RequireAuth allowedRoles={ENUM.AUTH.ROLES.Validated} />}>
           {/* PROVIDERS FOR AUTHENTICATED USERS */}
+          <Route
+            element={
+              <CartProvider>
+                <Outlet />
+              </CartProvider>
+            }>
+            {/* SELL */}
+          </Route>
         </Route>
       </Route>
     </>

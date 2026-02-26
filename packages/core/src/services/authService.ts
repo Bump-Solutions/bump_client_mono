@@ -1,6 +1,7 @@
 import { PATHS } from "../api/paths";
 import type { HttpClient } from "../http/types";
 
+import type { ApiResponse } from "../api";
 import {
   type GoogleResponseDTO,
   type LoginRequestDTO,
@@ -33,9 +34,9 @@ export const login = async (
 export const signup = async (
   http: HttpClient,
   model: SignupModel,
-): Promise<unknown> => {
+): Promise<ApiResponse> => {
   const payload: SignupRequestDTO = toSignupRequestDTO(model);
-  const data = await http.post(PATHS.AUTH.REGISTER, payload, {
+  const data = await http.post<ApiResponse>(PATHS.AUTH.REGISTER, payload, {
     headers: { "Content-Type": "application/json" },
     withCredentials: true,
   });

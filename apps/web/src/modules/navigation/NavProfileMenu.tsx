@@ -1,5 +1,6 @@
-import { NavLink, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { toast } from "sonner";
+import { useCart } from "../../context/cart/useCart";
 import { useAuthWithMeta } from "../../hooks/auth/useAuthWithMeta";
 import { ROUTES } from "../../routes/routes";
 
@@ -20,8 +21,7 @@ const NavProfileMenu = ({
   const navigate = useNavigate();
 
   const { username, meta, isError, error } = useAuthWithMeta();
-  // const { itemsCount } = useCart();
-  const itemsCount = 10;
+  const { itemsCount } = useCart();
 
   if (isError) {
     toast.error(
@@ -42,10 +42,10 @@ const NavProfileMenu = ({
         </div>
 
         <div className='profile-menu__item '>
-          <NavLink to='' className='link no-anim icon--reverse fw-600'>
+          <Link to='' className='link no-anim icon--reverse fw-600'>
             <ArrowUpRight />
             <span>Pro</span>
-          </NavLink>
+          </Link>
         </div>
 
         <Tooltip content='Értesítések' showDelay={250} placement='bottom'>

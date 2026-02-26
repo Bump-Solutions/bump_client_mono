@@ -1,9 +1,9 @@
 import { ROUTES } from "../../routes/routes";
 
+import type { ApiError } from "@bump/core/api";
 import type { LoginRequestDTO } from "@bump/core/dtos";
 import type { AuthModel } from "@bump/core/models";
 import { login } from "@bump/core/services";
-import type { ApiError } from "../../types/api";
 
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";

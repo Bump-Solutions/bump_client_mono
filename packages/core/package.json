@@ -6,7 +6,8 @@
   "main": "src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./api": "./src/api/paths.ts",
+    "./api": "./src/api/index.ts",
+    "./queries": "./src/queries/queryKeys.ts",
     "./http": "./src/http/types.ts",
     "./models": "./src/models/index.ts",
     "./dtos": "./src/dtos/index.ts",
@@ -15,7 +16,7 @@
     "./services": "./src/services/index.ts"
   },
   "dependencies": {
-    "@bump/utils": "workspace:*",
-    "zod": "^4.3.6"
+    "zod": "^4.3.6",
+    "axios": "^1.13.5"
   }
 }
