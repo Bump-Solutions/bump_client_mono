@@ -1,6 +1,7 @@
 export type RequestOpts = {
   signal?: AbortSignal;
   headers?: Record<string, string>;
+  withCredentials?: boolean;
 };
 
 export interface HttpClient {

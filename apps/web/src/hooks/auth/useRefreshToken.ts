@@ -1,10 +1,10 @@
+import { API } from "../../utils/api";
+
 import { fromRefreshResponseDTO } from "@bump/core/mappers";
 import type { AuthModel } from "@bump/core/models";
+import { useAuth } from "../../context/auth/useAuth";
 
 import axios from "axios";
-
-import { useAuth } from "../../context/auth/useAuth";
-import { API } from "../../utils/api";
 
 export const useRefreshToken = (): (() => Promise<string>) => {
   const { setAuth } = useAuth();
@@ -22,7 +22,7 @@ export const useRefreshToken = (): (() => Promise<string>) => {
       return prev ? { ...prev, ...authModel } : authModel;
     });
 
-    return response.data.accessToken;
+    return response.data.access_token;
   };
 
   return refresh;

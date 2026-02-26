@@ -21,8 +21,6 @@ const PersistLogin = () => {
       try {
         await refresh();
       } catch (error: unknown) {
-        console.error(error);
-
         if (axios.isAxiosError(error)) {
           const msg =
             (error.response?.data as { message?: string } | undefined)

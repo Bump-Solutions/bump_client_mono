@@ -10,6 +10,7 @@ function adaptAxios(axios: AxiosInstance): HttpClient {
       const { data } = await axios.get<T>(url, {
         signal: opts?.signal,
         headers: opts?.headers,
+        withCredentials: opts?.withCredentials,
       });
       return data;
     },
@@ -18,6 +19,7 @@ function adaptAxios(axios: AxiosInstance): HttpClient {
       const { data } = await axios.post<T>(url, body, {
         signal: opts?.signal,
         headers: opts?.headers,
+        withCredentials: opts?.withCredentials,
       });
       return data;
     },
@@ -26,6 +28,7 @@ function adaptAxios(axios: AxiosInstance): HttpClient {
       const { data } = await axios.put<T>(url, body, {
         signal: opts?.signal,
         headers: opts?.headers,
+        withCredentials: opts?.withCredentials,
       });
       return data;
     },
@@ -34,6 +37,7 @@ function adaptAxios(axios: AxiosInstance): HttpClient {
       const { data } = await axios.delete<T>(url, {
         signal: opts?.signal,
         headers: opts?.headers,
+        withCredentials: opts?.withCredentials,
       });
       return data;
     },
