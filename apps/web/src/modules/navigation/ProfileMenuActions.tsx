@@ -1,0 +1,210 @@
+import { ROUTES } from "../../routes/routes";
+
+import { useRef, type JSX } from "react";
+import { Link, useLocation } from "react-router";
+import { useClickAway } from "react-use";
+import { useAuthWithMeta } from "../../hooks/auth/useAuthWithMeta";
+import { useLogout } from "../../hooks/auth/useLogout";
+
+import { motion } from "framer-motion";
+
+import ThemeSelector from "./ThemeSelector";
+
+import {
+  ArrowUpRight,
+  Bookmark,
+  ChartNoAxesCombined,
+  HandCoins,
+  MessagesSquare,
+  Package,
+  Settings,
+  Tag,
+  User,
+} from "lucide-react";
+
+type MenuAction = {
+  icon: JSX.Element;
+  label: string;
+  route: string;
+  class: string;
+};
+
+const DASHBOARD = (): MenuAction[] => {
+  return [
+    {
+      icon: <Package />,
+      label: "Rendelések",
+      route: ROUTES.ORDERS,
+      class: "",
+    },
+    {
+      icon: <HandCoins />,
+      label: "Kifizetések",
+      route: ROUTES.HOME,
+      class: "",
+    },
+    {
+      icon: <ChartNoAxesCombined />,
+      label: "Statisztikák",
+      route: ROUTES.HOME,
+      class: "",
+    },
+  ];
+};
+
+const ACTIONS = (username: string): MenuAction[] => {
+  return [
+    {
+      icon: <MessagesSquare />,
+      label: "Üzenetek",
+      route: ROUTES.INBOX.ROOT,
+      class: "",
+    },
+    {
+      icon: <User />,
+      label: "Bump profilom",
+      route: ROUTES.PROFILE(username).ROOT,
+      class: "",
+    },
+    {
+      icon: <Bookmark />,
+      label: "Mentett",
+      route: ROUTES.PROFILE(username).SAVED,
+      class: "show-sm-only",
+    },
+  ];
+};
+
+type ProfileMenuActionsProps = {
+  toggleProfileMenu: (bool: boolean) => void;
+};
+
+const ProfileMenuActions = ({ toggleProfileMenu }: ProfileMenuActionsProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const { username, meta, isLoading } = useAuthWithMeta();
+
+  const logout = useLogout();
+  const location = useLocation();
+
+  useClickAway(ref, () => {
+    toggleProfileMenu(false);
+  });
+
+  if (isLoading) return null;
+
+  return (
+    <motion.div
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0, 0, 0, 0.2)",
+        zIndex: 100,
+      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}>
+      <motion.div
+        ref={ref}
+        className='profile-menu__actions'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}>
+        <ul className='action-list no-border'>
+          <li className='px-0_5 pt-0_5'>
+            <Link
+              onClick={() => toggleProfileMenu(false)}
+              to={ROUTES.PROFILE(username!).ROOT}
+              className='fs-16 truncate fw-600 link black'>
+              {username}
+            </Link>
+          </li>
+          <li>
+            <div className='truncate fs-14 fc-gray-600 px-0_5'>
+              {meta?.email}
+            </div>
+          </li>
+        </ul>
+
+        <ul className='action-list'>
+          <li className='action-list-item btn'>
+            <Link
+              onClick={() => toggleProfileMenu(false)}
+              to={ROUTES.SELL}
+              state={{ background: location }}>
+              <Tag />
+              <span>Add el most!</span>
+            </Link>
+          </li>
+        </ul>
+
+        <ul className='action-list'>
+          {ACTIONS(username!).map((action, index) => (
+            <li key={index} className={`action-list-item ${action.class}`}>
+              <Link onClick={() => toggleProfileMenu(false)} to={action.route}>
+                {action.icon}
+                <span>{action.label}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Vezérlőpult */}
+        <ul className='action-list'>
+          {DASHBOARD().map((action, index) => (
+            <li key={index} className={`action-list-item ${action.class}`}>
+              <Link onClick={() => toggleProfileMenu(false)} to={action.route}>
+                {action.icon}
+                <span>{action.label}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <ul className='action-list'>
+          <li className='action-list-item'>
+            <Link
+              to={ROUTES.SETTINGS.ROOT}
+              onClick={() => toggleProfileMenu(false)}>
+              <Settings />
+              <span>Beállítások</span>
+            </Link>
+          </li>
+        </ul>
+
+        <ul className='action-list'>
+          <li className='action-list-item theme-selector'>
+            <span>Megjelenés</span>
+            <ThemeSelector />
+          </li>
+        </ul>
+
+        <ul className='action-list no-border'>
+          <li className='action-list-item blue icon-end show-sm-only'>
+            <div>
+              <ArrowUpRight />
+              <span>Pro</span>
+            </div>
+          </li>
+
+          <li className='action-list-item icon-end'>
+            <Link to={ROUTES.CONTACT} target='_blank'>
+              <ArrowUpRight />
+              <span>Kapcsolat</span>
+            </Link>
+          </li>
+
+          <li className='action-list-item red'>
+            <div onClick={() => logout()}>
+              <span>Kijelentkezés</span>
+            </div>
+          </li>
+        </ul>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+export default ProfileMenuActions;
