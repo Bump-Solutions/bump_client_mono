@@ -47,7 +47,9 @@ interface StateButtonProps extends Omit<HTMLMotionProps<"button">, "ref"> {
   children?: ReactNode;
   className?: string;
   text?: string;
-  onClick: (event: MouseEvent<HTMLButtonElement>) => Promise<void> | undefined;
+  onClick: (
+    event: MouseEvent<HTMLButtonElement>,
+  ) => Promise<unknown> | undefined;
 }
 
 const StateButton = ({

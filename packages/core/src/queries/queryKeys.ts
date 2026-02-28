@@ -55,9 +55,10 @@ export const queryKeys = {
 
   order: {
     all: ["order"] as const,
-    list: (params?: unknown) =>
-      [...queryKeys.order.all, "list", params] as const,
-    detail: (uuid: string) => [...queryKeys.order.all, "detail", uuid] as const,
+    lists: () => [...queryKeys.order.all, "list"] as const,
+    list: (params: { pageNumber: number; pageSize: number }) =>
+      [...queryKeys.order.lists(), params] as const,
+    get: (uuid: string) => [...queryKeys.order.all, "get", uuid] as const,
   },
 
   chat: {

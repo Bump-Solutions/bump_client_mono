@@ -210,7 +210,7 @@ export const makePaths = (version = "v1") => {
     },
 
     STRIPE: {
-      connect: u("user/stripe/stripe_connect"),
+      CONNECT: u("user/stripe/stripe_connect"),
     },
   } as const;
 };

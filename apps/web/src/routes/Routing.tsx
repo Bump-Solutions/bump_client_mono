@@ -24,6 +24,8 @@ const GoogleCallback = lazy(() => import("../modules/auth/GoogleCallback"));
 
 const Cart = lazy(() => import("../modules/cart/Cart"));
 
+const Orders = lazy(() => import("../modules/order/Orders"));
+
 const withSuspense = (
   Component: LazyExoticComponent<ComponentType<unknown>>,
 ) => {
@@ -79,10 +81,13 @@ export const privateRoutes = () => {
             {/* HOME */}
             <Route path='/' element={<Main />}>
               <Route index element={<Home />} />
-            </Route>
 
-            {/* CART */}
-            <Route path='/cart' element={withSuspense(Cart)} />
+              {/* CART */}
+              <Route path='/cart' element={withSuspense(Cart)} />
+
+              {/* ORDERS */}
+              <Route path='/orders' element={withSuspense(Orders)} />
+            </Route>
           </Route>
         </Route>
       </Route>

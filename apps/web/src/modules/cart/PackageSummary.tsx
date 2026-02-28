@@ -2,22 +2,25 @@ import { CURRENCY_LABELS, formatMinorHU } from "@bump/utils";
 import { type MouseEvent } from "react";
 import { Link } from "react-router";
 import { usePackage } from "../../context/cart/usePackage";
+import { useCreateOrder } from "../../hooks/order/useCreateOrder";
 import { ROUTES } from "../../routes/routes";
 
 import StateButton from "../../components/StateButton";
 
+import type { CreateOrderModel } from "@bump/core/models";
 import { Send } from "lucide-react";
+import { toast } from "sonner";
 
 const PackageSummary = () => {
   const { pkg } = usePackage();
   const { grossSubtotal, discountsTotal, indicativeSubtotal } = pkg.summary;
 
-  // const createOrderMutation = useCreateOrder(() => {});
+  const createOrderMutation = useCreateOrder();
 
   const handleCreateOrder = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    /*if (createOrderMutation.isPending) return Promise.reject();
+    if (createOrderMutation.isPending) return Promise.reject();
     if (!pkg) return Promise.reject();
 
     const newOrder: CreateOrderModel = {
@@ -46,9 +49,6 @@ const PackageSummary = () => {
     });
 
     return createOrderPromise;
-    */
-
-    return Promise.resolve();
   };
 
   return (
@@ -116,6 +116,7 @@ const PackageSummary = () => {
       <StateButton
         className='primary mx-auto w-full'
         text='Üzenet az eladónak'
+        disabled={createOrderMutation.isPending}
         onClick={handleCreateOrder}>
         <Send />
       </StateButton>
