@@ -1,0 +1,205 @@
+import type {
+  ProductSearchModel,
+  SearchPageModel,
+  UserSearchModel,
+} from "@bump/core/models";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
+import { useInView } from "react-intersection-observer";
+import { Link } from "react-router";
+import { useSearch } from "../../hooks/search/useSearch";
+import { ROUTES } from "../../routes/routes";
+
+import Button from "../../components/Button";
+import Image from "../../components/Image";
+import Spinner from "../../components/Spinner";
+
+import { Footprints, Search, User } from "lucide-react";
+
+type ResultsProps = {
+  searchKey: string;
+  setSearchKey: Dispatch<SetStateAction<string>>;
+};
+
+const Results = ({ searchKey, setSearchKey }: ResultsProps) => {
+  const isUserSearch = searchKey.startsWith("@");
+
+  const { ref, inView } = useInView();
+
+  const {
+    isLoading,
+    isDebouncing,
+    isFetchingNextPage,
+    isError,
+    fetchNextPage,
+    data,
+  } = useSearch({
+    searchKey,
+    delay: 400,
+  });
+
+  const pages: SearchPageModel<UserSearchModel | ProductSearchModel>[] =
+    data?.pages || [];
+
+  useEffect(() => {
+    if (inView && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [fetchNextPage, inView, isFetchingNextPage]);
+
+  const handleUserSearch = () => {
+    if (!searchKey || isUserSearch) return;
+    setSearchKey(`@${searchKey}`);
+  };
+
+  const handleProductSearch = () => {
+    setSearchKey(searchKey.replace(/^@/, ""));
+  };
+
+  const noResultConfig = isUserSearch
+    ? {
+        message:
+          'Nem találod? Ha inkább terméket vagy más tartalmat keresel, próbáld meg a "@" nélkül!',
+        buttonText: "Tartalom keresése",
+        onClick: handleProductSearch,
+        icon: <Footprints />,
+      }
+    : {
+        message:
+          'Nem találod? Felhasználók kereséséhez használd a "@" jelet a név előtt, például: @felhasználónév',
+        buttonText: "Felhasználó keresése",
+        onClick: handleUserSearch,
+        icon: <User />,
+      };
+
+  if (isError) {
+    return (
+      <h4 className='fc-red-300 ta-center pt-1_75 pb-3'>
+        Hiba történt a keresés közben.
+      </h4>
+    );
+  }
+
+  if (isLoading || isDebouncing) {
+    return (
+      <div className='relative py-3'>
+        <Spinner />
+      </div>
+    );
+  }
+
+  return (
+    pages.length > 0 && (
+      <section className='search__result'>
+        {pages[0].search_result.length > 0 ? (
+          <div className='result__list'>
+            <ul>
+              <li className='result'>
+                <div className='result__img'>
+                  <Search className='svg-20' />
+                </div>
+                <div className='result__text'>
+                  <span className='fw-700 truncate'>{searchKey}</span>
+                </div>
+              </li>
+            </ul>
+
+            {pages.map((page, index) => (
+              <ul key={index}>
+                {page.search_result.map(
+                  (
+                    result: UserSearchModel | ProductSearchModel,
+                    index: number,
+                  ) => {
+                    if (isUserSearch) {
+                      const { username, profilePicture, followersCount } =
+                        result as UserSearchModel;
+
+                      const label =
+                        followersCount && followersCount > 0
+                          ? followersCount >= 1000
+                            ? `${Math.floor(followersCount / 1000)}k követő`
+                            : `${followersCount} követő`
+                          : null;
+
+                      return (
+                        <Link
+                          key={index}
+                          to={ROUTES.PROFILE(username!).ROOT}
+                          className='result'>
+                          <div className='result__img user'>
+                            {profilePicture ? (
+                              <Image
+                                src={profilePicture}
+                                alt={username?.slice(0, 2)}
+                              />
+                            ) : (
+                              <User className='svg-20' />
+                            )}
+                          </div>
+                          <div className='result__text'>
+                            <span className='fw-700 truncate'>
+                              {result.username}
+                            </span>
+                            {label && (
+                              <span className='truncate fc-dark-500 fs-14'>
+                                {label}
+                              </span>
+                            )}
+                          </div>
+                        </Link>
+                      );
+                    } else {
+                      const { id, title, label, image } =
+                        result as ProductSearchModel;
+                      return (
+                        <Link
+                          to={ROUTES.PRODUCT(id).ROOT}
+                          key={index}
+                          className='result'>
+                          <div className='result__img'>
+                            {image ? (
+                              <Image src={image} alt={title} />
+                            ) : (
+                              <Footprints className='svg-20' />
+                            )}
+                          </div>
+                          <div className='result__text'>
+                            <span className='fw-700 truncate'>{title}</span>
+                            <span className='truncate fc-dark-500 fs-14'>
+                              {label}
+                            </span>
+                          </div>
+                        </Link>
+                      );
+                    }
+                  },
+                )}
+              </ul>
+            ))}
+
+            <div ref={ref}>
+              {isFetchingNextPage && (
+                <div className='relative py-3'>
+                  <Spinner />
+                </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className='no-result'>
+            <h3>Úgy tűnik, a(z) "{searchKey}" még nem szerepel nálunk</h3>
+            <p>{noResultConfig.message}</p>
+            <Button
+              className='secondary fill md'
+              text={noResultConfig.buttonText}
+              onClick={noResultConfig.onClick}>
+              {noResultConfig.icon}
+            </Button>
+          </div>
+        )}
+      </section>
+    )
+  );
+};
+
+export default Results;

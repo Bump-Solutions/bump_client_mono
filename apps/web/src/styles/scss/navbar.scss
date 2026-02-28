@@ -518,18 +518,14 @@
       transition: background-color 0.2s $animation-cubic;
 
       &.unread {
-        background-color: color-mix(in srgb, #{color(pink, 50)} 97%, white 3%);
+        background-color: color-mix(in srgb, color(pink, 50) 60%, white 40%);
       }
 
       &:hover {
         background-color: color(gray, 100);
 
         &.unread {
-          background-color: color-mix(
-            in srgb,
-            #{color(pink, 50)} 99%,
-            white 1%
-          );
+          background-color: color(pink, 50);
         }
       }
 

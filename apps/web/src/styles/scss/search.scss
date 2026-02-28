@@ -66,7 +66,11 @@
           border: none;
           flex-direction: row-reverse;
           gap: 0.5rem;
-          background-color: rgba($color: color(dark, 500), $alpha: 0.2);
+          background-color: color-mix(
+            in srgb,
+            color(dark, 500) 20%,
+            transparent
+          );
           color: $clr-font-light;
 
           svg {
@@ -106,7 +110,11 @@
           }
 
           &:hover {
-            background-color: rgba($color: color(dark, 500), $alpha: 0.3);
+            background-color: color-mix(
+              in srgb,
+              color(dark, 500) 30%,
+              transparent
+            );
 
             svg {
               opacity: 0;
@@ -201,7 +209,11 @@
               color: $clr-font-light;
 
               &:hover {
-                background-color: rgba($color: color(dark, 500), $alpha: 0.2);
+                background-color: color-mix(
+                  in srgb,
+                  color(dark, 500) 20%,
+                  transparent
+                );
               }
 
               .result__img {
@@ -213,7 +225,11 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: rgba($color: color(dark, 500), $alpha: 0.2);
+                background-color: color-mix(
+                  in srgb,
+                  color(dark, 500) 20%,
+                  transparent
+                );
                 overflow: hidden;
 
                 &.user {

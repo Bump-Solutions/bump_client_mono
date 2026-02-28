@@ -78,9 +78,9 @@ export const queryKeys = {
   search: {
     all: ["search"] as const,
     history: () => [...queryKeys.search.all, "history"] as const,
-    products: (params?: unknown) =>
+    products: (params: { key: string }) =>
       [...queryKeys.search.all, "products", params] as const,
-    users: (params?: unknown) =>
+    users: (params: { key: string }) =>
       [...queryKeys.search.all, "users", params] as const,
   },
 

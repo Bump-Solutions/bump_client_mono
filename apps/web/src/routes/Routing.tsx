@@ -17,6 +17,8 @@ import RequireAuth from "../modules/auth/RequireAuth";
 import Home from "../modules/home/Home";
 import Main from "../modules/home/Main";
 
+import Search from "../modules/search/Search";
+
 const Authentication = lazy(() => import("../modules/auth/Authentication"));
 const Login = lazy(() => import("../modules/auth/Login"));
 const Signup = lazy(() => import("../modules/auth/Signup"));
@@ -128,6 +130,14 @@ export const modalRoutes = (background: Location) => {
               </CartProvider>
             }>
             {/* SELL */}
+          </Route>
+
+          <Route
+            element={
+              <RequireAuth allowedRoles={ENUM.AUTH.ROLES.Authenticated} />
+            }>
+            {/* SEARCH */}
+            <Route path='/search' element={<Search />} />
           </Route>
         </Route>
       </Route>

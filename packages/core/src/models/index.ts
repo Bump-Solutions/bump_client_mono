@@ -5,3 +5,4 @@ export * from "./notificationModel";
 export * from "./orderModel";
 export * from "./productModel";
 export * from "./profileModel";
+export * from "./searchModel";

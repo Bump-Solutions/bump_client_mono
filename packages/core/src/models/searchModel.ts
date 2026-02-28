@@ -1,0 +1,37 @@
+export interface SearchPageModel<T> {
+  search_result: T[]; // Array of search results, can be products or users
+  next: number | null;
+  previous: string | null;
+  count: number;
+}
+
+export interface UserSearchModel {
+  username: string;
+  email: string;
+  profilePicture: string | null;
+  followersCount: number;
+}
+
+export interface ProductSearchModel {
+  id: number;
+  title: string;
+  label: string;
+  description: string;
+  username: string;
+  createdAt: string;
+  image: string;
+  /* 
+  product: {
+    brand: string;
+    model: string;
+    colorWay: string;
+    colors: string;
+  };
+  */
+}
+
+export interface SearchHistoryItemModel {
+  id: number;
+  type: number; // 0 | 1
+  query: string;
+}
