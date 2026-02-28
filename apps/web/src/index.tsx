@@ -23,6 +23,7 @@ import App from "./App.tsx";
 
 import AuthProvider from "./context/auth/AuthProvider.tsx";
 import NavbarThemeProvider from "./context/navbartheme/NavbarThemeProvider.tsx";
+import NotificationsProvider from "./context/notification/NotificationsProvider.tsx";
 import ThemeProvider from "./context/theme/ThemeProvider.tsx";
 
 import {
@@ -54,40 +55,42 @@ createRoot(root).render(
         <Router>
           <QueryParamProvider adapter={ReactRouter6Adapter}>
             <AuthProvider>
-              <NavbarThemeProvider>
-                {createPortal(
-                  <Toaster
-                    position='bottom-right'
-                    className='toaster'
-                    theme='light'
-                    richColors
-                    icons={{
-                      success: <CircleCheck />,
-                      error: <OctagonX />,
-                      info: <Info />,
-                      warning: <TriangleAlert />,
-                      loading: <Loader />,
-                    }}
-                    toastOptions={{
-                      className: "toast",
-                      classNames: {
-                        success: "toast--success",
-                        error: "toast--error",
-                        info: "toast--info",
-                        warning: "toast--warning",
-                        loading: "toast--loading",
-                      },
-                    }}
-                    visibleToasts={5}
-                    duration={5000}
-                  />,
-                  document.body,
-                )}
+              <NotificationsProvider>
+                <NavbarThemeProvider>
+                  {createPortal(
+                    <Toaster
+                      position='bottom-right'
+                      className='toaster'
+                      theme='light'
+                      richColors
+                      icons={{
+                        success: <CircleCheck />,
+                        error: <OctagonX />,
+                        info: <Info />,
+                        warning: <TriangleAlert />,
+                        loading: <Loader />,
+                      }}
+                      toastOptions={{
+                        className: "toast",
+                        classNames: {
+                          success: "toast--success",
+                          error: "toast--error",
+                          info: "toast--info",
+                          warning: "toast--warning",
+                          loading: "toast--loading",
+                        },
+                      }}
+                      visibleToasts={5}
+                      duration={5000}
+                    />,
+                    document.body,
+                  )}
 
-                <Routes>
-                  <Route path='/*' element={<App />} />
-                </Routes>
-              </NavbarThemeProvider>
+                  <Routes>
+                    <Route path='/*' element={<App />} />
+                  </Routes>
+                </NavbarThemeProvider>
+              </NotificationsProvider>
             </AuthProvider>
           </QueryParamProvider>
         </Router>

@@ -22,9 +22,15 @@ const Login = lazy(() => import("../modules/auth/Login"));
 const Signup = lazy(() => import("../modules/auth/Signup"));
 const GoogleCallback = lazy(() => import("../modules/auth/GoogleCallback"));
 
+const Notifications = lazy(
+  () => import("../modules/notification/Notifications"),
+);
+
 const Cart = lazy(() => import("../modules/cart/Cart"));
 
 const Orders = lazy(() => import("../modules/order/Orders"));
+const OrderLayout = lazy(() => import("../modules/order/OrderLayout"));
+const Order = lazy(() => import("../modules/order/Order"));
 
 const withSuspense = (
   Component: LazyExoticComponent<ComponentType<unknown>>,
@@ -82,11 +88,20 @@ export const privateRoutes = () => {
             <Route path='/' element={<Main />}>
               <Route index element={<Home />} />
 
+              {/* NOTIFICATIONS */}
+              <Route
+                path='/notifications'
+                element={withSuspense(Notifications)}
+              />
+
               {/* CART */}
               <Route path='/cart' element={withSuspense(Cart)} />
 
               {/* ORDERS */}
               <Route path='/orders' element={withSuspense(Orders)} />
+              <Route path='/order/:uuid' element={withSuspense(OrderLayout)}>
+                <Route index element={<Order />} />
+              </Route>
             </Route>
           </Route>
         </Route>

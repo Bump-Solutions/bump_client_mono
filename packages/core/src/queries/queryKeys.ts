@@ -71,8 +71,8 @@ export const queryKeys = {
 
   notification: {
     all: ["notification"] as const,
-    list: (params?: unknown) =>
-      [...queryKeys.notification.all, "list", params] as const,
+    list: (type: number) =>
+      [...queryKeys.notification.all, "list", type] as const,
   },
 
   search: {

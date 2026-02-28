@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useToggle } from "react-use";
 import { useNavbarTheme } from "../../context/navbartheme/useNavbarTheme";
 
+import NotificationMenu from "../notification/NotificationMenu";
 import NavMenu from "./NavMenu";
 import NavMenuMobile from "./NavMenuMobile";
 import NavProfileMenu from "./NavProfileMenu";
@@ -39,13 +40,11 @@ const Navbar = () => {
           toggleProfileMenu={toggleProfileMenu}
         />
 
-        {/* 
         <AnimatePresence mode='wait'>
           {isNotificationMenuOpen && (
             <NotificationMenu toggleNotificationMenu={toggleNotificationMenu} />
           )}
         </AnimatePresence>
-        */}
 
         <AnimatePresence mode='wait'>
           {isProfileMenuOpen && (
