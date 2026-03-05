@@ -10,6 +10,7 @@ import {
 import { Outlet, Route } from "react-router";
 
 import CartProvider from "../context/cart/CartProvider";
+import ProfileProvider from "../context/profile/ProfileProvider";
 
 import Fallback from "../components/Fallback";
 import PersistLogin from "../modules/auth/PersistLogin";
@@ -24,6 +25,8 @@ const Authentication = lazy(() => import("../modules/auth/Authentication"));
 const Login = lazy(() => import("../modules/auth/Login"));
 const Signup = lazy(() => import("../modules/auth/Signup"));
 const GoogleCallback = lazy(() => import("../modules/auth/GoogleCallback"));
+
+const Profile = lazy(() => import("../modules/profile/Profile"));
 
 const Notifications = lazy(
   () => import("../modules/notification/Notifications"),
@@ -108,19 +111,29 @@ export const privateRoutes = () => {
             <Route path='/' element={<Main />}>
               <Route index element={<Home />} />
 
-              {/* NOTIFICATIONS */}
               <Route
-                path='/notifications'
-                element={withSuspense(Notifications)}
-              />
+                element={<RequireAuth allowedRoles={ENUM.AUTH.ROLES.All} />}>
+                {/* PROFILE */}
+                <Route
+                  path='/profile/:uname'
+                  element={
+                    <ProfileProvider>{withSuspense(Profile)}</ProfileProvider>
+                  }></Route>
 
-              {/* CART */}
-              <Route path='/cart' element={withSuspense(Cart)} />
+                {/* NOTIFICATIONS */}
+                <Route
+                  path='/notifications'
+                  element={withSuspense(Notifications)}
+                />
 
-              {/* ORDERS */}
-              <Route path='/orders' element={withSuspense(Orders)} />
-              <Route path='/order/:uuid' element={withSuspense(OrderLayout)}>
-                <Route index element={<Order />} />
+                {/* CART */}
+                <Route path='/cart' element={withSuspense(Cart)} />
+
+                {/* ORDERS */}
+                <Route path='/orders' element={withSuspense(Orders)} />
+                <Route path='/order/:uuid' element={withSuspense(OrderLayout)}>
+                  <Route index element={<Order />} />
+                </Route>
               </Route>
 
               <Route

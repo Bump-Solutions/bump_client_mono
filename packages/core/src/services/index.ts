@@ -6,3 +6,4 @@ export * from "./orderService";
 export * from "./profileService";
 export * from "./searchService";
 export * from "./stripeService";
+export * from "./userService";

@@ -6,3 +6,4 @@ export * from "./orderModel";
 export * from "./productModel";
 export * from "./profileModel";
 export * from "./searchModel";
+export * from "./userModel";

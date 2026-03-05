@@ -5,3 +5,4 @@ export * from "./notificationMapper";
 export * from "./orderMapper";
 export * from "./profileMapper";
 export * from "./searchMapper";
+export * from "./userMapper";

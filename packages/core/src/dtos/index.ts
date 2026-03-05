@@ -5,3 +5,4 @@ export * from "./NotificationDTO";
 export * from "./OrderDTO";
 export * from "./ProfileDTO";
 export * from "./SearchDTO";
+export * from "./UserDTO";
