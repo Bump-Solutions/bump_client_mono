@@ -45,6 +45,12 @@ const ProfilePictureSettings = lazy(
 const ProfileInfoSettings = lazy(
   () => import("../modules/settings/personal/ProfileInfoSettings"),
 );
+const AddressSettings = lazy(
+  () => import("../modules/settings/address/AddressSettings"),
+);
+const ChangePassword = lazy(
+  () => import("../modules/settings/password/ChangePassword"),
+);
 
 const Error = lazy(() => import("../modules/error/Error"));
 
@@ -127,6 +133,8 @@ export const privateRoutes = () => {
                   <Route path='personal' element={<PersonalSettings />} />
                   <Route path='upload' element={<ProfilePictureSettings />} />
                   <Route path='profile' element={<ProfileInfoSettings />} />
+                  <Route path='addresses' element={<AddressSettings />} />
+                  <Route path='change-password' element={<ChangePassword />} />
                 </Route>
               </Route>
             </Route>

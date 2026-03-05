@@ -1,7 +1,9 @@
 import type { CreateAddressDTO, FetchedAddressDTO } from "../dtos/AddressDTO";
 import type { AddressModel } from "../models/addressModel";
 
-export function toCreateAddressDTO(model: AddressModel): CreateAddressDTO {
+export function toCreateAddressDTO(
+  model: Omit<AddressModel, "id">,
+): CreateAddressDTO {
   return {
     name: model.name,
     country: model.country,
