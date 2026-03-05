@@ -8,4 +8,6 @@ export type AuthProviderProps = {
 export type AuthContextValue = {
   auth: AuthModel | null;
   setAuth: Dispatch<SetStateAction<AuthModel | null>>;
+  didLogout: boolean;
+  setDidLogout: Dispatch<SetStateAction<boolean>>;
 };

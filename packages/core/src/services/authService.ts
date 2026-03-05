@@ -24,6 +24,10 @@ export const login = async (
   const data = await http.post<LoginResponseDTO, LoginRequestDTO>(
     PATHS.AUTH.LOGIN,
     payload,
+    {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    },
   );
 
   return fromLoginResponseDTO({ ...data, email: payload.email });

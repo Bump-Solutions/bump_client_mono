@@ -5,8 +5,13 @@ import type { AuthProviderProps } from "./types";
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [auth, setAuth] = useState<AuthModel | null>(null);
+  const [didLogout, setDidLogout] = useState<boolean>(false);
 
-  return <AuthContext value={{ auth, setAuth }}>{children}</AuthContext>;
+  return (
+    <AuthContext value={{ auth, setAuth, didLogout, setDidLogout }}>
+      {children}
+    </AuthContext>
+  );
 };
 
 export default AuthProvider;

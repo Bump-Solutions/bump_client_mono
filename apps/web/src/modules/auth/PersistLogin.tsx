@@ -11,7 +11,7 @@ import Spinner from "../../components/Spinner";
 const PersistLogin = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
-  const { auth } = useAuth();
+  const { auth, didLogout } = useAuth();
   const refresh = useRefreshToken();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const PersistLogin = () => {
       }
     };
 
-    if (!auth?.accessToken) {
+    if (!auth?.accessToken && !didLogout) {
       void verifyRefreshToken();
     } else {
       setLoading(false);
@@ -43,7 +43,7 @@ const PersistLogin = () => {
     return () => {
       isMounted = false;
     };
-  }, [auth?.accessToken, refresh, setLoading]);
+  }, [auth?.accessToken, didLogout, refresh, setLoading]);
 
   return loading ? <Spinner /> : <Outlet />;
 };

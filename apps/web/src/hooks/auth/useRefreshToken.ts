@@ -3,26 +3,27 @@ import { API } from "../../utils/api";
 import { fromRefreshResponseDTO } from "@bump/core/mappers";
 import type { AuthModel } from "@bump/core/models";
 import { useAuth } from "../../context/auth/useAuth";
-
-import axios from "axios";
+import { usePublicHttpClient } from "../../http/useHttpClient";
 
 export const useRefreshToken = (): (() => Promise<string>) => {
-  const { setAuth } = useAuth();
+  const http = usePublicHttpClient();
+  const { setAuth, setDidLogout } = useAuth();
 
   const refresh = async (): Promise<string> => {
-    const response = await axios.get(API.PATHS.AUTH.REFRESH, {
-      withCredentials: true,
-      baseURL: API.BASE_URL,
-    });
-
-    const authModel: AuthModel = fromRefreshResponseDTO(
-      response.data.access_token,
+    const data = await http.get<{ access_token: string }>(
+      API.PATHS.AUTH.REFRESH,
+      {
+        withCredentials: true,
+      },
     );
+
+    const authModel: AuthModel = fromRefreshResponseDTO(data.access_token);
     setAuth((prev: AuthModel | null) => {
       return prev ? { ...prev, ...authModel } : authModel;
     });
+    setDidLogout(false);
 
-    return response.data.access_token;
+    return data.access_token;
   };
 
   return refresh;

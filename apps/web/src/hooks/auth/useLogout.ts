@@ -8,7 +8,7 @@ import { usePublicHttpClient } from "../../http/useHttpClient";
 export const useLogout = (): (() => Promise<void>) => {
   const http = usePublicHttpClient();
 
-  const { setAuth } = useAuth();
+  const { setAuth, setDidLogout } = useAuth();
   const queryClient = useQueryClient();
 
   const handleLogout = async (): Promise<void> => {
@@ -16,6 +16,7 @@ export const useLogout = (): (() => Promise<void>) => {
       (async () => {
         await logout(http);
 
+        setDidLogout(true);
         setAuth(null);
 
         queryClient.clear();

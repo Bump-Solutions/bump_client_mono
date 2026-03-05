@@ -13,11 +13,12 @@ import { usePublicHttpClient } from "../../http/useHttpClient";
 export const useLogin = () => {
   const http = usePublicHttpClient();
   const navigate = useNavigate();
-  const { setAuth } = useAuth();
+  const { setAuth, setDidLogout } = useAuth();
 
   return useMutation<AuthModel, ApiError, LoginRequestDTO>({
     mutationFn: (payload) => login(http, payload),
     onSuccess: (authModel) => {
+      setDidLogout(false);
       setAuth(authModel);
       navigate(ROUTES.HOME, { replace: true });
     },
