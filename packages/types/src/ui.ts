@@ -3,3 +3,8 @@ export interface PaginatedListProps<T> {
   fetchNextPage: () => void;
   isFetchingNextPage: boolean;
 }
+
+export interface ColorData {
+  dominantColor: string;
+  palette: string[];
+}

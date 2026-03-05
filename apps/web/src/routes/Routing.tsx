@@ -3,6 +3,7 @@ import {
   lazy,
   Suspense,
   type ComponentType,
+  type JSX,
   type LazyExoticComponent,
 } from "react";
 
@@ -34,6 +35,19 @@ const Orders = lazy(() => import("../modules/order/Orders"));
 const OrderLayout = lazy(() => import("../modules/order/OrderLayout"));
 const Order = lazy(() => import("../modules/order/Order"));
 
+const Settings = lazy(() => import("../modules/settings/Settings"));
+const PersonalSettings = lazy(
+  () => import("../modules/settings/personal/PersonalSettings"),
+);
+const ProfilePictureSettings = lazy(
+  () => import("../modules/settings/personal/ProfilePictureSettings"),
+);
+const ProfileInfoSettings = lazy(
+  () => import("../modules/settings/personal/ProfileInfoSettings"),
+);
+
+const Error = lazy(() => import("../modules/error/Error"));
+
 const withSuspense = (
   Component: LazyExoticComponent<ComponentType<unknown>>,
 ) => {
@@ -44,7 +58,6 @@ const withSuspense = (
   );
 };
 
-/*
 const withSuspenseProps = <T extends object>(
   Component: LazyExoticComponent<(props: T) => JSX.Element>,
   props: T,
@@ -55,7 +68,6 @@ const withSuspenseProps = <T extends object>(
     </Suspense>
   );
 };
-*/
 
 export const publicRoutes = () => {
   return (
@@ -104,6 +116,19 @@ export const privateRoutes = () => {
               <Route path='/order/:uuid' element={withSuspense(OrderLayout)}>
                 <Route index element={<Order />} />
               </Route>
+
+              <Route
+                element={
+                  <RequireAuth allowedRoles={ENUM.AUTH.ROLES.Authenticated} />
+                }>
+                {/* SETTINGS */}
+                <Route path='/settings' element={withSuspense(Settings)}>
+                  <Route index element={<PersonalSettings />} />
+                  <Route path='personal' element={<PersonalSettings />} />
+                  <Route path='upload' element={<ProfilePictureSettings />} />
+                  <Route path='profile' element={<ProfileInfoSettings />} />
+                </Route>
+              </Route>
             </Route>
           </Route>
         </Route>
@@ -113,7 +138,16 @@ export const privateRoutes = () => {
 };
 
 export const errorRoutes = () => {
-  return <></>;
+  return (
+    <>
+      <Route
+        path='/unauthorized'
+        element={withSuspenseProps(Error, { code: 403 })}
+      />
+      <Route path='/not-found' element={withSuspenseProps(Error, {})} />
+      <Route path='*' element={withSuspenseProps(Error, { code: 404 })} />
+    </>
+  );
 };
 
 export const modalRoutes = (background: Location) => {
