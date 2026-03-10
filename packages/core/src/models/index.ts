@@ -1,6 +1,7 @@
 export * from "./addressModel";
 export * from "./authModel";
 export * from "./cartModel";
+export * from "./chatModel";
 export * from "./notificationModel";
 export * from "./orderModel";
 export * from "./productModel";

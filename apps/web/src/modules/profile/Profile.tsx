@@ -2,21 +2,15 @@ import "../../styles/css/profile.css";
 
 import { Outlet } from "react-router";
 import { useNavbarTheme } from "../../context/navbartheme/useNavbarTheme";
-import { useProfile } from "../../context/profile/useProfile";
 
-import Spinner from "../../components/Spinner";
 import ProfileCard from "./card/ProfileCard";
 import ProfileBanner from "./ProfileBanner";
 import ProfileTabs from "./ProfileTabs";
 
 const Profile = () => {
-  const { isLoading } = useProfile();
+  useNavbarTheme(false);
 
-  useNavbarTheme(isLoading ? true : false);
-
-  return isLoading ? (
-    <Spinner />
-  ) : (
+  return (
     <section className='profile'>
       <ProfileBanner />
       <div className='profile__wrapper'>

@@ -1,6 +1,7 @@
 export * from "./addressService";
 export * from "./authService";
 export * from "./cartService";
+export * from "./chatService";
 export * from "./notificationService";
 export * from "./orderService";
 export * from "./profileService";

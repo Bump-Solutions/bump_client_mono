@@ -3,6 +3,7 @@ import { queryKeys } from "@bump/core/queries";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo, type ReactNode } from "react";
 import { Navigate, useParams } from "react-router";
+import Spinner from "../../components/Spinner";
 import { useGetUser } from "../../hooks/user/useGetUser";
 import { ROUTES } from "../../routes/routes";
 import { useAuth } from "../auth/useAuth";
@@ -12,7 +13,20 @@ import type { ProfileContextValue, ProfileProviderProps } from "./types";
 const ProfileProvider = ({ children }: ProfileProviderProps) => {
   const { uname } = useParams();
 
-  if (!uname) return null; // or <NotFound />
+  if (!uname)
+    return (
+      <Navigate
+        to={ROUTES.NOTFOUND}
+        replace
+        state={{
+          error: {
+            code: 404,
+            title: "Hibás felhasználónév",
+            message: `Sajnáljuk, a megadott felhasználónév nem található. Megeshet, hogy elírás van a felhasználónévben, vagy a felhasználó törölve lett.`,
+          },
+        }}
+      />
+    ); // or <NotFound />
 
   return <ProfileProviderInner uname={uname}>{children}</ProfileProviderInner>;
 };
@@ -29,30 +43,31 @@ const ProfileProviderInner = ({
 
   const { data: user, isLoading, isError } = useGetUser(uname);
 
+  const isOwnProfile = auth?.user?.username === uname;
+
   const setUser = useCallback(
     (data: Partial<UserModel>) => {
-      queryClient.setQueryData(
-        queryKeys.user.get(uname),
-        (prev: UserModel | undefined) => ({
+      queryClient.setQueryData<UserModel>(queryKeys.user.get(uname), (prev) => {
+        if (!prev) return prev;
+
+        return {
           ...prev,
           ...data,
-        }),
-      );
+        };
+      });
     },
     [queryClient, uname],
   );
 
-  const isOwnProfile = auth?.user?.username === uname;
+  const contextValue = useMemo<ProfileContextValue | undefined>(() => {
+    if (!user) return undefined;
 
-  const contextValue = useMemo<ProfileContextValue>(
-    () => ({
+    return {
       user,
       setUser,
       isOwnProfile,
-      isLoading,
-    }),
-    [user, setUser, isOwnProfile, isLoading],
-  );
+    };
+  }, [user, setUser, isOwnProfile]);
 
   if (isError) {
     return (
@@ -68,6 +83,10 @@ const ProfileProviderInner = ({
         }}
       />
     );
+  }
+
+  if (isLoading || !user) {
+    return <Spinner />;
   }
 
   return <ProfileContext value={contextValue}>{children}</ProfileContext>;

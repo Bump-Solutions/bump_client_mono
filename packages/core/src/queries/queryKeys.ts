@@ -14,10 +14,10 @@ export const queryKeys = {
 
   follow: {
     all: ["follow"] as const,
-    followers: (params?: unknown) =>
-      [...queryKeys.follow.all, "followers", params] as const,
-    followings: (params?: unknown) =>
-      [...queryKeys.follow.all, "followings", params] as const,
+    followers: (uid: number) =>
+      [...queryKeys.follow.all, "followers", uid] as const,
+    followings: (uid: number) =>
+      [...queryKeys.follow.all, "followings", uid] as const,
   },
 
   product: {
@@ -63,8 +63,7 @@ export const queryKeys = {
 
   chat: {
     all: ["chat"] as const,
-    groups: (params?: unknown) =>
-      [...queryKeys.chat.all, "groups", params] as const,
+    groups: () => [...queryKeys.chat.all, "groups"] as const,
     messages: (chatId: string, params?: unknown) =>
       [...queryKeys.chat.all, "messages", chatId, params] as const,
   },

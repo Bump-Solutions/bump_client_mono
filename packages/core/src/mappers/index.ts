@@ -1,6 +1,7 @@
 export * from "./addressMapper";
 export * from "./authMapper";
 export * from "./cartMapper";
+export * from "./chatMapper";
 export * from "./notificationMapper";
 export * from "./orderMapper";
 export * from "./profileMapper";

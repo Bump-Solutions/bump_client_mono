@@ -25,7 +25,7 @@ const DEFAULT_PALETTE = [
 
 const ProfileBanner = () => {
   const { isOwnProfile, user } = useProfile();
-  useTitle(`@${user?.username} - ${ENUM.BRAND.NAME}`);
+  useTitle(`@${user.username} - ${ENUM.BRAND.NAME}`);
 
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [openBgColorPicker, toggleBgColorPicker] = useToggle(false);

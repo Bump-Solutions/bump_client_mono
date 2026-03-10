@@ -6,8 +6,7 @@ export type ProfileProviderProps = {
 };
 
 export type ProfileContextValue = {
-  user: UserModel | undefined;
+  user: UserModel;
   setUser: (data: Partial<UserModel>) => void;
   isOwnProfile: boolean;
-  isLoading: boolean;
 };

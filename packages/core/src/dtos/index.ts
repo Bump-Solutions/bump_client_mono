@@ -1,6 +1,7 @@
 export * from "./AddressDTO";
 export * from "./AuthDTO";
 export * from "./CartDTO";
+export * from "./ChatDTO";
 export * from "./NotificationDTO";
 export * from "./OrderDTO";
 export * from "./ProfileDTO";
