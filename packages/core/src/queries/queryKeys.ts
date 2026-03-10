@@ -16,8 +16,12 @@ export const queryKeys = {
     all: ["follow"] as const,
     followers: (uid: number) =>
       [...queryKeys.follow.all, "followers", uid] as const,
+    followersInfinite: (uid: number, searchKey: string) =>
+      [...queryKeys.follow.followers(uid), "infinite", { searchKey }] as const,
     followings: (uid: number) =>
       [...queryKeys.follow.all, "followings", uid] as const,
+    followingsInfinite: (uid: number, searchKey: string) =>
+      [...queryKeys.follow.followings(uid), "infinite", { searchKey }] as const,
   },
 
   product: {

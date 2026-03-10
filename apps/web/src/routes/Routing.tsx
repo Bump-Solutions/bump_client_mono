@@ -19,6 +19,10 @@ import RequireAuth from "../modules/auth/RequireAuth";
 import Home from "../modules/home/Home";
 import Main from "../modules/home/Main";
 
+import Follow from "../modules/follow/Follow";
+import Followers from "../modules/follow/Followers";
+import Followings from "../modules/follow/Followings";
+
 import Search from "../modules/search/Search";
 
 const Authentication = lazy(() => import("../modules/auth/Authentication"));
@@ -191,6 +195,20 @@ export const modalRoutes = (background: Location) => {
             element={
               <RequireAuth allowedRoles={ENUM.AUTH.ROLES.Authenticated} />
             }>
+            {/* FOLLOW */}
+            <Route
+              element={
+                <ProfileProvider>
+                  <Follow background={background} />
+                </ProfileProvider>
+              }>
+              <Route path='/profile/:uname/followers' element={<Followers />} />
+              <Route
+                path='/profile/:uname/followings'
+                element={<Followings />}
+              />
+            </Route>
+
             {/* SEARCH */}
             <Route path='/search' element={<Search />} />
           </Route>

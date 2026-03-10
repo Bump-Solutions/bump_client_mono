@@ -3,12 +3,19 @@ import "../../styles/css/profile.css";
 import { Outlet } from "react-router";
 import { useNavbarTheme } from "../../context/navbartheme/useNavbarTheme";
 
+import { useEffect } from "react";
 import ProfileCard from "./card/ProfileCard";
 import ProfileBanner from "./ProfileBanner";
 import ProfileTabs from "./ProfileTabs";
 
 const Profile = () => {
-  useNavbarTheme(false);
+  const { setIsSolid } = useNavbarTheme(false);
+
+  useEffect(() => {
+    return () => {
+      setIsSolid(true);
+    };
+  }, [setIsSolid]);
 
   return (
     <section className='profile'>
