@@ -26,7 +26,7 @@ const ProfileProvider = ({ children }: ProfileProviderProps) => {
           },
         }}
       />
-    ); // or <NotFound />
+    );
 
   return <ProfileProviderInner uname={uname}>{children}</ProfileProviderInner>;
 };

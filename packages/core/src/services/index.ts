@@ -4,6 +4,7 @@ export * from "./cartService";
 export * from "./chatService";
 export * from "./notificationService";
 export * from "./orderService";
+export * from "./productService";
 export * from "./profileService";
 export * from "./searchService";
 export * from "./stripeService";

@@ -12,6 +12,7 @@ export const useGetUser = (username: UserModel["username"]) => {
   return useQuery<UserModel, ApiError>({
     queryKey: queryKeys.user.get(username),
     queryFn: ({ signal }) => getUser(http, username, signal),
+    enabled: Boolean(username),
     staleTime: ENUM.GLOBALS.staleTime5,
     retry: 1,
   });

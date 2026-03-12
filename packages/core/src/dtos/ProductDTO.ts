@@ -1,11 +1,14 @@
-export interface InventoryModel {
-  products: ProductListModel[];
+import type { BadgeCollection } from "../models/productModel";
+
+export interface InventoryDTO {
+  products: ListProductDTO[];
   next: number | null; // The next page number, or null if there are no more pages
   previous: string | null; // The previous page URL, or null if there are no previous pages
   count: number; // The total number of products available
 }
 
-export interface ProductListModel {
+// A backend “GET /product/list_products” válaszában érkező terméklista adatok.
+export interface ListProductDTO {
   id: number;
   title: string;
   description: string;
@@ -13,30 +16,32 @@ export interface ProductListModel {
   category: string;
   condition: string;
   size?: string; // Single item
-  price?: number;
-  minPrice?: number;
-  discountedPrice?: number;
+  price?: number; // Single item
+  min_price?: number; // Multiple items with different prices
+  discounted_price?: number;
   saves: number;
   saved: boolean; // if the authenticated user has saved this product
   likes: number;
   liked: boolean; // if the authenticated user has liked this product
   badges: BadgeCollection;
-  itemsCount: number; // the number of items in the product
-  ownProduct: boolean; // if the authenticated user is the owner of this product
-  userId: number;
+  items_count: number; // the number of items in the product
+  own_product: boolean; // if the authenticated user is the owner of this product
+
+  user_id: number;
 }
 
-export interface ProductModel {
+// A backend “GET /product/:pid válaszában érkező termék adatok. (single product)
+export interface FetchedProductDTO {
   id: number;
   title: string;
   description: string;
-  images: string[];
+  images: { src: string }[];
 
   product: {
     id: number;
     brand: string;
     model: string;
-    colorWay: string;
+    color_way: string;
     category: number;
     colors: string; // Comma separated colors
   }; // Catalog product
@@ -48,96 +53,86 @@ export interface ProductModel {
     size: string;
     state: number;
     gender: number;
+    on_sale: boolean; // if the item is on sale
   }[]; // Array of items in the product
 
   user: {
     id: number;
     username: string;
-    firstName: string;
-    lastName: string;
-    phoneNumber: string | null;
+    first_name: string;
+    last_name: string;
+    phone_number: string | null;
     bio: string;
-    profilePicture: string | null;
-    profileBackgroundColor: string | null;
-    profilePictureColorPalette: string | null;
-  };
+    profile_picture: string | null;
+    profile_background_color: string | null;
+    profile_picture_color_palette: string | null;
+  }; // The user who created the product
 
   saves: number;
   saved: boolean; // if the authenticated user has saved this product
   likes: number;
   liked: boolean; // if the authenticated user has liked this product
   badges: BadgeCollection;
-  ownProduct: boolean; // if the authenticated user is the owner of this product
+  own_product: boolean; // if the authenticated user is the owner of this product
 }
 
-export interface BrandModel {
+export interface BrandDTO {
   brand: string;
 }
 
-export interface BrandsPageModel {
-  products: BrandModel[];
+export interface BrandsPageDTO {
+  products: BrandDTO[];
   next: number | null; // The next page number, or null if there are no more pages
   previous: string | null; // The previous page URL, or null if there are no previous pages
   count: number; // The total number of brands available
 }
 
-export interface ModelModel {
+export interface ModelDTO {
   model: string;
 }
 
-export interface ModelsPageModel {
-  products: ModelModel[];
+export interface ModelsPageDTO {
+  products: ModelDTO[];
   next: number | null; // The next page number, or null if there are no more pages
   previous: string | null; // The previous page URL, or null if there are no previous pages
   count: number; // The total number of models available
 }
 
-export interface ColorwayModel {
+export interface ColorwayDTO {
   id: number; // Catalog product ID (brand + model + colorway)
-  colorWay: string;
+  color_way: string;
 }
 
-export interface ColorwaysPageModel {
-  products: ColorwayModel[];
+export interface ColorwaysPageDTO {
+  products: ColorwayDTO[];
   next: number | null; // The next page number, or null if there are no more pages
   previous: string | null; // The previous page URL, or null if there are no previous pages
   count: number; // The total number of colorways available
 }
 
-// Product upload model on client side
-export interface CreateProductModel {
-  // 1st step
+export interface CreateProductDTO {
   title: string;
   description: string;
 
-  // 2nd step - catalog or not: if isCatalog, then we only need the product ID
   product: {
-    isCatalog: boolean; // true if the product is a catalog product
-    id: number | null; // Catalog product ID, required if isCatalog is true
+    is_catalog: boolean; // true if the product is a catalog product, false if it's a custom product
+    id: number | null; // Catalog product ID, null if creating a new product
     brand?: string; // Required if isCatalog is false
     model?: string; // Required if isCatalog is false
-    colorWay?: string; // Required if isCatalog is false
+    color_way?: string; // Required if isCatalog is false
+    category?: number; // Required if isCatalog is false
+    colors?: string; // Comma separated colors, required if isCatalog is false
   };
 
-  // 3rd step - items
   items: {
-    condition: number | null; // Condition of the item, null if not set
-    gender: number | null;
-    size: number | null;
-    price: number | null;
+    condition: number;
+    gender: number;
+    size: number;
+    price: number;
+    state: number;
   }[];
 
-  // 4th step - images
-  images: File[];
+  county: number;
+
+  images: { file: File }[];
 }
-
-export interface Badge {
-  text: string;
-  type: string;
-  priority: number;
-  value?: string | number;
-}
-
-export type BadgeType = "new" | "discount" | "recommended" | "popular";
-
-export type BadgeCollection = Partial<Record<BadgeType, Badge>>;

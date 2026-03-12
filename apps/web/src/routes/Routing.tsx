@@ -32,6 +32,11 @@ const GoogleCallback = lazy(() => import("../modules/auth/GoogleCallback"));
 
 const Profile = lazy(() => import("../modules/profile/Profile"));
 
+const Products = lazy(() => import("../modules/product/Products"));
+const SavedProducts = lazy(() => import("../modules/product/SavedProducts"));
+const ProductLayout = lazy(() => import("../modules/product/ProductLayout"));
+const Product = lazy(() => import("../modules/product/Product"));
+
 const Notifications = lazy(
   () => import("../modules/notification/Notifications"),
 );
@@ -122,7 +127,18 @@ export const privateRoutes = () => {
                   path='/profile/:uname'
                   element={
                     <ProfileProvider>{withSuspense(Profile)}</ProfileProvider>
-                  }></Route>
+                  }>
+                  <Route index element={<Products />} />
+                  <Route path='products' element={<Products />} />
+                  <Route path='saved' element={<SavedProducts />} />
+                </Route>
+
+                {/* PRODUCT */}
+                <Route
+                  path='/product/:pid'
+                  element={withSuspense(ProductLayout)}>
+                  <Route index element={<Product />} />
+                </Route>
 
                 {/* NOTIFICATIONS */}
                 <Route

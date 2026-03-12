@@ -4,6 +4,7 @@ export * from "./cartMapper";
 export * from "./chatMapper";
 export * from "./notificationMapper";
 export * from "./orderMapper";
+export * from "./productMapper";
 export * from "./profileMapper";
 export * from "./searchMapper";
 export * from "./userMapper";

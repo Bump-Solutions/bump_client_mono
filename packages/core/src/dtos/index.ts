@@ -4,6 +4,7 @@ export * from "./CartDTO";
 export * from "./ChatDTO";
 export * from "./NotificationDTO";
 export * from "./OrderDTO";
+export * from "./ProductDTO";
 export * from "./ProfileDTO";
 export * from "./SearchDTO";
 export * from "./UserDTO";
