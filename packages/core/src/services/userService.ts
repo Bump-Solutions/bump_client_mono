@@ -119,9 +119,7 @@ export const unfollow = async (
   if (!uid) throw new Error("Missing required parameter: uid");
 
   return await http.delete(PATHS.USER.UNFOLLOW, {
-    data: {
-      following_user_id: uid,
-    },
+    following_user_id: uid,
   });
 };
 
@@ -132,8 +130,6 @@ export const deleteFollower = async (
   if (!uid) throw new Error("Missing required parameter: uid");
 
   return await http.delete(PATHS.USER.DELETE_FOLLOWER, {
-    data: {
-      user_id: uid,
-    },
+    user_id: uid,
   });
 };

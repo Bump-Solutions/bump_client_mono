@@ -6,6 +6,7 @@ export * from "./notificationService";
 export * from "./orderService";
 export * from "./productService";
 export * from "./profileService";
+export * from "./reportService";
 export * from "./searchService";
 export * from "./stripeService";
 export * from "./userService";

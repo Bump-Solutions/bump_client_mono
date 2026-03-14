@@ -22,6 +22,7 @@ import Main from "../modules/home/Main";
 import Follow from "../modules/follow/Follow";
 import Followers from "../modules/follow/Followers";
 import Followings from "../modules/follow/Followings";
+import Report from "../modules/report/Report";
 
 import Search from "../modules/search/Search";
 
@@ -227,6 +228,9 @@ export const modalRoutes = (background: Location) => {
 
             {/* SEARCH */}
             <Route path='/search' element={<Search />} />
+
+            {/* REPORT */}
+            <Route path='/report/:type/:id' element={<Report />} />
           </Route>
         </Route>
       </Route>

@@ -33,8 +33,9 @@ function adaptAxios(axios: AxiosInstance): HttpClient {
       return data;
     },
 
-    async delete<T>(url: string, opts?: RequestOpts) {
+    async delete<T, B = unknown>(url: string, body?: B, opts?: RequestOpts) {
       const { data } = await axios.delete<T>(url, {
+        data: body,
         signal: opts?.signal,
         headers: opts?.headers,
         withCredentials: opts?.withCredentials,

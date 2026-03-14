@@ -24,12 +24,18 @@ const UserInteractions = () => {
     setUser({
       ...user,
       following: true,
-      followersCount: user.followersCount,
+      followersCount: user.followersCount + 1,
     });
 
     // Ha bekövetünk valakit, akkor az összes listFollowers és listFollowings-et frissiteni kell
     queryClient.invalidateQueries({
-      queryKey: queryKeys.follow.all,
+      queryKey: queryKeys.follow.followers(user.id),
+      exact: false,
+      refetchType: "all",
+    });
+
+    queryClient.invalidateQueries({
+      queryKey: queryKeys.follow.followings(user.id),
       exact: false,
       refetchType: "all",
     });
@@ -39,12 +45,18 @@ const UserInteractions = () => {
     setUser({
       ...user,
       following: false,
-      followersCount: user.followersCount,
+      followersCount: user.followersCount - 1,
     });
 
     // Ha kikövetünk valakit, akkor az összes listFollowers és listFollowings-et frissiteni kell
     queryClient.invalidateQueries({
-      queryKey: queryKeys.follow.all,
+      queryKey: queryKeys.follow.followers(user.id),
+      exact: false,
+      refetchType: "all",
+    });
+
+    queryClient.invalidateQueries({
+      queryKey: queryKeys.follow.followings(user.id),
       exact: false,
       refetchType: "all",
     });
