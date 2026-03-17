@@ -1,3 +1,7 @@
+export interface FormErrors {
+  [field: string]: string;
+}
+
 export interface FileUpload {
   id: string;
   file: File;

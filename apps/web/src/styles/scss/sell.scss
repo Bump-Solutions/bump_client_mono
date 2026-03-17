@@ -151,6 +151,8 @@
                     margin-block: 0.5rem;
 
                     .chip {
+                      height: 100%;
+
                       &.selected {
                         border: none;
                         background-color: color(gray, 900);

@@ -11,6 +11,7 @@ import { Outlet, Route } from "react-router";
 
 import CartProvider from "../context/cart/CartProvider";
 import ProfileProvider from "../context/profile/ProfileProvider";
+import SellProvider from "../context/sell/SellProvider";
 
 import Fallback from "../components/Fallback";
 import PersistLogin from "../modules/auth/PersistLogin";
@@ -25,6 +26,7 @@ import Followings from "../modules/follow/Followings";
 import Report from "../modules/report/Report";
 
 import Search from "../modules/search/Search";
+import Sell from "../modules/sell/Sell";
 
 const Authentication = lazy(() => import("../modules/auth/Authentication"));
 const Login = lazy(() => import("../modules/auth/Login"));
@@ -206,6 +208,14 @@ export const modalRoutes = (background: Location) => {
               </CartProvider>
             }>
             {/* SELL */}
+            <Route
+              path='/sell'
+              element={
+                <SellProvider>
+                  <Sell />
+                </SellProvider>
+              }
+            />
           </Route>
 
           <Route

@@ -134,6 +134,9 @@
   gap: 0.5rem;
   margin-block: 0.5rem;
 }
+.modal__wrapper .modal.sell form .modal__content .step.step-2 .details__wrapper.catalog .chips__wrapper .chip {
+  height: 100%;
+}
 .modal__wrapper .modal.sell form .modal__content .step.step-2 .details__wrapper.catalog .chips__wrapper .chip.selected {
   border: none;
   background-color: var(--clr-gray-900);

@@ -42,6 +42,8 @@ export const useSignupForm = () => {
       });
 
       formApi.reset();
+
+      return signupPromise;
     },
 
     onSubmitInvalid: async () => {
