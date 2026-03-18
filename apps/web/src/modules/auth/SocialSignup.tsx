@@ -26,8 +26,8 @@ const SocialSignup = () => {
     flow: "auth-code",
     ux_mode: "redirect", // popup / redirect
     redirect_uri: "https://bumpmarket.hu/auth/google/callback", //`https://bumpmarket.hu/auth/google/callback`, // http://localhost:3000/auth/google/callback
-    onError: () => {
-      // console.log(error);
+    onError: (error) => {
+      console.error(error);
       toast.error("Hiba történt a Google-lal való bejelentkezés során.");
     },
   });
