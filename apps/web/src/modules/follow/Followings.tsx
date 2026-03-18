@@ -14,8 +14,14 @@ const Followings = () => {
 
   const [searchKeyDebounced, setSearchKeyDebounced] = useState<string>("");
 
-  const { data, isLoading, isFetchingNextPage, isError, fetchNextPage } =
-    useListFollowings(user.id, searchKeyDebounced);
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+  } = useListFollowings(user.id, searchKeyDebounced);
 
   const pages: FollowingsPageModel[] = data?.pages || [];
 
@@ -51,6 +57,7 @@ const Followings = () => {
               pages={pages}
               fetchNextPage={fetchNextPage}
               isFetchingNextPage={isFetchingNextPage}
+              hasNextPage={hasNextPage}
             />
           ) : (
             <>

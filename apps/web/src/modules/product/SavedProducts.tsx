@@ -10,8 +10,14 @@ import ProductList from "./ProductList";
 import { SearchX } from "lucide-react";
 
 const SavedProducts = () => {
-  const { data, isLoading, isFetchingNextPage, isError, fetchNextPage } =
-    useListSavedProducts();
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+  } = useListSavedProducts();
 
   const pages: InventoryModel[] = data?.pages || [];
 
@@ -40,6 +46,7 @@ const SavedProducts = () => {
               pages={pages}
               fetchNextPage={fetchNextPage}
               isFetchingNextPage={isFetchingNextPage}
+              hasNextPage={hasNextPage}
             />
           ) : (
             <>

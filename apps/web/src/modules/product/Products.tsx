@@ -16,8 +16,14 @@ const Products = () => {
   const location = useLocation();
   const { user, isOwnProfile } = useProfile();
 
-  const { data, isLoading, isFetchingNextPage, isError, fetchNextPage } =
-    useListProducts(user.id);
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+  } = useListProducts(user.id);
 
   const pages: InventoryModel[] = data?.pages || [];
 
@@ -46,6 +52,7 @@ const Products = () => {
               pages={pages}
               fetchNextPage={fetchNextPage}
               isFetchingNextPage={isFetchingNextPage}
+              hasNextPage={hasNextPage}
             />
           ) : isOwnProfile ? (
             <Empty

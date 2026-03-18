@@ -15,6 +15,7 @@ const ProductList = ({
   pages,
   fetchNextPage,
   isFetchingNextPage,
+  hasNextPage,
 }: PaginatedListProps<InventoryModel>) => {
   const location = useLocation();
   const { isOwnProfile } = useProfile();
@@ -22,10 +23,10 @@ const ProductList = ({
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    if (inView && !isFetchingNextPage) {
+    if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [fetchNextPage, inView, isFetchingNextPage]);
+  }, [fetchNextPage, inView, hasNextPage, isFetchingNextPage]);
 
   // Don't show the dummy product if we are on the saved products page
   const isSavedPage = location.pathname.includes("/saved");

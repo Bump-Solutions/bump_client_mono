@@ -24,8 +24,14 @@ const Notifications = () => {
 
   const [activeTabIndex, setActiveTabIndex] = useState<NotificationType>(type);
 
-  const { data, isLoading, isFetchingNextPage, isError, fetchNextPage } =
-    useListNotifications(activeTabIndex);
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+  } = useListNotifications(activeTabIndex);
 
   const pages: NotificationsPageModel[] = data?.pages || [];
 
@@ -65,6 +71,7 @@ const Notifications = () => {
                 pages={pages}
                 fetchNextPage={fetchNextPage}
                 isFetchingNextPage={isFetchingNextPage}
+                hasNextPage={hasNextPage}
               />
             </>
           ) : (

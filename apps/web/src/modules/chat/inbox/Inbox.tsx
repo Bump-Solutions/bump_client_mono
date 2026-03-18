@@ -11,8 +11,14 @@ import { MessageSquareOff, SearchX } from "lucide-react";
 const Inbox = () => {
   const [searchKeyDebounced, setSearchKeyDebounced] = useState<string>("");
 
-  const { isLoading, isFetchingNextPage, isError, fetchNextPage, data } =
-    useListChatGroups(searchKeyDebounced);
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    isError,
+    fetchNextPage,
+    hasNextPage,
+  } = useListChatGroups(searchKeyDebounced);
 
   const pages: InboxModel[] = data?.pages || [];
 
@@ -44,6 +50,7 @@ const Inbox = () => {
               pages={pages}
               fetchNextPage={fetchNextPage}
               isFetchingNextPage={isFetchingNextPage}
+              hasNextPage={hasNextPage}
             />
           ) : (
             <div className='no-messages'>

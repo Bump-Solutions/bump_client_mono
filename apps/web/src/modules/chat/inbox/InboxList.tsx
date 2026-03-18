@@ -10,14 +10,15 @@ const InboxList = ({
   pages,
   fetchNextPage,
   isFetchingNextPage,
+  hasNextPage,
 }: PaginatedListProps<InboxModel>) => {
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    if (inView && !isFetchingNextPage) {
+    if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [fetchNextPage, inView, isFetchingNextPage]);
+  }, [fetchNextPage, inView, hasNextPage, isFetchingNextPage]);
 
   return (
     <>

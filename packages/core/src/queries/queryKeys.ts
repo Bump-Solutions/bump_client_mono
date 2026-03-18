@@ -1,4 +1,4 @@
-import type { UserModel } from "../models";
+import type { ChatGroupModel, UserModel } from "../models";
 
 export const queryKeys = {
   profile: {
@@ -68,8 +68,8 @@ export const queryKeys = {
     all: ["chat"] as const,
     groups: (searchKey: string) =>
       [...queryKeys.chat.all, "groups", { searchKey }] as const,
-    messages: (chatId: string, params?: unknown) =>
-      [...queryKeys.chat.all, "messages", chatId, params] as const,
+    messages: (chat: ChatGroupModel["name"]) =>
+      [...queryKeys.chat.all, "messages", chat] as const,
   },
 
   notification: {

@@ -69,6 +69,16 @@ const NotificationsListItem = ({
           </>
         );
 
+      case 3: // Order TODO: order tab?
+        return (
+          <>
+            <p>
+              <strong>{sender}</strong> {verb} <br />
+              <span>{formatRelativeTime(updatedAt)}</span>
+            </p>
+          </>
+        );
+
       default:
         return null;
     }
@@ -108,6 +118,10 @@ const NotificationsListItem = ({
             },
           },
         });
+        break;
+
+      case "order":
+        navigate(ROUTES.ORDER(String(targetId)));
         break;
 
       default:

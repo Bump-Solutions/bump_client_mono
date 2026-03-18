@@ -1,3 +1,4 @@
+import type { FileUpload } from "../../../types/src/form";
 import { PATHS, type ApiResponse } from "../api";
 import type { InboxDTO, MessagesPageDTO } from "../dtos";
 import type { HttpClient } from "../http/types";
@@ -75,14 +76,14 @@ export const listMessages = async (
 export const uploadChatImages = async (
   http: HttpClient,
   chatName: ChatGroupModel["name"],
-  images: File[],
-): Promise<ApiResponse> => {
+  images: FileUpload[],
+): Promise<{ images: { id: number; image_url: string }[] }> => {
   if (!chatName) throw new Error("Missing required parameter: chatName");
 
   const formData = new FormData();
 
   images.forEach((image) => {
-    formData.append("images", image);
+    formData.append("images", image.file);
   });
 
   return await http.post(PATHS.CHAT.UPLOAD_CHAT_IMAGES(chatName), formData, {

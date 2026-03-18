@@ -10,14 +10,15 @@ const FollowerList = ({
   pages,
   fetchNextPage,
   isFetchingNextPage,
+  hasNextPage,
 }: PaginatedListProps<FollowersPageModel>) => {
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    if (inView && !isFetchingNextPage) {
+    if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [fetchNextPage, inView, isFetchingNextPage]);
+  }, [fetchNextPage, inView, hasNextPage, isFetchingNextPage]);
 
   return (
     <>

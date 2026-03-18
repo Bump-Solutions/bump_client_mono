@@ -1,7 +1,7 @@
 import type { ApiResponse } from "@bump/core/api";
 import type { ReactNode } from "react";
 
-type TYPES = readonly [1, 2];
+type TYPES = readonly [1, 2, 3];
 export type NotificationType = TYPES[number];
 
 export type NotificationsProviderProps = {
