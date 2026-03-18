@@ -7,7 +7,5 @@
   "exports": {
     ".": "./src/index.ts"
   },
-  "dependencies": {
-    "@bump/core": "workspace:*"
-  }
+  "dependencies": {}
 }

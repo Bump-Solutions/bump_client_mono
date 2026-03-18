@@ -25,7 +25,7 @@ export const useCreateChatGroup = (
 
     onSuccess: async (resp, variables) => {
       await queryClient.invalidateQueries({
-        queryKey: queryKeys.chat.groups(),
+        queryKey: queryKeys.chat.groups(""),
         exact: false,
         refetchType: "all",
       });

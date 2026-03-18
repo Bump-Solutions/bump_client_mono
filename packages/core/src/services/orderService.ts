@@ -65,6 +65,7 @@ export const createOrder = async (
   return await http.post(PATHS.ORDERS.CREATE_ORDER, payload);
 };
 
+/*
 export const confirmOrder = async (
   http: HttpClient,
   orderId: number,
@@ -74,3 +75,4 @@ export const cancelOrder = async (
   http: HttpClient,
   orderId: number,
 ): Promise<void> => {};
+*/

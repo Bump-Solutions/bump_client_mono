@@ -13,10 +13,12 @@
     "./dtos": "./src/dtos/index.ts",
     "./mappers": "./src/mappers/index.ts",
     "./schemas": "./src/schemas/index.ts",
-    "./services": "./src/services/index.ts"
+    "./services": "./src/services/index.ts",
+    "./presentation": "./src/presentation/index.ts"
   },
   "dependencies": {
     "zod": "^4.3.6",
-    "axios": "^1.13.5"
+    "axios": "^1.13.5",
+    "@bump/utils": "workspace:*"
   }
 }
