@@ -1,6 +1,6 @@
 import {
   OrderAction,
-  OrderPillVariant,
+  type OrderPillVariant,
   OrderState,
   OrderUserRole,
 } from "../models";
