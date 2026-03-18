@@ -8,12 +8,7 @@ const Home = () => {
 
   const { auth } = useAuth();
 
-  return (
-    <div>
-      Home
-      {JSON.stringify(auth)}
-    </div>
-  );
+  return <div>{JSON.stringify(auth)}</div>;
 };
 
 export default Home;
