@@ -56,7 +56,7 @@ export const googleLogin = async (
 ): Promise<AuthModel> => {
   const data = await http.post<GoogleResponseDTO>(
     PATHS.AUTH.GOOGLE_AUTH,
-    code,
+    { code },
     {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
