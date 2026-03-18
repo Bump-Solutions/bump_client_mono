@@ -20,9 +20,12 @@ import RequireAuth from "../modules/auth/RequireAuth";
 import Home from "../modules/home/Home";
 import Main from "../modules/home/Main";
 
+import Messages from "../modules/chat/messages/Messages";
+
 import Follow from "../modules/follow/Follow";
 import Followers from "../modules/follow/Followers";
 import Followings from "../modules/follow/Followings";
+
 import Report from "../modules/report/Report";
 
 import Search from "../modules/search/Search";
@@ -49,6 +52,8 @@ const Cart = lazy(() => import("../modules/cart/Cart"));
 const Orders = lazy(() => import("../modules/order/Orders"));
 const OrderLayout = lazy(() => import("../modules/order/OrderLayout"));
 const Order = lazy(() => import("../modules/order/Order"));
+
+const Chat = lazy(() => import("../modules/chat/Chat"));
 
 const Settings = lazy(() => import("../modules/settings/Settings"));
 const PersonalSettings = lazy(
@@ -171,6 +176,17 @@ export const privateRoutes = () => {
                   <Route path='profile' element={<ProfileInfoSettings />} />
                   <Route path='addresses' element={<AddressSettings />} />
                   <Route path='change-password' element={<ChangePassword />} />
+                </Route>
+              </Route>
+
+              <Route
+                element={
+                  <RequireAuth allowedRoles={ENUM.AUTH.ROLES.Validated} />
+                }>
+                {/* MESSAGES */}
+                <Route path='/messages' element={withSuspense(Chat)}>
+                  <Route index element={<Messages />} />
+                  <Route path=':chat' element={<Messages />} />
                 </Route>
               </Route>
             </Route>

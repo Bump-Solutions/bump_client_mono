@@ -66,7 +66,8 @@ export const queryKeys = {
 
   chat: {
     all: ["chat"] as const,
-    groups: () => [...queryKeys.chat.all, "groups"] as const,
+    groups: (searchKey: string) =>
+      [...queryKeys.chat.all, "groups", { searchKey }] as const,
     messages: (chatId: string, params?: unknown) =>
       [...queryKeys.chat.all, "messages", chatId, params] as const,
   },
