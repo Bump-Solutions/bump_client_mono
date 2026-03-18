@@ -9,13 +9,10 @@ import {
   privateRoutes,
   publicRoutes,
 } from "./routes/Routing";
-import { API } from "./utils/api";
 
 function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
-
-  console.log(import.meta.env.VITE_API_ORIGIN, API.BASE_URL);
 
   return (
     <Suspense fallback={<Fallback />}>
