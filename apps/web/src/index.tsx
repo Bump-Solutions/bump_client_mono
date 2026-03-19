@@ -8,8 +8,8 @@ import "./styles/css/modal.css";
 import "./styles/css/toast.css";
 import "./styles/css/tooltip.css";
 
-import { inject } from "@vercel/analytics";
-import { injectSpeedInsights } from "@vercel/speed-insights";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { createPortal } from "react-dom";
 import { createRoot } from "react-dom/client";
 import { Route, BrowserRouter as Router, Routes } from "react-router";
@@ -45,12 +45,6 @@ const queryClient = new QueryClient({
   },
 });
 
-// Initialize Vercel Analytics
-inject();
-
-// Initialize Vercel Speed Insights
-injectSpeedInsights();
-
 const root = document.getElementById("root");
 if (!root) {
   throw new Error("Root element not found");
@@ -65,6 +59,12 @@ createRoot(root).render(
             <AuthProvider>
               <NotificationsProvider>
                 <NavbarThemeProvider>
+                  {/* Initialize Vercel Analytics */}
+                  <Analytics />
+                  {/* Initialize Vercel Speed Insights */}
+                  <SpeedInsights />
+
+                  {/* Toaster */}
                   {createPortal(
                     <Toaster
                       position='bottom-right'
@@ -94,6 +94,7 @@ createRoot(root).render(
                     document.body,
                   )}
 
+                  {/* App Routes */}
                   <Routes>
                     <Route path='/*' element={<App />} />
                   </Routes>
