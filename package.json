@@ -19,5 +19,11 @@
   "devDependencies": {
     "jwt-decode": "^4.0.0",
     "turbo": "^2.8.17"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "19.2.0",
+      "react-dom": "19.2.0"
+    }
   }
 }

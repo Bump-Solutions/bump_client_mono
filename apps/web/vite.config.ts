@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
 
   resolve: {
+    dedupe: ["react", "react-dom"],
     extensions: [".ts", ".tsx", ".js", ".jsx", ".json", ".web.ts"],
   },
 
