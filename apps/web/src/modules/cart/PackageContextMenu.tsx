@@ -32,6 +32,7 @@ const PackageContextMenu = ({ toggleContextMenu }: PackageContextMenuProps) => {
       error: () => "Hiba a csomag törlése során.",
     });
 
+    toggleContextMenu(false);
     return removePromise;
   };
 
