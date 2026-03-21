@@ -13,13 +13,13 @@ const PackageList = ({ searchKey }: PackageListProps) => {
   const { filteredPackages, highlightIndex } = useCartSearch(deferred);
 
   return (
-    <main className='package__list'>
+    <section className='package__list'>
       {filteredPackages.map((pkg: CartPackageModel) => {
         const sid = pkg.seller.id;
 
         return <Package key={sid} pkg={pkg} highlightIndex={highlightIndex} />;
       })}
-    </main>
+    </section>
   );
 };
 
