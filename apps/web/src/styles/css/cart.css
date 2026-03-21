@@ -535,12 +535,10 @@
   color: var(--clr-gray-700);
 }
 .cart .cart__content .package__list .package__wrapper .package .package__content .package__product .product__wrapper .product__content .product__details table td:first-child {
-  padding-left: 0.25rem;
-  padding-right: 0.5rem;
+  padding: 0 0.25rem;
 }
 .cart .cart__content .package__list .package__wrapper .package .package__content .package__product .product__wrapper .product__content .product__details table td:last-child {
-  padding-right: 0.25rem;
-  padding-left: 0.5rem;
+  padding: 0 0.25rem;
 }
 .cart .cart__content .package__list .package__wrapper .package .package__content .package__product .product__wrapper .product__content .product__details .product__actions {
   display: flex;
