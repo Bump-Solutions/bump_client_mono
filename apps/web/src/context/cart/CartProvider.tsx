@@ -21,6 +21,10 @@ const CartProvider = ({ children }: CartProviderProps) => {
       cart,
       isLoading,
 
+      productsCount: cart
+        ? cart.packages.reduce((sum, pkg) => sum + pkg.products.length, 0)
+        : 0,
+
       itemsCount: cart
         ? cart.packages.reduce((sum, pkg) => {
             return (
@@ -40,6 +44,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
         cart: undefined,
         isLoading: false,
         itemsCount: 0,
+        productsCount: 0,
         actions: undefined,
       };
     }

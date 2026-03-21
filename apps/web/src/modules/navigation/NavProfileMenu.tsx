@@ -21,7 +21,7 @@ const NavProfileMenu = ({
   const navigate = useNavigate();
 
   const { username, meta, isError, error } = useAuthWithMeta();
-  const { itemsCount } = useCart();
+  const { productsCount } = useCart();
 
   if (isError) {
     toast.error(
@@ -66,9 +66,9 @@ const NavProfileMenu = ({
         <Tooltip content='Kosár' showDelay={250} placement='bottom'>
           <div className='profile-menu__item no-hide'>
             <div onClick={() => navigate(ROUTES.CART)}>
-              {itemsCount > 0 && (
+              {productsCount > 0 && (
                 <span className='badge fw-600'>
-                  {itemsCount > 99 ? "99+" : itemsCount}
+                  {productsCount > 99 ? "99+" : productsCount}
                 </span>
               )}
 
