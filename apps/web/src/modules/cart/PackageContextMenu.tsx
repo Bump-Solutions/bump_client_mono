@@ -1,13 +1,17 @@
 import { motion } from "framer-motion";
 import { useRef, type MouseEvent } from "react";
-
 import { useClickAway } from "react-use";
+import { toast } from "sonner";
+import { useCart } from "../../context/cart/useCart";
+import { usePackage } from "../../context/cart/usePackage";
 
 type PackageContextMenuProps = {
   toggleContextMenu: (value?: boolean) => void;
 };
 
 const PackageContextMenu = ({ toggleContextMenu }: PackageContextMenuProps) => {
+  const { actions } = useCart();
+  const { pkg } = usePackage();
   const ref = useRef<HTMLDivElement>(null);
 
   useClickAway(ref, () => {
@@ -17,7 +21,18 @@ const PackageContextMenu = ({ toggleContextMenu }: PackageContextMenuProps) => {
   const handleRemovePackage = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
 
-    // TODO
+    if (!actions) return;
+    if (actions.removePackage.isPending) return;
+
+    const removePromise = actions.removePackage.mutateAsync(pkg.seller.id);
+
+    toast.promise(removePromise, {
+      loading: "Csomag törlése folyamatban...",
+      success: "A csomag törölve lett.",
+      error: () => "Hiba a csomag törlése során.",
+    });
+
+    return removePromise;
   };
 
   return (
