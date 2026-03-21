@@ -1,17 +1,19 @@
+import type { CreateOrderModel } from "@bump/core/models";
 import { CURRENCY_LABELS, formatMinorHU } from "@bump/utils";
 import { type MouseEvent } from "react";
 import { Link } from "react-router";
+import { toast } from "sonner";
+import { useAuth } from "../../context/auth/useAuth";
 import { usePackage } from "../../context/cart/usePackage";
 import { useCreateOrder } from "../../hooks/order/useCreateOrder";
 import { ROUTES } from "../../routes/routes";
 
 import StateButton from "../../components/StateButton";
 
-import type { CreateOrderModel } from "@bump/core/models";
 import { Send } from "lucide-react";
-import { toast } from "sonner";
 
 const PackageSummary = () => {
+  const { auth } = useAuth();
   const { pkg } = usePackage();
   const { grossSubtotal, discountsTotal, indicativeSubtotal } = pkg.summary;
 
@@ -19,6 +21,11 @@ const PackageSummary = () => {
 
   const handleCreateOrder = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    if (pkg.seller.id === auth?.user?.id) {
+      toast.error("Nem hozhatsz létre rendelést a saját termékedből.");
+      return Promise.reject();
+    }
 
     if (createOrderMutation.isPending) return Promise.reject();
     if (!pkg) return Promise.reject();

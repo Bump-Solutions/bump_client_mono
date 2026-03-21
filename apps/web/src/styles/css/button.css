@@ -71,6 +71,9 @@
 .button .icon-overlay .spin {
   animation: spin 0.75s linear infinite !important;
 }
+.button.nomargin {
+  margin: 0;
+}
 .button.sm {
   height: 2rem;
   font-size: 0.75rem;

@@ -1,9 +1,10 @@
-import Image from "../../../components/Image";
 import { useProfile } from "../../../context/profile/useProfile";
+
+import Image from "../../../components/Image";
 import UserDetails from "./UserDetails";
 
 const ProfileCardHeader = () => {
-  const { user } = useProfile();
+  const { user, isOwnProfile } = useProfile();
 
   return (
     <div className='profile__card__header'>
@@ -14,7 +15,7 @@ const ProfileCardHeader = () => {
         />
       </div>
 
-      <h1>{user.username}</h1>
+      <h1>{user.username + (isOwnProfile ? " (Te)" : "")}</h1>
 
       {/* TODO: BADGES, BIO, ETC */}
 

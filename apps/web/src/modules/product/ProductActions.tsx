@@ -113,6 +113,11 @@ const ProductActions = ({
 
     const sellerId = product.user.id;
 
+    if (sellerId === auth?.user?.id) {
+      toast.error("Nem hozhatsz létre rendelést a saját termékedből.");
+      return Promise.reject();
+    }
+
     const maxToAdd = Math.min(quantity, filtered.length);
     const itemIds = filtered.slice(0, maxToAdd).map((item) => item.id);
 

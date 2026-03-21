@@ -6,9 +6,9 @@ import { useCart } from "../../context/cart/useCart";
 
 import { ArrowUpRight } from "lucide-react";
 
-interface CartContextMenuProps {
+type CartContextMenuProps = {
   toggleContextMenu: (value?: boolean) => void;
-}
+};
 
 const CartContextMenu = ({ toggleContextMenu }: CartContextMenuProps) => {
   const { actions } = useCart();

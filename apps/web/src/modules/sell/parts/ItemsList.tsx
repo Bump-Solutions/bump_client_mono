@@ -108,7 +108,7 @@ const ItemsList = ({ form }: ItemsListProps) => {
                   {findLabel(ENUM.PRODUCT.CONDITION_OPTIONS, item.condition)}
                 </td>
                 <td>{new Intl.NumberFormat("hu-HU").format(item.price)} HUF</td>
-                <td className='ta-right'>{item.count}</td>
+                <td className='ta-right'>{item.count} db</td>
                 <td
                   className='item__action'
                   onClick={() => handleRemoveItem(item)}>

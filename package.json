@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev:web": "turbo dev --filter=@bump/web",
+    "dev:mobile": "turbo dev --filter=@bump/mobile",
     "build": "turbo build",
     "typecheck": "turbo typecheck",
     "lint": "turbo lint",

@@ -60,6 +60,10 @@
     }
   }
 
+  &.nomargin {
+    margin: 0;
+  }
+
   &.sm {
     height: $input-height-sm;
     font-size: $fs-12;
