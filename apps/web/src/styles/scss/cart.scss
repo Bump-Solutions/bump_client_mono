@@ -616,11 +616,11 @@
                         color: color(gray, 700);
 
                         &:first-child {
-                          padding: 0.125rem 0.25rem;
+                          padding: 0.125rem 0.25rem !important;
                         }
 
                         &:last-child {
-                          padding: 0.125rem 0.25rem;
+                          padding: 0.125rem 0.25rem !important;
                         }
                       }
                     }
