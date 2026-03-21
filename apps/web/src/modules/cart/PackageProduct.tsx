@@ -73,11 +73,18 @@ const PackageProduct = ({ product }: PackageProductProps) => {
                 {product.product.colorWay}
               </span>
 
-              {product.product.colors.split(";").map((color) => (
-                <span className='badge color'>
-                  <span style={{ background: color }} />
-                </span>
-              ))}
+              {product.product.colors.split(";").map((color, index) => {
+                const trimmedColor = color.trim();
+
+                return (
+                  <span
+                    key={`${trimmedColor}-${index}`}
+                    className='badge color'
+                  >
+                    <span style={{ background: trimmedColor }} />
+                  </span>
+                );
+              })}
             </div>
 
             <table>
