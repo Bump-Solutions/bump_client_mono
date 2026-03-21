@@ -36,6 +36,7 @@
   vertical-align: middle;
   text-transform: uppercase;
   color: var(--clr-font-light);
+  border-radius: inherit;
 }
 .image img.loaded, .image img.error {
   opacity: 1;

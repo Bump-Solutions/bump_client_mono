@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { PackageContext } from "../../context/cart/context";
 import type { HighlightIndex } from "../../utils/highlight";
 
+import PackageContent from "./PackageContent";
 import PackageHeader from "./PackageHeader";
 import PackageSummary from "./PackageSummary";
 
@@ -18,15 +19,17 @@ const Package = ({ pkg, highlightIndex }: PackageProps) => {
   );
 
   return (
-    <PackageContext.Provider value={contextValue}>
-      <li className='package__wrapper'>
+    <PackageContext value={contextValue}>
+      <section className='package__wrapper'>
         <div className='package'>
           <PackageHeader />
+
+          <PackageContent />
         </div>
 
         <PackageSummary />
-      </li>
-    </PackageContext.Provider>
+      </section>
+    </PackageContext>
   );
 };
 
