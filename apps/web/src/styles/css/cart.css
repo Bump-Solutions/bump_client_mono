@@ -262,6 +262,7 @@
   justify-content: space-between;
 }
 .cart .cart__content .package__list .package__wrapper .package .package__header a {
+  gap: 0;
   max-height: 2rem;
 }
 .cart .cart__content .package__list .package__wrapper .package .package__header .seller-info {

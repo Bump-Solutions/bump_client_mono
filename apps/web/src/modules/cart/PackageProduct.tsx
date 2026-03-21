@@ -3,7 +3,9 @@ import { CURRENCY_LABELS, ENUM, formatMinorHU } from "@bump/utils";
 import { Link } from "react-router";
 import Button from "../../components/Button";
 import Image from "../../components/Image";
+import { usePackage } from "../../context/cart/usePackage";
 import { ROUTES } from "../../routes/routes";
+import { highlightTextParts } from "../../utils/highlight";
 
 type PackageProductProps = {
   product: CartProductModel;
@@ -15,6 +17,11 @@ const findLabel = (
 ) => options.find((opt) => opt.value === value)?.label || "-";
 
 const PackageProduct = ({ product }: PackageProductProps) => {
+  const { highlightIndex } = usePackage();
+
+  const productRanges =
+    highlightIndex?.perProduct?.[product.id]?.productTitle ?? [];
+
   const { grossSubtotal, discountsTotal, indicativeSubtotal } = product.summary;
 
   const hasDiscount =
@@ -58,7 +65,7 @@ const PackageProduct = ({ product }: PackageProductProps) => {
           <div className='product__details'>
             <h5>
               <Link to={ROUTES.PRODUCT(product.id).ROOT} target='_blank'>
-                {product.title}
+                {highlightTextParts(product.title, productRanges)}
               </Link>
             </h5>
 
@@ -79,8 +86,7 @@ const PackageProduct = ({ product }: PackageProductProps) => {
                 return (
                   <span
                     key={`${trimmedColor}-${index}`}
-                    className='badge color'
-                  >
+                    className='badge color'>
                     <span style={{ background: trimmedColor }} />
                   </span>
                 );
