@@ -15,6 +15,7 @@ export type CartContextValue = {
   cart: CartModel | undefined;
   isLoading: boolean;
 
+  productsCount: number;
   itemsCount: number;
 
   actions?: {
