@@ -1,5 +1,9 @@
 import { jwtDecode } from "jwt-decode";
-import type { LoginResponseDTO, SignupRequestDTO } from "../dtos/AuthDTO";
+import type {
+  LoginMobileResponseDTO,
+  LoginResponseDTO,
+  SignupRequestDTO,
+} from "../dtos/AuthDTO";
 import type { AuthModel, JwtPayload, SignupModel } from "../models/authModel";
 
 export function fromLoginResponseDTO(dto: LoginResponseDTO): AuthModel {
@@ -7,6 +11,23 @@ export function fromLoginResponseDTO(dto: LoginResponseDTO): AuthModel {
 
   return {
     accessToken: dto.access_token,
+    role: decoded.account_role,
+
+    user: {
+      id: Number(decoded.user_id),
+      username: decoded.username,
+    },
+  };
+}
+
+export function fromLoginMobileResponseDTO(
+  dto: LoginMobileResponseDTO,
+): AuthModel {
+  const decoded = jwtDecode<JwtPayload>(dto.access_token);
+
+  return {
+    accessToken: dto.access_token,
+    refreshToken: dto.refresh_token,
     role: decoded.account_role,
 
     user: {

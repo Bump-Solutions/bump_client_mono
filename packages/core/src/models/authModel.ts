@@ -9,6 +9,7 @@ export interface JwtPayload {
 
 export interface AuthModel {
   accessToken: string;
+  refreshToken?: string;
   role: Role;
 
   user: {
