@@ -3,29 +3,40 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { useAuth } from '../context/auth/AuthContext';
 import { AuthStack } from '../stacks/AuthStack';
-
-import SellScreen from '../screens/sell/SellScreen';
-
-import { ROUTES } from './routes';
 import { HomeStack } from '../stacks/HomeStack';
+import SellScreen from '../screens/sell/SellScreen';
+import { ROUTES } from './routes';
+import { ActivityIndicator, View } from 'react-native';
 
 const Stack = createStackNavigator();
 
 export const RootNavigator = () => {
-  const { auth } = useAuth();
+  const { auth, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
 
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-                    
+        {!auth ? (
+          <Stack.Screen name="AuthStack" component={AuthStack} />
+        ) : (
+          <>
             <Stack.Screen name="HomeStack" component={HomeStack} />
 
             {/* GLOBAL MODALS */}
             <Stack.Group screenOptions={{ presentation: 'modal' }}>
               <Stack.Screen name={ROUTES.SELL} component={SellScreen} />
             </Stack.Group>
-        
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
-};  
+};

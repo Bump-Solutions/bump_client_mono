@@ -1,71 +1,59 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
-import { loginApi, refreshTokenApi } from '../../services/api';
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-};
-
-type AuthState = {
-  accessToken: string | null;
-  refreshToken: string | null;
-  user: User | null;
-};
+import { type AuthModel, type ProfileMetaModel } from "@bump/core/models";
 
 type AuthContextType = {
-  auth: AuthState;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-  refreshToken: () => Promise<boolean>;
+  auth: AuthModel | null;
+  setAuth: React.Dispatch<React.SetStateAction<AuthModel | null>>;
+  meta: ProfileMetaModel | null;
+  setMeta: React.Dispatch<React.SetStateAction<ProfileMetaModel | null>>;
+  logout: () => Promise<void>;
+  isLoading: boolean;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [auth, setAuth] = useState<AuthState>({ accessToken: null, refreshToken: null, user: null });
+  const [auth, setAuth] = useState<AuthModel | null>(null);
+  const [meta, setMeta] = useState<ProfileMetaModel | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const refreshToken = async () => {
-    if (!auth.refreshToken) return false;
-    try {
-      const { accessToken, refreshToken: newRefreshToken } = await refreshTokenApi(auth.refreshToken);
-      await SecureStore.setItemAsync('accessToken', accessToken);
-      await SecureStore.setItemAsync('refreshToken', newRefreshToken);
-      setAuth(prev => ({ ...prev, accessToken, refreshToken: newRefreshToken }));
-      return true;
-    } catch {
-      logout();
-      return false;
-    }
+  const logout = async () => {
+    await SecureStore.deleteItemAsync('accessToken');
+    await SecureStore.deleteItemAsync('refreshToken');
+    await SecureStore.deleteItemAsync('auth');
+    await SecureStore.deleteItemAsync('meta');
+    setAuth(null);
+    setMeta(null);
   };
-
-  const login = async (email: string, password: string) => {
-    const { accessToken, refreshToken, user } = await loginApi(email, password);
-    await SecureStore.setItemAsync('accessToken', accessToken);
-    await SecureStore.setItemAsync('refreshToken', refreshToken);
-    setAuth({ accessToken, refreshToken, user });
-  };
-
-  const logout = () => {
-    SecureStore.deleteItemAsync('accessToken');
-    SecureStore.deleteItemAsync('refreshToken');
-    setAuth({ accessToken: null, refreshToken: null, user: null });
-  };
-
 
   useEffect(() => {
-    (async () => {
-      const refresh = await SecureStore.getItemAsync('refreshToken');
-      if (!refresh) {
-        logout();
-      } else {
-        await refreshToken();
+    const loadStoredData = async () => {
+      try {
+        const storedAuth = await SecureStore.getItemAsync('auth');
+        if (storedAuth) {
+          setAuth(JSON.parse(storedAuth));
+        }
+
+        const storedMeta = await SecureStore.getItemAsync('meta');
+        if (storedMeta) {
+          setMeta(JSON.parse(storedMeta));
+        }
+      } catch (e) {
+        console.error('Failed to load stored auth session', e);
+      } finally {
+        setIsLoading(false);
       }
-    })();
+    };
+
+    loadStoredData();
   }, []);
 
-  return <AuthContext.Provider value={{ auth, login, logout, refreshToken }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ auth, setAuth, meta, setMeta, logout, isLoading }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => {
