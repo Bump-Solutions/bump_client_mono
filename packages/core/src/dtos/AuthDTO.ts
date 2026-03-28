@@ -16,6 +16,11 @@ export interface LoginResponseDTO {
   email: string;
 }
 
+export interface LoginMobileResponseDTO {
+  access_token: string;
+  refresh_token: string;
+}
+
 /**
  * A backend REGISZTRÁCIÓ (SIGNUP) végpontjára küldött kéréselem.
  */

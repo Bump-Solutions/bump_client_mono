@@ -4,12 +4,14 @@ import type { HttpClient } from "../http/types";
 import type { ApiResponse } from "../api";
 import {
   type GoogleResponseDTO,
+  type LoginMobileResponseDTO,
   type LoginRequestDTO,
   type LoginResponseDTO,
   type SignupRequestDTO,
 } from "../dtos/AuthDTO";
 import {
   fromGoogleResponseDTO,
+  fromLoginMobileResponseDTO,
   fromLoginResponseDTO,
   toSignupRequestDTO,
 } from "../mappers/authMapper";
@@ -31,6 +33,21 @@ export const login = async (
   );
 
   return fromLoginResponseDTO({ ...data, email: payload.email });
+};
+
+export const loginMobile = async (
+  http: HttpClient,
+  payload: LoginRequestDTO,
+): Promise<AuthModel> => {
+  const data = await http.post<LoginMobileResponseDTO, LoginRequestDTO>(
+    PATHS.AUTH.MOBILE_LOGIN,
+    payload,
+    {
+      headers: { "Content-Type": "application/json" },
+    },
+  );
+
+  return fromLoginMobileResponseDTO(data);
 };
 
 // ======================================== SIGNUP ========================================

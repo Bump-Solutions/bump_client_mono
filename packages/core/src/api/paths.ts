@@ -28,6 +28,7 @@ export const makePaths = (version = "v1") => {
     AUTH: {
       REFRESH: u("auth/token/refresh"),
       LOGIN: u("auth/token/authenticate"),
+      MOBILE_LOGIN: u("auth/token/authenticate_mobile"),
       GOOGLE_AUTH: u("auth/google_auth"),
       REGISTER: u("auth/registration"),
       LOGOUT: u("auth/token/logout"),
