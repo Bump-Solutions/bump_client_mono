@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { useAuth } from '../context/auth/AuthContext';
@@ -12,6 +12,14 @@ import { ActivityIndicator, View } from 'react-native';
 
 const Stack = createStackNavigator();
 
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white',
+  },
+};
+
 export const RootNavigator = () => {
   const { auth, isLoading } = useAuth();
 
@@ -24,7 +32,7 @@ export const RootNavigator = () => {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!auth ? (
           <Stack.Screen name="AuthStack" component={AuthStack} />
