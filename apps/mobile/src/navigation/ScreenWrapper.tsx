@@ -10,12 +10,7 @@ interface ScreenWrapperProps {
 export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({ children }) => {
   return (
     <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-      <AppBar
-        onSearchPress={() => console.log('Search pressed')}
-        onNotificationsPress={() => console.log('Notifications pressed')}
-        onProfilePress={() => console.log('Profile pressed')}
-        options={['Böngéssz', 'Közösség', 'Fedezd fel']}
-      />
+      <AppBar />
       <View style={styles.content}>{children}</View>
     </SafeAreaView>
   );
