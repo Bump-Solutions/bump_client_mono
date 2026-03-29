@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { useAuth } from '../../context/auth/AuthContext';
 import { useLogout } from '../../hooks/auth/useLogout';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, CommonActions } from '@react-navigation/native';
 import { ROUTES } from '../../navigation/routes';
 import { useAuthWithMeta } from '../../hooks/auth/useAuthWithMeta';
 
@@ -30,9 +30,23 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ isVisible, onC
     await logout();
   };
 
-  const navigateTo = (route: string) => {
+  const navigateTo = (route: string, params?: any) => {
     onClose();
-    navigation.navigate(route);
+    
+    // Check if it's a profile route and use stack if needed
+    if (route.startsWith('Profile')) {
+       navigation.dispatch(
+         CommonActions.navigate({
+           name: ROUTES.PROFILE.STACK,
+           params: {
+             screen: ROUTES.PROFILE.ROOT,
+             params: params,
+           },
+         })
+       );
+    } else {
+       navigation.navigate(route, params);
+    }
   };
 
   if (!auth) return null;
@@ -52,10 +66,13 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ isVisible, onC
         <View style={styles.dropdownContainer}>
           <SafeAreaView>
             <ScrollView bounces={false}>
-              <View style={styles.header}>
+              <TouchableOpacity 
+                style={styles.header}
+                onPress={() => navigateTo(ROUTES.PROFILE.ROOT, { username: auth.user.username })}
+              >
                 <Text style={styles.username}>{auth.user.username}</Text>
                 {meta?.email && <Text style={styles.email}>{meta.email}</Text>}
-              </View>
+              </TouchableOpacity>
 
               <View style={styles.section}>
                 <TouchableOpacity 
@@ -69,7 +86,7 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ isVisible, onC
               <View style={styles.section}>
                 <TouchableOpacity 
                   style={styles.item}
-                  onPress={() => navigateTo(ROUTES.PROFILE.ROOT)}
+                  onPress={() => navigateTo(ROUTES.PROFILE.ROOT, { username: auth.user.username })}
                 >
                   <Text style={styles.itemText}>👤 Bump profilom</Text>
                 </TouchableOpacity>
@@ -125,7 +142,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.3)',
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
-    paddingTop: 60, // Adjust based on AppBar height
+    paddingTop: 60,
     paddingRight: 10,
   },
   dropdownContainer: {

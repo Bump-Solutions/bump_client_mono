@@ -7,7 +7,7 @@ import { usePublicHttpClient } from "../../http/useHttpClient";
 
 export const useRefreshToken = (): (() => Promise<string>) => {
   const http = usePublicHttpClient();
-  const { setAuth, logout } = useAuth();
+  const { setAuth } = useAuth();
 
   const refresh = async (): Promise<string> => {
     try {
@@ -17,13 +17,9 @@ export const useRefreshToken = (): (() => Promise<string>) => {
         throw new Error("No refresh token available");
       }
 
+      // Updated to use the mobile-specific refresh path
       const data = await http.get<{ access_token: string }>(
-        API.PATHS.AUTH.REFRESH,
-        {
-          headers: {
-            Authorization: `Bearer ${refreshToken}`,
-          },
-        },
+        API.PATHS.AUTH.MOBILE_REFRESH(refreshToken)
       );
 
       const authModel: AuthModel = fromRefreshResponseDTO(data.access_token);
@@ -39,7 +35,7 @@ export const useRefreshToken = (): (() => Promise<string>) => {
 
       return data.access_token;
     } catch (e) {
-      await logout();
+      console.error("Refresh token failed", e);
       throw e;
     }
   };

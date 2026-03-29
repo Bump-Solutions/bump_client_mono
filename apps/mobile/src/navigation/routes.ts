@@ -1,9 +1,11 @@
 export const ROUTES = {
   HOME: 'Home',
+  HOME_STACK: 'HomeStack',
 
   SEARCH: 'Search',
 
   PROFILE: {
+    STACK: 'ProfileStack',
     ROOT: 'Profile',
     SAVED: 'ProfileSaved',
     FOLLOWERS: 'ProfileFollowers',

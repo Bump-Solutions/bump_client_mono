@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import type { HttpClient, RequestOpts } from "@bump/core/http";
 import type { AxiosInstance } from "axios";
 
@@ -46,10 +47,10 @@ function adaptAxios(axios: AxiosInstance): HttpClient {
 }
 
 export const usePublicHttpClient = (): HttpClient => {
-  return adaptAxios(axiosPublic);
+  return useMemo(() => adaptAxios(axiosPublic), []);
 };
 
 export const useAuthHttpClient = (): HttpClient => {
   const axiosPrivate = useAxiosPrivate();
-  return adaptAxios(axiosPrivate);
+  return useMemo(() => adaptAxios(axiosPrivate), [axiosPrivate]);
 };
