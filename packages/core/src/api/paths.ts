@@ -27,6 +27,8 @@ export const makePaths = (version = "v1") => {
   return {
     AUTH: {
       REFRESH: u("auth/token/refresh"),
+      MOBILE_REFRESH: (refreshToken: string) =>
+        u("auth/token/refresh_mobile", refreshToken),
       LOGIN: u("auth/token/authenticate"),
       MOBILE_LOGIN: u("auth/token/authenticate_mobile"),
       GOOGLE_AUTH: u("auth/google_auth"),
@@ -78,7 +80,6 @@ export const makePaths = (version = "v1") => {
     },
 
     PRODUCT: {
-      // LIST_PRODUCTS: (uid: number, size: number, page: number) => `/api/v1/product/list_products/${uid}?page_size=${size}&page=${page}`,
       LIST_PRODUCTS: (uid: number, size: number, page: number) =>
         q(u("product/list_products", uid), { page_size: size, page }),
       GET_PRODUCT: (pid: number) => u("product/get_product", pid),
@@ -195,9 +196,9 @@ export const makePaths = (version = "v1") => {
 
     SEARCH: {
       PRODUCTS: (size: number, page: number, searchKey: string) =>
-        q(u("product/search"), { page_size: size, page, q: searchKey }),
+        q(u("product/search/"), { page_size: size, page, q: searchKey }),
       USERS: (size: number, page: number, searchKey: string) =>
-        q(u("user/search"), { page_size: size, page, q: searchKey }),
+        q(u("user/search/"), { page_size: size, page, q: searchKey }),
       LIST_HISTORY: u("user/search/list_search_history"),
       DELETE_HISTORY: (id: number) =>
         u("user/search/delete_search_history", id),

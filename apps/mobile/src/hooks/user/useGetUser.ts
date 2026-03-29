@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getUser as getUserService } from "@bump/core/services";
 import { useAuthHttpClient } from "../../http/useHttpClient";
 import type { UserModel } from "@bump/core/models";
@@ -10,22 +10,23 @@ export const useGetUser = (username?: string) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<ApiError | null>(null);
 
-  const fetchUser = async () => {
+  const fetchUser = useCallback(async () => {
     if (!username) return;
     setIsLoading(true);
     try {
       const data = await getUserService(http, username);
       setUser(data);
+      setError(null);
     } catch (e: any) {
       setError(e);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [username, http]);
 
   useEffect(() => {
     fetchUser();
-  }, [username, http]);
+  }, [fetchUser]);
 
   return { user, setUser, isLoading, error, refetch: fetchUser };
 };
