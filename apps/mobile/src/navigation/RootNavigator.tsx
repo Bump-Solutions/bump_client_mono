@@ -6,6 +6,7 @@ import { AuthStack } from '../stacks/AuthStack';
 import { HomeStack } from '../stacks/HomeStack';
 import { ProfileStack } from '../stacks/ProfileStack';
 import SearchScreen from '../screens/search/SearchScreen';
+import ProductScreen from '../screens/product/ProductScreen';
 import SellScreen from '../screens/sell/SellScreen';
 import { ROUTES } from './routes';
 import { ActivityIndicator, View } from 'react-native';
@@ -41,6 +42,7 @@ export const RootNavigator = () => {
             <Stack.Screen name="HomeStack" component={HomeStack} />
             <Stack.Screen name="ProfileStack" component={ProfileStack} />
             <Stack.Screen name={ROUTES.SEARCH} component={SearchScreen} />
+            <Stack.Screen name={ROUTES.PRODUCT.ROOT} component={ProductScreen} />
 
             {/* GLOBAL MODALS */}
             <Stack.Group screenOptions={{ presentation: 'modal' }}>

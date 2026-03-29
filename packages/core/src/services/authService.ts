@@ -88,3 +88,10 @@ export const googleLogin = async (
 export const logout = async (http: HttpClient): Promise<void> => {
   await http.get(PATHS.AUTH.LOGOUT, { withCredentials: true });
 };
+
+export const logoutMobile = async (
+  http: HttpClient,
+  refreshToken: string,
+): Promise<void> => {
+  await http.get(PATHS.AUTH.MOBILE_LOGOUT(refreshToken));
+};
