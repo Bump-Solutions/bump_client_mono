@@ -1,6 +1,7 @@
 import type {
   CreateOrderDTO,
   FetchedOrderDTO,
+  InventoryItemDTO,
   ListOrderDTO,
   OrdersPageDTO,
 } from "../dtos/OrderDTO";
@@ -8,6 +9,7 @@ import type {
   CreateOrderModel,
   OrderListModel,
   OrderModel,
+  OrderProductItem,
   OrdersPageModel,
 } from "../models/orderModel";
 
@@ -41,6 +43,28 @@ export function fromListOrderDTO(dto: ListOrderDTO): OrderListModel {
   };
 }
 
+export function fromOrderDTOProductItems(
+  inventoryItems: InventoryItemDTO[],
+): OrderProductItem[] {
+  return inventoryItems.map((item) => ({
+    id: item.id,
+    condition: item.condition,
+    gender: item.gender,
+    size: item.size,
+
+    totalPrice: item.total_price,
+
+    product: {
+      id: item.inventory.id,
+      brand: item.inventory.brand,
+      model: item.inventory.model,
+      colorWay: item.inventory.color_way,
+    },
+
+    image: item.image,
+  }));
+}
+
 export function fromOrderDTO(dto: FetchedOrderDTO): OrderModel {
   return {
     id: dto.id,
@@ -55,6 +79,8 @@ export function fromOrderDTO(dto: FetchedOrderDTO): OrderModel {
       username: dto.party.username,
       profilePicture: dto.party.profile_picture,
     },
+
+    productItems: fromOrderDTOProductItems(dto.inventory_items),
 
     createdAt: dto.created_at,
     expiresAt: dto.expires_at,

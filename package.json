@@ -25,5 +25,9 @@
       "react": "19.2.0",
       "react-dom": "19.2.0"
     }
+  },
+  "dependencies": {
+    "@xstate/react": "^6.1.0",
+    "xstate": "^5.29.0"
   }
 }

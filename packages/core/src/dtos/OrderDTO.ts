@@ -18,6 +18,24 @@ export interface ListOrderDTO {
   expires_at: string;
 }
 
+export interface InventoryItemDTO {
+  id: number;
+  condition: number;
+  gender: number;
+  size: string;
+
+  total_price: number;
+
+  inventory: {
+    id: number;
+    brand: string;
+    model: string;
+    color_way: string;
+  };
+
+  image: string;
+}
+
 export interface FetchedOrderDTO {
   id: number;
   uuid: string;
@@ -32,7 +50,7 @@ export interface FetchedOrderDTO {
     profile_picture: string | null;
   };
 
-  inventory_items: {}[];
+  inventory_items: InventoryItemDTO[];
 
   created_at: string;
   expires_at: string;

@@ -84,7 +84,7 @@ const ProductProviderInner = ({
     );
   }
 
-  if (isLoading || !product) {
+  if (isLoading || !product || !contextValue) {
     return <Spinner />;
   }
 
