@@ -39,7 +39,7 @@ export const listOrders = async (
 
 export const getOrder = async (
   http: HttpClient,
-  uuid: string | undefined,
+  uuid: string,
   signal?: AbortSignal,
 ): Promise<OrderModel> => {
   if (!uuid) throw new Error("Missing required parameter: uuid");

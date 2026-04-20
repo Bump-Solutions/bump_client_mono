@@ -43,6 +43,24 @@ export type OrderParty = {
   profilePicture: string | null;
 };
 
+export type OrderProductItem = {
+  id: number;
+  condition: number;
+  gender: number;
+  size: string;
+
+  totalPrice: number;
+
+  product: {
+    id: number;
+    brand: string;
+    model: string;
+    colorWay: string;
+  };
+
+  image: string;
+};
+
 export type OrderPillVariant =
   | "success"
   | "warning"
@@ -67,7 +85,9 @@ export interface OrderListModel {
   expiresAt: string; // ISO
 }
 
-export interface OrderModel extends OrderListModel {}
+export interface OrderModel extends OrderListModel {
+  productItems: OrderProductItem[];
+}
 
 // Oldalazás
 
@@ -154,4 +174,25 @@ export const canPerform = (
   role: OrderUserRole,
 ): boolean => {
   return ACTION_MAPPING[role][state].includes(action);
+};
+
+export const isTerminalOrderState = (state: OrderState): boolean => {
+  const terminalStates: OrderState[] = [
+    OrderState.COMPLETED,
+    OrderState.CANCELLED,
+    OrderState.EXPIRED,
+    OrderState.FAILED,
+  ];
+
+  return terminalStates.includes(state);
+};
+
+export const shouldPollOrderState = (state: OrderState): boolean => {
+  return state === OrderState.WAITING_FOR_EXTERNAL_TASKS;
+};
+
+export const getOrderUserRole = (
+  order: Pick<OrderModel, "isSeller">,
+): OrderUserRole => {
+  return order.isSeller ? OrderUserRole.SELLER : OrderUserRole.BUYER;
 };

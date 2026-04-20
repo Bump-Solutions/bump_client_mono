@@ -6,11 +6,11 @@ import { ENUM } from "@bump/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useAuthHttpClient } from "../../http/useHttpClient";
 
-export const useGetOrder = (uuid: string | undefined) => {
+export const useGetOrder = (uuid: string) => {
   const http = useAuthHttpClient();
 
   return useQuery<OrderModel, ApiError>({
-    queryKey: uuid ? queryKeys.order.get(uuid) : queryKeys.order.all,
+    queryKey: queryKeys.order.get(uuid),
     queryFn: ({ signal }) => getOrder(http, uuid, signal),
     enabled: Boolean(uuid),
     retry: 1,

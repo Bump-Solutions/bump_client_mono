@@ -85,7 +85,7 @@ const ProfileProviderInner = ({
     );
   }
 
-  if (isLoading || !user) {
+  if (isLoading || !user || !contextValue) {
     return <Spinner />;
   }
 
