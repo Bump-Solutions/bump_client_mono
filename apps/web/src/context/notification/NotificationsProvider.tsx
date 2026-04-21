@@ -143,10 +143,10 @@ const NotificationsProvider = ({ children }: NotificationsProviderProps) => {
     Boolean(socketUrl && token), // only connect when we have a URL and token
   );
 
+  const value = useMemo(() => ({ markAsRead }), [markAsRead]);
+
   return (
-    <NotificationsContext value={{ markAsRead }}>
-      {children}
-    </NotificationsContext>
+    <NotificationsContext value={value}>{children}</NotificationsContext>
   );
 };
 

@@ -16,6 +16,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router";
 
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ENUM } from "@bump/utils";
 
 import { Toaster } from "sonner";
 import { QueryParamProvider } from "use-query-params";
@@ -41,6 +42,8 @@ const queryClient = new QueryClient({
     queries: {
       retry: 2,
       retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 10000), // 1s, 2s, 4s, 8s, 10s (max)
+      staleTime: ENUM.GLOBALS.staleTime5,
+      gcTime: 1000 * 60 * 10, // 10 min
     },
   },
 });

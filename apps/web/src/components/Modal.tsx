@@ -11,6 +11,14 @@ import { X } from "lucide-react";
 import { useClickAway } from "react-use";
 import Drawer from "./Drawer";
 
+const FADE_TRANSITION = {
+  duration: 0.2,
+  ease: [0.25, 0.46, 0.45, 0.94],
+} as const;
+
+const FADE_INITIAL = { opacity: 0 };
+const FADE_ANIMATE = { opacity: 1 };
+
 type ModalContentProps = {
   children: ReactNode;
   close: () => void;
@@ -31,20 +39,17 @@ const ModalContent = ({
   return createPortal(
     <motion.section
       className={`modal__wrapper ${dark ? "dark" : ""}`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{
-        duration: 0.2,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      }}>
+      initial={FADE_INITIAL}
+      animate={FADE_ANIMATE}
+      exit={FADE_INITIAL}
+      transition={FADE_TRANSITION}>
       <motion.div
         className={`modal ${className ? className : ""} ${size || "sm"}`}
         ref={modalRef}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}>
+        initial={FADE_INITIAL}
+        animate={FADE_ANIMATE}
+        exit={FADE_INITIAL}
+        transition={FADE_TRANSITION}>
         {size !== "xsm" && (
           <Button className='secondary close' onClick={close}>
             <X />

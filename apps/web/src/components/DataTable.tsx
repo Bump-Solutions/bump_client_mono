@@ -607,7 +607,7 @@ const sampleData: Person[] = [
   { id: 3, firstName: "Csaba", lastName: "Tóth", age: 22 },
 ];
 
-const sampleColumns: ColumnDef<Person, any>[] = [
+const sampleColumns: ColumnDef<Person, unknown>[] = [
   { accessorKey: "id", header: "ID" },
   { accessorKey: "firstName", header: "Keresztnév", enableSorting: true },
   { accessorKey: "lastName", header: "Vezetéknév", enableSorting: true },

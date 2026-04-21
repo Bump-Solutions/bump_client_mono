@@ -15,6 +15,8 @@ export default defineConfig({
       output: {
         manualChunks: {
           react: ["react", "react-dom", "react-router-dom"],
+          query: ["@tanstack/react-query", "@tanstack/react-table"],
+          motion: ["framer-motion"],
         },
       },
     },

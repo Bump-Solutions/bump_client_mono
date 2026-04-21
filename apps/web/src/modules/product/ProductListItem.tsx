@@ -1,7 +1,7 @@
 import type { ProductListModel } from "@bump/core/models";
 import { buildListPriceLabels } from "@bump/utils";
 import { AnimatePresence } from "framer-motion";
-import { useEffect, type MouseEvent } from "react";
+import { useCallback, useEffect, type MouseEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useLongPress, useToggle } from "react-use";
 import { toast } from "sonner";
@@ -48,9 +48,9 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
     };
   }, [isContextMenuOpen]);
 
-  const onLongPress = () => {
+  const onLongPress = useCallback(() => {
     toggleContextMenu(true);
-  };
+  }, [toggleContextMenu]);
 
   const longPressEvent = useLongPress(onLongPress, {
     isPreventDefault: true,
@@ -63,74 +63,105 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
   const saveMutation = useSaveProduct();
   const unsaveMutation = useUnsaveProduct();
 
-  const handleLike = (e: MouseEvent<HTMLSpanElement>) => {
-    e.preventDefault();
+  const handleLike = useCallback(
+    (e: MouseEvent<HTMLSpanElement>) => {
+      e.preventDefault();
 
-    if (!product.liked) {
-      if (likeMutation.isPending) return;
-      const likePromise = likeMutation.mutateAsync({
-        product,
-        ownerId: product.userId,
+      if (!product.liked) {
+        if (likeMutation.isPending) return;
+        const likePromise = likeMutation.mutateAsync({
+          product,
+          ownerId: product.userId,
+        });
+
+        toast.promise(likePromise, {
+          loading: "Kedvelés...",
+          success: () => (
+            <span>
+              Kedveltél egy{" "}
+              <Link
+                target='_blank'
+                className='link fc-green-600 underline fw-700'
+                to={ROUTES.PRODUCT(product.id).ROOT}>
+                terméket.
+              </Link>
+            </span>
+          ),
+          error: () => "Hiba történt a termék kedvelése során.",
+        });
+      } else {
+        if (unlikeMutation.isPending) return;
+        unlikeMutation.mutateAsync({ product, ownerId: product.userId });
+      }
+    },
+    [product, likeMutation, unlikeMutation],
+  );
+
+  const handleSave = useCallback(
+    (e: MouseEvent<HTMLSpanElement>) => {
+      e.preventDefault();
+
+      if (!product.saved) {
+        if (saveMutation.isPending) return;
+        const savePromise = saveMutation.mutateAsync({
+          product,
+          ownerId: product.userId,
+        });
+
+        toast.promise(savePromise, {
+          loading: "Mentés...",
+          success: () => (
+            <span>
+              Elmentettél egy{" "}
+              <Link
+                target='_blank'
+                className='link fc-green-600 underline fw-700'
+                to={ROUTES.PRODUCT(product.id).ROOT}>
+                terméket.
+              </Link>
+            </span>
+          ),
+          error: () => "Hiba történt a termék mentése során.",
+        });
+      } else {
+        if (unsaveMutation.isPending) return;
+        unsaveMutation.mutateAsync({ product, ownerId: product.userId });
+      }
+    },
+    [product, saveMutation, unsaveMutation],
+  );
+
+  const handleContextClick = useCallback(
+    (e: MouseEvent<HTMLSpanElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleContextMenu(true);
+    },
+    [toggleContextMenu],
+  );
+
+  const handleDiscountClick = useCallback(
+    (e: MouseEvent<HTMLSpanElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      navigate(ROUTES.PRODUCT(product.id).DISCOUNT, {
+        state: { background: location },
       });
+    },
+    [navigate, product.id, location],
+  );
 
-      toast.promise(likePromise, {
-        loading: "Kedvelés...",
-        success: () => (
-          <span>
-            Kedveltél egy{" "}
-            <Link
-              target='_blank'
-              className='link fc-green-600 underline fw-700'
-              to={ROUTES.PRODUCT(product.id).ROOT}>
-              terméket.
-            </Link>
-          </span>
-        ),
-        error: () => "Hiba történt a termék kedvelése során.",
-      });
-    } else {
-      if (unlikeMutation.isPending) return;
-      unlikeMutation.mutateAsync({ product, ownerId: product.userId });
-    }
-  };
-
-  const handleSave = (e: MouseEvent<HTMLSpanElement>) => {
-    e.preventDefault();
-
-    if (!product.saved) {
-      if (saveMutation.isPending) return;
-      const savePromise = saveMutation.mutateAsync({
-        product,
-        ownerId: product.userId,
-      });
-
-      toast.promise(savePromise, {
-        loading: "Mentés...",
-        success: () => (
-          <span>
-            Elmentettél egy{" "}
-            <Link
-              target='_blank'
-              className='link fc-green-600 underline fw-700'
-              to={ROUTES.PRODUCT(product.id).ROOT}>
-              terméket.
-            </Link>
-          </span>
-        ),
-        error: () => "Hiba történt a termék mentése során.",
-      });
-    } else {
-      if (unsaveMutation.isPending) return;
-      unsaveMutation.mutateAsync({ product, ownerId: product.userId });
-    }
-  };
+  const handleDeleteClose = useCallback(
+    () => toggleDelete(false),
+    [toggleDelete],
+  );
 
   return (
     <>
       <Delete
         product={product}
         isOpen={isDeleteOpen}
-        close={() => toggleDelete(false)}
+        close={handleDeleteClose}
       />
 
       <li className='product__item'>
@@ -148,24 +179,14 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
           <div className='product__item-header'>
             <span
               className='product__item-actions'
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                toggleContextMenu(true);
-              }}>
+              onClick={handleContextClick}>
               <EllipsisVertical strokeWidth={3} />
             </span>
 
             {isOwnProfile && !product.discountedPrice && (
               <span
                 className='product__item-actions discount'
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  navigate(ROUTES.PRODUCT(product.id).DISCOUNT, {
-                    state: { background: location },
-                  });
-                }}>
+                onClick={handleDiscountClick}>
                 <Percent />
               </span>
             )}

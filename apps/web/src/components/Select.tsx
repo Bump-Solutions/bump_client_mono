@@ -26,6 +26,19 @@ export type Option<T = string | number> = {
   description?: string;
 };
 
+const FLOATING_MIDDLEWARE = [
+  offset(4),
+  flip(),
+  shift({ padding: 8 }),
+  size({
+    apply({ rects, elements }) {
+      Object.assign(elements.floating.style, {
+        width: `${rects.reference.width}px`,
+      });
+    },
+  }),
+];
+
 // Közös props
 type BaseProps<T> = {
   name: string;
@@ -100,18 +113,7 @@ const Select = <T extends string | number>({
   // Floating UI (ajánlott API: refs + floatingStyles)
   const { refs, floatingStyles } = useFloating({
     whileElementsMounted: autoUpdate,
-    middleware: [
-      offset(4),
-      flip(),
-      shift({ padding: 8 }),
-      size({
-        apply({ rects, elements }) {
-          Object.assign(elements.floating.style, {
-            width: `${rects.reference.width}px`,
-          });
-        },
-      }),
-    ],
+    middleware: FLOATING_MIDDLEWARE,
   });
 
   const openMenu = () => {
