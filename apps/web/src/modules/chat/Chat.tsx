@@ -1,12 +1,12 @@
-import "../../styles/css/chat.css";
+import "@/styles/css/chat.css";
 
 import { ENUM } from "@bump/utils";
 import { useMediaQuery } from "react-responsive";
 import { Link, Outlet, useParams } from "react-router";
 import { useTitle } from "react-use";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
-import Empty from "../../components/Empty";
+import Empty from "@/components/Empty";
 import Inbox from "./inbox/Inbox";
 
 import { MessageSquareDashed, MessageSquarePlus } from "lucide-react";

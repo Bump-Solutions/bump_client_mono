@@ -2,7 +2,7 @@ import { defineStepper } from "@stepperize/react";
 import {
   signupAccountStepSchema,
   signupPersonalStepSchema,
-} from "../../schemas/signupWizard";
+} from "@/schemas/signupWizard";
 
 export const {
   Scoped: SignupScoped,

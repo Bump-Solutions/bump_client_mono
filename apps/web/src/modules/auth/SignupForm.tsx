@@ -1,11 +1,11 @@
-import "../../styles/css/multistepform.css";
+import "@/styles/css/multistepform.css";
 
 import { touchFields, validateFields, validateZodSection } from "@bump/forms";
 
 import { toast } from "sonner";
-import { useSignupForm } from "../../hooks/auth/useSignupForm";
-import { SIGNUP_FIELDS } from "../../wizards/signup/fields";
-import { useSignupStepper } from "../../wizards/signup/stepper";
+import { useSignupForm } from "@/hooks/auth/useSignupForm";
+import { SIGNUP_FIELDS } from "@/wizards/signup/fields";
+import { useSignupStepper } from "@/wizards/signup/stepper";
 
 import AccountStep from "./AccountStep";
 import PersonalStep from "./PersonalStep";

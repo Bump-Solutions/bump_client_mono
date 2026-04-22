@@ -2,17 +2,17 @@ import type { CreateOrderModel } from "@bump/core/models";
 import type { MouseEvent } from "react";
 import { Link } from "react-router";
 import { toast } from "sonner";
-import Button from "../../components/Button";
-import StateButton from "../../components/StateButton";
-import Tooltip from "../../components/Tooltip";
-import { useAuth } from "../../context/auth/useAuth";
-import { useCart } from "../../context/cart/useCart";
-import { useProduct } from "../../context/product/useProduct";
-import { useCreateOrder } from "../../hooks/order/useCreateOrder";
-import type { FacetProps } from "../../hooks/product/useFacetedSearch";
-import { useSaveProduct } from "../../hooks/product/useSaveProduct";
-import { useUnsaveProduct } from "../../hooks/product/useUnsaveProduct";
-import { ROUTES } from "../../routes/routes";
+import Button from "@/components/Button";
+import StateButton from "@/components/StateButton";
+import Tooltip from "@/components/Tooltip";
+import { useAuth } from "@/context/auth/useAuth";
+import { useCart } from "@/context/cart/useCart";
+import { useProduct } from "@/context/product/useProduct";
+import { useCreateOrder } from "@/hooks/order/useCreateOrder";
+import type { FacetProps } from "@/hooks/product/useFacetedSearch";
+import { useSaveProduct } from "@/hooks/product/useSaveProduct";
+import { useUnsaveProduct } from "@/hooks/product/useUnsaveProduct";
+import { ROUTES } from "@/routes/routes";
 
 import { Bookmark, Send, ShoppingBag } from "lucide-react";
 

@@ -1,8 +1,8 @@
 import type { NotificationsPageModel } from "@bump/core/models";
 import { useMemo } from "react";
 import { Link } from "react-router";
-import type { NotificationType } from "../../context/notification/types";
-import { ROUTES } from "../../routes/routes";
+import type { NotificationType } from "@/context/notification/types";
+import { ROUTES } from "@/routes/routes";
 
 import NotificationMenuListItem from "./NotificationsListItem";
 

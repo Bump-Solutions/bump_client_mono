@@ -2,14 +2,14 @@ import type { ColorData } from "@bump/types";
 import { ENUM } from "@bump/utils";
 import { useEffect, useState } from "react";
 import { useTitle, useToggle } from "react-use";
-import { useProfile } from "../../context/profile/useProfile";
+import { useProfile } from "@/context/profile/useProfile";
 
-import Button from "../../components/Button";
-import Tooltip from "../../components/Tooltip";
+import Button from "@/components/Button";
+import Tooltip from "@/components/Tooltip";
 import BgColorPicker from "./BgColorPicker";
 
 import { PaintbrushVertical } from "lucide-react";
-import { getProfilePictureColors, isLightColor } from "../../utils/colors";
+import { getProfilePictureColors, isLightColor } from "@/utils/colors";
 
 const DEFAULT_COLOR = "#cbd3deff;";
 const DEFAULT_PALETTE = [

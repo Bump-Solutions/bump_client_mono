@@ -1,7 +1,7 @@
 import type { FileUpload } from "@bump/types";
 import type { Dispatch, SetStateAction } from "react";
 
-import Image from "../../../components/Image";
+import Image from "@/components/Image";
 
 import { X } from "lucide-react";
 

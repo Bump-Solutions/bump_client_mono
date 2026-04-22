@@ -1,12 +1,12 @@
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 import { useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { toast } from "sonner";
 
-import { useLoginWithGoogle } from "../../hooks/auth/useLoginWithGoogle";
+import { useLoginWithGoogle } from "@/hooks/auth/useLoginWithGoogle";
 
-import Spinner from "../../components/Spinner";
+import Spinner from "@/components/Spinner";
 
 const GoogleCallback = () => {
   const [params] = useSearchParams();

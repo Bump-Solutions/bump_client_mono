@@ -5,8 +5,8 @@ import type { ProfileMetaModel } from "@bump/core/models";
 import { getProfileMeta } from "@bump/core/services";
 import { ENUM } from "@bump/utils";
 import { useQuery } from "@tanstack/react-query";
-import { useAuth } from "../../context/auth/useAuth";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuth } from "@/context/auth/useAuth";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useGetProfileMeta = () => {
   const http = useAuthHttpClient();

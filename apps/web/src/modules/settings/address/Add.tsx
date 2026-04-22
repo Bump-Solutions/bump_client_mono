@@ -5,14 +5,14 @@ import type { NominatimReverseResponse } from "@bump/types";
 import { CirclePlus } from "lucide-react";
 import { useCallback, useRef, type MouseEvent } from "react";
 import { toast } from "sonner";
-import { useAppForm } from "../../../forms/hooks";
-import { useAddAddress } from "../../../hooks/address/useAddAddress";
-import { useGetCurrentLocation } from "../../../hooks/address/useGetCurrentLocation";
+import { useAppForm } from "@/forms/hooks";
+import { useAddAddress } from "@/hooks/address/useAddAddress";
+import { useGetCurrentLocation } from "@/hooks/address/useGetCurrentLocation";
 
-import Button from "../../../components/Button";
-import Spinner from "../../../components/Spinner";
-import StateButton from "../../../components/StateButton";
-import FieldGroup from "../../../forms/FieldGroup";
+import Button from "@/components/Button";
+import Spinner from "@/components/Spinner";
+import StateButton from "@/components/StateButton";
+import FieldGroup from "@/forms/FieldGroup";
 
 type AddProps = {
   addresses: AddressModel[];

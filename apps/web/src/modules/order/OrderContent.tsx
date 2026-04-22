@@ -1,4 +1,4 @@
-import { useOrder } from "../../context/order/useOrder";
+import { useOrder } from "@/context/order/useOrder";
 
 const OrderContent = () => {
   const { order } = useOrder();

@@ -1,8 +1,8 @@
 import { clearErroredFields } from "@bump/forms";
 import { Fragment } from "react/jsx-runtime";
-import type { SignupFormApi } from "../../hooks/auth/useSignupForm";
-import { SIGNUP_FIELDS, type SignupStepId } from "../../wizards/signup/fields";
-import { SIGNUP_STEPS, useSignupStepper } from "../../wizards/signup/stepper";
+import type { SignupFormApi } from "@/hooks/auth/useSignupForm";
+import { SIGNUP_FIELDS, type SignupStepId } from "@/wizards/signup/fields";
+import { SIGNUP_STEPS, useSignupStepper } from "@/wizards/signup/stepper";
 
 import { Check, ContactRound, User } from "lucide-react";
 

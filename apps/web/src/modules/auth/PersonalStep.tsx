@@ -1,16 +1,16 @@
 import { clearErroredFields } from "@bump/forms";
 import { ENUM } from "@bump/utils";
-import { SIGNUP_FIELDS } from "../../wizards/signup/fields";
+import { SIGNUP_FIELDS } from "@/wizards/signup/fields";
 
 import { useStore } from "@tanstack/react-form";
 import type { MouseEvent } from "react";
-import type { SignupFormApi } from "../../hooks/auth/useSignupForm";
-import { signupPersonalStepSchema } from "../../schemas/signupWizard";
-import { useSignupStepper } from "../../wizards/signup/stepper";
+import type { SignupFormApi } from "@/hooks/auth/useSignupForm";
+import { signupPersonalStepSchema } from "@/schemas/signupWizard";
+import { useSignupStepper } from "@/wizards/signup/stepper";
 
-import Button from "../../components/Button";
-import StateButton from "../../components/StateButton";
-import FieldGroup from "../../forms/FieldGroup";
+import Button from "@/components/Button";
+import StateButton from "@/components/StateButton";
+import FieldGroup from "@/forms/FieldGroup";
 
 import { ClipboardPen, MoveLeft } from "lucide-react";
 

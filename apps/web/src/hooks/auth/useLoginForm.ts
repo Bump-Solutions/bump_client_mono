@@ -1,6 +1,6 @@
 import { loginRequestSchema, type LoginRequest } from "@bump/core/schemas";
 import { toast } from "sonner";
-import { useAppForm } from "../../forms/hooks";
+import { useAppForm } from "@/forms/hooks";
 import { useLogin } from "./useLogin";
 
 const loginDefaultValues: LoginRequest = {

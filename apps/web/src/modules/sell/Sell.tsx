@@ -1,18 +1,18 @@
-import "../../styles/css/sell.css";
+import "@/styles/css/sell.css";
 
 import { ENUM } from "@bump/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router";
 import { useTitle } from "react-use";
 
-import Button from "../../components/Button";
-import Drawer from "../../components/Drawer";
+import Button from "@/components/Button";
+import Drawer from "@/components/Drawer";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
 import SellForm from "./SellForm";
 
 import { X } from "lucide-react";
-import { SellScoped } from "../../wizards/sell/stepper";
+import { SellScoped } from "@/wizards/sell/stepper";
 
 const Sell = () => {
   useTitle(`Eladás - ${ENUM.BRAND.NAME}`);
@@ -22,13 +22,7 @@ const Sell = () => {
     query: `(max-width: ${ENUM.MEDIA_MOBILE}px)`,
   });
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
+  useBodyScrollLock(true);
 
   return (
     <AnimatePresence mode='wait'>

@@ -1,10 +1,11 @@
 import { ENUM } from "@bump/utils";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, type ReactNode, type RefObject } from "react";
+import { useRef, type ReactNode, type RefObject } from "react";
 import { createPortal } from "react-dom";
 import { useMediaQuery } from "react-responsive";
 
+import { useBodyScrollLock } from "../hooks/common/useBodyScrollLock";
 import Button from "./Button";
 
 import { X } from "lucide-react";
@@ -74,9 +75,7 @@ const Modal = ({ children, isOpen, close, className, size }: ModalProps) => {
 
   useClickAway(modalRef, close);
 
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "auto";
-  }, [isOpen]);
+  useBodyScrollLock(isOpen);
 
   return (
     <AnimatePresence mode='wait'>

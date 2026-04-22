@@ -1,4 +1,4 @@
-import { useProfile } from "../../../context/profile/useProfile";
+import { useProfile } from "@/context/profile/useProfile";
 
 import UserInteractions from "./UserInteractions";
 import UserInteractionsOwn from "./UserInteractionsOwn";

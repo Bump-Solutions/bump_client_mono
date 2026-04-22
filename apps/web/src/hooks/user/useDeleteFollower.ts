@@ -1,7 +1,7 @@
 import type { ApiError, ApiResponse } from "@bump/core/api";
 import { deleteFollower } from "@bump/core/services";
 import { useMutation } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useDeleteFollower = (
   onSuccess?: (response: ApiResponse, variables: number) => void,

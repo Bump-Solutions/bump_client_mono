@@ -12,8 +12,8 @@ import { useQueryClient, type InfiniteData } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { useOutletContext } from "react-router";
 import useWebSocket from "react-use-websocket";
-import { useAuth } from "../../../context/auth/useAuth";
-import { API } from "../../../utils/api";
+import { useAuth } from "@/context/auth/useAuth";
+import { API } from "@/utils/api";
 
 import MessagesContent from "./MessagesContent";
 import MessagesFooter from "./MessagesFooter";

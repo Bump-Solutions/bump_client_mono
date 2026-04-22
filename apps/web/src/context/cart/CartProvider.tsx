@@ -3,8 +3,8 @@ import {
   useAddItems,
   useClearCart,
   useRemovePackage,
-} from "../../hooks/cart/useCartMutations";
-import { useGetCart } from "../../hooks/cart/useGetCart";
+} from "@/hooks/cart/useCartMutations";
+import { useGetCart } from "@/hooks/cart/useGetCart";
 import { CartContext } from "./context";
 import type { CartContextValue, CartProviderProps } from "./types";
 

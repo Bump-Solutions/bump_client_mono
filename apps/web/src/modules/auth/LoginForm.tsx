@@ -1,10 +1,10 @@
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 import { loginRequestSchema } from "@bump/core/schemas";
 import { Link } from "react-router";
-import { useLoginForm } from "../../hooks/auth/useLoginForm";
+import { useLoginForm } from "@/hooks/auth/useLoginForm";
 
-import StateButton from "../../components/StateButton";
+import StateButton from "@/components/StateButton";
 
 import { LogIn } from "lucide-react";
 

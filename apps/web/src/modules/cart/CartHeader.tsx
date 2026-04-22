@@ -1,7 +1,8 @@
 import { AnimatePresence } from "framer-motion";
-import { useDeferredValue, useEffect, useRef } from "react";
+import { useDeferredValue, useRef } from "react";
 import { useToggle } from "react-use";
-import { useCart } from "../../context/cart/useCart";
+import { useCart } from "@/context/cart/useCart";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
 
 import CartContextMenu from "./CartContextMenu";
 
@@ -21,15 +22,7 @@ const CartHeader = ({ searchKey, setSearchKey }: CartHeaderProps) => {
 
   const [isContextMenuOpen, toggleContextMenu] = useToggle(false);
 
-  useEffect(() => {
-    document.body.style.overflow = isContextMenuOpen ? "hidden" : "auto";
-    document.body.style.pointerEvents = isContextMenuOpen ? "none" : "auto";
-
-    return () => {
-      document.body.style.overflow = "auto";
-      document.body.style.pointerEvents = "auto";
-    };
-  }, [isContextMenuOpen]);
+  useBodyScrollLock(isContextMenuOpen, { disablePointerEvents: true });
 
   if (!cart) return null;
 

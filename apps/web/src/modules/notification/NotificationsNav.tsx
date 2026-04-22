@@ -1,9 +1,9 @@
 import { Link } from "react-router";
-import type { NotificationType } from "../../context/notification/types";
-import { useGetProfileMeta } from "../../hooks/profile/useGetProfileMeta";
-import { ROUTES } from "../../routes/routes";
+import type { NotificationType } from "@/context/notification/types";
+import { useGetProfileMeta } from "@/hooks/profile/useGetProfileMeta";
+import { ROUTES } from "@/routes/routes";
 
-import Tooltip from "../../components/Tooltip";
+import Tooltip from "@/components/Tooltip";
 
 import { Settings } from "lucide-react";
 

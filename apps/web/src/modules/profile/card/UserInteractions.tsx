@@ -1,16 +1,16 @@
 import { useQueryClient } from "@tanstack/react-query";
 import type { MouseEvent } from "react";
 import { useNavigate } from "react-router";
-import { useProfile } from "../../../context/profile/useProfile";
-import { useCreateChatGroup } from "../../../hooks/chat/useCreateChatGroup";
-import { useFollow } from "../../../hooks/user/useFollow";
-import { useUnfollow } from "../../../hooks/user/useUnfollow";
-import { ROUTES } from "../../../routes/routes";
+import { useProfile } from "@/context/profile/useProfile";
+import { useCreateChatGroup } from "@/hooks/chat/useCreateChatGroup";
+import { useFollow } from "@/hooks/user/useFollow";
+import { useUnfollow } from "@/hooks/user/useUnfollow";
+import { ROUTES } from "@/routes/routes";
 
 import { queryKeys } from "@bump/core/queries";
 
-import Button from "../../../components/Button";
-import Tooltip from "../../../components/Tooltip";
+import Button from "@/components/Button";
+import Tooltip from "@/components/Tooltip";
 
 import { Bell, Mail, UserPlus, UserX } from "lucide-react";
 

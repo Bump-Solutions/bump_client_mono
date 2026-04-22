@@ -3,12 +3,12 @@ import { addressSchema, type AddressValues } from "@bump/core/schemas";
 import { useMounted } from "@bump/hooks";
 import type { MouseEvent } from "react";
 import { toast } from "sonner";
-import { useAppForm } from "../../../forms/hooks";
-import { useModifyAddress } from "../../../hooks/address/useModifyAddress";
+import { useAppForm } from "@/forms/hooks";
+import { useModifyAddress } from "@/hooks/address/useModifyAddress";
 
-import Button from "../../../components/Button";
-import StateButton from "../../../components/StateButton";
-import FieldGroup from "../../../forms/FieldGroup";
+import Button from "@/components/Button";
+import StateButton from "@/components/StateButton";
+import FieldGroup from "@/forms/FieldGroup";
 
 import { Pencil } from "lucide-react";
 

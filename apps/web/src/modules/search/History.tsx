@@ -1,9 +1,9 @@
 import type { SearchHistoryItemModel } from "@bump/core/models";
 import type { Dispatch, JSX, SetStateAction } from "react";
-import { useDeleteHistory } from "../../hooks/search/useDeleteHistory";
-import { useListSearchHistory } from "../../hooks/search/useListSearchHistory";
+import { useDeleteHistory } from "@/hooks/search/useDeleteHistory";
+import { useListSearchHistory } from "@/hooks/search/useListSearchHistory";
 
-import Chip from "../../components/Chip";
+import Chip from "@/components/Chip";
 
 import { Footprints, Search, User } from "lucide-react";
 

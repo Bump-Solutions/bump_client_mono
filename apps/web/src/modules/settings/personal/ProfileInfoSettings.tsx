@@ -1,17 +1,17 @@
 import { profileInfoSchema, type ProfileInfoValues } from "@bump/core/schemas";
 import { useMounted } from "@bump/hooks";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../../context/auth/useAuth";
-import { usePersonalSettings } from "../../../context/settings/usePersonalSettings";
-import { useAppForm } from "../../../forms/hooks";
-import { useLogout } from "../../../hooks/auth/useLogout";
-import { useUpdateProfile } from "../../../hooks/profile/useUpdateProfile";
-import { ROUTES } from "../../../routes/routes";
+import { useAuth } from "@/context/auth/useAuth";
+import { usePersonalSettings } from "@/context/settings/usePersonalSettings";
+import { useAppForm } from "@/forms/hooks";
+import { useLogout } from "@/hooks/auth/useLogout";
+import { useUpdateProfile } from "@/hooks/profile/useUpdateProfile";
+import { ROUTES } from "@/routes/routes";
 
-import Back from "../../../components/Back";
-import Spinner from "../../../components/Spinner";
-import StateButton from "../../../components/StateButton";
-import FieldGroup from "../../../forms/FieldGroup";
+import Back from "@/components/Back";
+import Spinner from "@/components/Spinner";
+import StateButton from "@/components/StateButton";
+import FieldGroup from "@/forms/FieldGroup";
 
 import { Download } from "lucide-react";
 import { toast } from "sonner";

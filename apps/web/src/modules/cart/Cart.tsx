@@ -1,10 +1,10 @@
-import "../../styles/css/cart.css";
+import "@/styles/css/cart.css";
 
 import { ENUM } from "@bump/utils";
 import { useState } from "react";
 import { useTitle } from "react-use";
-import { useCart } from "../../context/cart/useCart";
-import { ROUTES } from "../../routes/routes";
+import { useCart } from "@/context/cart/useCart";
+import { ROUTES } from "@/routes/routes";
 
 import { ArrowUpRight, Globe } from "lucide-react";
 import { Link } from "react-router";
@@ -12,9 +12,9 @@ import { Link } from "react-router";
 import CartContent from "./CartContent";
 import CartHeader from "./CartHeader";
 
-import Back from "../../components/Back";
-import Empty from "../../components/Empty";
-import Spinner from "../../components/Spinner";
+import Back from "@/components/Back";
+import Empty from "@/components/Empty";
+import Spinner from "@/components/Spinner";
 
 const Cart = () => {
   useTitle(`Kosár - ${ENUM.BRAND.NAME}`);

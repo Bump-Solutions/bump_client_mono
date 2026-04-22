@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import { NavLink } from "react-router";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useToggle } from "react-use";
-import { useProfile } from "../../context/profile/useProfile";
+import { useProfile } from "@/context/profile/useProfile";
 
 interface Tab {
   label: string;

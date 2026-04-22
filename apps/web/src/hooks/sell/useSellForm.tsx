@@ -2,10 +2,10 @@ import type { CreateProductModel } from "@bump/core/models";
 import { useMounted } from "@bump/hooks";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
-import { useAuth } from "../../context/auth/useAuth";
-import { useAppForm } from "../../forms/hooks";
-import { sellFormOptions } from "../../forms/sellFormOptions";
-import { ROUTES } from "../../routes/routes";
+import { useAuth } from "@/context/auth/useAuth";
+import { useAppForm } from "@/forms/hooks";
+import { sellFormOptions } from "@/forms/sellFormOptions";
+import { ROUTES } from "@/routes/routes";
 import { useUploadProduct } from "../product/useUploadProduct";
 
 export const useSellForm = () => {

@@ -1,8 +1,8 @@
 import { touchFields, validateFields, validateZodSection } from "@bump/forms";
 import { toast } from "sonner";
-import { useSellForm } from "../../hooks/sell/useSellForm";
-import { SELL_FIELDS } from "../../wizards/sell/fields";
-import { useSellStepper } from "../../wizards/sell/stepper";
+import { useSellForm } from "@/hooks/sell/useSellForm";
+import { SELL_FIELDS } from "@/wizards/sell/fields";
+import { useSellStepper } from "@/wizards/sell/stepper";
 
 import DetailsStep from "./steps/DetailsStep";
 import ItemsStep from "./steps/ItemsStep";

@@ -1,9 +1,9 @@
 import type { MessagesPageModel } from "@bump/core/models";
 import { useLocation } from "react-router";
-import { useListMessages } from "../../../hooks/chat/useListMessages";
+import { useListMessages } from "@/hooks/chat/useListMessages";
 
 import { useMemo } from "react";
-import Spinner from "../../../components/Spinner";
+import Spinner from "@/components/Spinner";
 import MessageDateDivider from "./MessageDateDivider";
 import MessagesList from "./MessagesList";
 

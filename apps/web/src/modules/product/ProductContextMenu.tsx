@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useClickAway } from "react-use";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 import { ArrowUpRight, Percent } from "lucide-react";
 

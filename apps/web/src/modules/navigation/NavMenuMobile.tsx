@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 const NavMenuMobile = () => {
   return (

@@ -6,8 +6,8 @@ import {
 } from "@bump/utils";
 import { useMemo } from "react";
 import { Link } from "react-router";
-import type { FacetProps } from "../../hooks/product/useFacetedSearch";
-import { ROUTES } from "../../routes/routes";
+import type { FacetProps } from "@/hooks/product/useFacetedSearch";
+import { ROUTES } from "@/routes/routes";
 
 import { Info } from "lucide-react";
 

@@ -10,7 +10,7 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useMarkNotificationAsRead = (
   onSuccess?: (resp: ApiResponse, variables: number) => void,

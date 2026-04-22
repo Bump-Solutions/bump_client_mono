@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useToggle } from "react-use";
-import { useProduct } from "../../context/product/useProduct";
+import { useProduct } from "@/context/product/useProduct";
 
-import Image from "../../components/Image";
-import Lightbox from "../../components/Lightbox";
+import Image from "@/components/Image";
+import Lightbox from "@/components/Lightbox";
 
 const MAX_IMAGES = 3; // Maximum number of images to display
 

@@ -1,14 +1,14 @@
-import "../../styles/css/stripe.css";
+import "@/styles/css/stripe.css";
 
 import type { MouseEvent } from "react";
 import { Link } from "react-router";
 import { toast } from "sonner";
 
-import { useAuthWithMeta } from "../../hooks/auth/useAuthWithMeta";
-import { useStripeConnect } from "../../hooks/stripe/useStripeConnect";
-import { ROUTES } from "../../routes/routes";
+import { useAuthWithMeta } from "@/hooks/auth/useAuthWithMeta";
+import { useStripeConnect } from "@/hooks/stripe/useStripeConnect";
+import { ROUTES } from "@/routes/routes";
 
-import Button from "../../components/Button";
+import Button from "@/components/Button";
 import StripeGradient from "./StripeGradient";
 
 import { ArrowUpRight, MoveRight } from "lucide-react";

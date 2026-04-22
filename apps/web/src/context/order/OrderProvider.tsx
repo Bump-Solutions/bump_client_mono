@@ -6,9 +6,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useMachine } from "@xstate/react";
 import { useCallback, useEffect, useMemo, type ReactNode } from "react";
 import { Navigate, useParams } from "react-router";
-import Spinner from "../../components/Spinner";
-import { useGetOrder } from "../../hooks/order/useGetOrder";
-import { ROUTES } from "../../routes/routes";
+import Spinner from "@/components/Spinner";
+import { useGetOrder } from "@/hooks/order/useGetOrder";
+import { ROUTES } from "@/routes/routes";
 import { OrderContext } from "./context";
 import type { OrderContextValue, OrderProviderProps } from "./types";
 

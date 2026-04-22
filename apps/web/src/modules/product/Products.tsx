@@ -1,14 +1,14 @@
-import "../../styles/css/product.css";
+import "@/styles/css/product.css";
 
 import type { InventoryModel } from "@bump/core/models";
 import { Link, useLocation } from "react-router";
-import { useProfile } from "../../context/profile/useProfile";
-import { useListProducts } from "../../hooks/product/useListProducts";
-import { ROUTES } from "../../routes/routes";
+import { useProfile } from "@/context/profile/useProfile";
+import { useListProducts } from "@/hooks/product/useListProducts";
+import { ROUTES } from "@/routes/routes";
 import ProductList from "./ProductList";
 
-import Empty from "../../components/Empty";
-import Spinner from "../../components/Spinner";
+import Empty from "@/components/Empty";
+import Spinner from "@/components/Spinner";
 
 import { ArrowUpRight, SearchX, Tag } from "lucide-react";
 

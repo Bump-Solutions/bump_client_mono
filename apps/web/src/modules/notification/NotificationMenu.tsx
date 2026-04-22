@@ -2,11 +2,11 @@ import type { NotificationsPageModel } from "@bump/core/models";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { useClickAway } from "react-use";
-import type { NotificationType } from "../../context/notification/types";
-import { useListNotifications } from "../../hooks/notification/useListNotifications";
+import type { NotificationType } from "@/context/notification/types";
+import { useListNotifications } from "@/hooks/notification/useListNotifications";
 
-import Empty from "../../components/Empty";
-import Spinner from "../../components/Spinner";
+import Empty from "@/components/Empty";
+import Spinner from "@/components/Spinner";
 import NotificationMenuList from "./NotificationMenuList";
 import NotificationMenuNav from "./NotificationMenuNav";
 

@@ -1,10 +1,10 @@
-import "../../styles/css/order.css";
+import "@/styles/css/order.css";
 
 import { ENUM } from "@bump/utils";
 import { useTitle } from "react-use";
-import { useOrder } from "../../context/order/useOrder";
+import { useOrder } from "@/context/order/useOrder";
 
-import Back from "../../components/Back";
+import Back from "@/components/Back";
 import ConnectStripeBanner from "../stripe/ConnectStripeBanner";
 import OrderContent from "./OrderContent";
 import OrderHeader from "./OrderHeader";

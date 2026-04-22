@@ -1,10 +1,10 @@
-import "../../styles/css/product.css";
+import "@/styles/css/product.css";
 
 import type { InventoryModel } from "@bump/core/models";
-import { useListSavedProducts } from "../../hooks/product/useListSavedProducts";
+import { useListSavedProducts } from "@/hooks/product/useListSavedProducts";
 
-import Empty from "../../components/Empty";
-import Spinner from "../../components/Spinner";
+import Empty from "@/components/Empty";
+import Spinner from "@/components/Spinner";
 import ProductList from "./ProductList";
 
 import { SearchX } from "lucide-react";

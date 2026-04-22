@@ -2,12 +2,12 @@ import type { ModelModel, ModelsPageModel } from "@bump/core/models";
 import { useStore } from "@tanstack/react-form";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { useToggle } from "react-use";
-import { useListAvailableModels } from "../../../hooks/product/useListAvailableModels";
-import type { SellFormApi } from "../../../hooks/sell/useSellForm";
-import { sellDetailsStepSchema } from "../../../schemas/sellWizard";
+import { useListAvailableModels } from "@/hooks/product/useListAvailableModels";
+import type { SellFormApi } from "@/hooks/sell/useSellForm";
+import { sellDetailsStepSchema } from "@/schemas/sellWizard";
 
-import Chip from "../../../components/Chip";
-import Spinner from "../../../components/Spinner";
+import Chip from "@/components/Chip";
+import Spinner from "@/components/Spinner";
 import SearchChip from "./SearchChip";
 
 import { X } from "lucide-react";

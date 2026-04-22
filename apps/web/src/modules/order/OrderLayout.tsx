@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 
-import OrderProvider from "../../context/order/OrderProvider";
+import OrderProvider from "@/context/order/OrderProvider";
 
 const OrderLayout = () => {
   return (

@@ -11,8 +11,8 @@ import {
   useQueryClient,
   type InfiniteData,
 } from "@tanstack/react-query";
-import { useProfile } from "../../context/profile/useProfile";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useProfile } from "@/context/profile/useProfile";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 type DeleteProductVariables = {
   product: ProductListModel;

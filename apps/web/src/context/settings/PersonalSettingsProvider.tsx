@@ -3,8 +3,8 @@ import { queryKeys } from "@bump/core/queries";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { Navigate } from "react-router";
-import { useGetProfile } from "../../hooks/profile/useGetProfile";
-import { ROUTES } from "../../routes/routes";
+import { useGetProfile } from "@/hooks/profile/useGetProfile";
+import { ROUTES } from "@/routes/routes";
 import { PersonalSettingsContext } from "./context";
 import type {
   BasicSettingsProviderProps,

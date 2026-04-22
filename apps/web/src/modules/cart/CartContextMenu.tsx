@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useRef, type MouseEvent } from "react";
 import { useClickAway } from "react-use";
 import { toast } from "sonner";
-import { useCart } from "../../context/cart/useCart";
+import { useCart } from "@/context/cart/useCart";
 
 import { ArrowUpRight } from "lucide-react";
 

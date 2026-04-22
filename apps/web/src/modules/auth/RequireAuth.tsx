@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from "react-router";
-import { useAuth } from "../../context/auth/useAuth";
-import { ROUTES } from "../../routes/routes";
+import { useAuth } from "@/context/auth/useAuth";
+import { ROUTES } from "@/routes/routes";
 
 type RequireAuthProps = {
   allowedRoles: number[];

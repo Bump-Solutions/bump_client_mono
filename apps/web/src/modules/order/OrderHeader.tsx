@@ -3,7 +3,7 @@ import {
   ORDER_STATE_LABELS,
   ORDER_STATE_VARIANTS,
 } from "@bump/core/presentation";
-import { useOrder } from "../../context/order/useOrder";
+import { useOrder } from "@/context/order/useOrder";
 
 const OrderHeaderBadge = ({
   state,

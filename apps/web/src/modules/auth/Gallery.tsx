@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { API } from "../../utils/api";
+import { API } from "@/utils/api";
 
 type GalleryProps = {
   images: string[];

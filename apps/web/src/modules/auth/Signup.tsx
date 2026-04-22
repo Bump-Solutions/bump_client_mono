@@ -1,9 +1,9 @@
 import { ENUM } from "@bump/utils";
 import { Link } from "react-router";
 import { useTitle } from "react-use";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
-import { SignupScoped } from "../../wizards/signup/stepper";
+import { SignupScoped } from "@/wizards/signup/stepper";
 
 import SignupForm from "./SignupForm";
 import SocialSignup from "./SocialSignup";

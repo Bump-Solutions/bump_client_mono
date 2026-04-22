@@ -1,11 +1,11 @@
 import type { FileUpload } from "@bump/types";
 import { useRef, type Dispatch, type SetStateAction } from "react";
 import { toast } from "sonner";
-import type { UploaderHandle } from "../../../components/Uploader";
+import type { UploaderHandle } from "@/components/Uploader";
 
-import Button from "../../../components/Button";
-import Tooltip from "../../../components/Tooltip";
-import Uploader from "../../../components/Uploader";
+import Button from "@/components/Button";
+import Tooltip from "@/components/Tooltip";
+import Uploader from "@/components/Uploader";
 
 import { ImageUp } from "lucide-react";
 

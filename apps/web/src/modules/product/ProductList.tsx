@@ -3,10 +3,10 @@ import type { PaginatedListProps } from "@bump/types";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { Link, useLocation } from "react-router";
-import { useProfile } from "../../context/profile/useProfile";
-import { ROUTES } from "../../routes/routes";
+import { useProfile } from "@/context/profile/useProfile";
+import { ROUTES } from "@/routes/routes";
 
-import Spinner from "../../components/Spinner";
+import Spinner from "@/components/Spinner";
 import ProductListItem from "./ProductListItem";
 
 import { CirclePlus } from "lucide-react";

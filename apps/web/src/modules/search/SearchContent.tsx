@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router";
 
-import Button from "../../components/Button";
-import Tooltip from "../../components/Tooltip";
+import Button from "@/components/Button";
+import Tooltip from "@/components/Tooltip";
 import Brands from "./Brands";
 import History from "./History";
 import Results from "./Results";

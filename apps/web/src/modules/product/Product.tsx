@@ -1,9 +1,9 @@
-import "../../styles/css/product.css";
+import "@/styles/css/product.css";
 
 import { useTitle } from "react-use";
-import { useProduct } from "../../context/product/useProduct";
+import { useProduct } from "@/context/product/useProduct";
 
-import Back from "../../components/Back";
+import Back from "@/components/Back";
 import ProductDetails from "./ProductDetails";
 import Thumbnail from "./Thumbnail";
 

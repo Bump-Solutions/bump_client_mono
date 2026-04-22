@@ -1,9 +1,9 @@
-import "../../styles/css/navbar.css";
+import "@/styles/css/navbar.css";
 
 import { AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
 import { useToggle } from "react-use";
-import { useNavbarTheme } from "../../context/navbartheme/useNavbarTheme";
+import { useNavbarTheme } from "@/context/navbartheme/useNavbarTheme";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
 
 import NotificationMenu from "../notification/NotificationMenu";
 import NavMenu from "./NavMenu";
@@ -18,16 +18,7 @@ const Navbar = () => {
   const [isProfileMenuOpen, toggleProfileMenu] = useToggle(false);
   const [isNotificationMenuOpen, toggleNotificationMenu] = useToggle(false);
 
-  useEffect(() => {
-    document.body.style.overflow =
-      isProfileMenuOpen || isNotificationMenuOpen ? "hidden" : "auto";
-    // document.body.style.pointerEvents = isProfileMenuOpen || isNotificationMenuOpen ? 'none' : 'auto';
-
-    return () => {
-      document.body.style.overflow = "auto";
-      // document.body.style.pointerEvents = 'auto';
-    };
-  }, [isProfileMenuOpen, isNotificationMenuOpen]);
+  useBodyScrollLock(isProfileMenuOpen || isNotificationMenuOpen);
 
   return (
     <>

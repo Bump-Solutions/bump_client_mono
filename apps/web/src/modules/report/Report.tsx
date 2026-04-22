@@ -2,13 +2,13 @@ import type { ReportType } from "@bump/types";
 import { ENUM } from "@bump/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate, useParams } from "react-router";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
-import Button from "../../components/Button";
-import Drawer from "../../components/Drawer";
+import Button from "@/components/Button";
+import Drawer from "@/components/Drawer";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
 import ReportForm from "./ReportForm";
 
 const REPORT_TYPES: ReportType[] = ["product", "user"];
@@ -21,13 +21,7 @@ const Report = () => {
     query: `(max-width: ${ENUM.MEDIA_MOBILE}px)`,
   });
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
+  useBodyScrollLock(true);
 
   if (type === undefined || !REPORT_TYPES.includes(type)) {
     navigate(ROUTES.NOTFOUND, { replace: true });

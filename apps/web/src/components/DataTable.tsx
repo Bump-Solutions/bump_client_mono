@@ -29,6 +29,8 @@ import {
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { useClickAway } from "react-use";
 
+import { useBodyScrollLock } from "../hooks/common/useBodyScrollLock";
+
 import {
   ArrowDown,
   ArrowDownUp,
@@ -193,19 +195,7 @@ const DataTable = <T extends object>({
   const [expanded, setExpanded] = useState<ExpandedState>({});
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  useEffect(() => {
-    // Disable scroll on body when column menu is open
-    if (showColumnMenu) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    // Cleanup function to reset overflow when component unmounts
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [showColumnMenu]);
+  useBodyScrollLock(showColumnMenu);
 
   // ha a szülő megváltoztatja, szinkronizáljuk
   useEffect(() => {

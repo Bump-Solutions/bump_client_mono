@@ -3,7 +3,7 @@ import type { ProfileModel } from "@bump/core/models";
 import { queryKeys } from "@bump/core/queries";
 import { updateProfile } from "@bump/core/services";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useUpdateProfile = (
   onSuccess?: (resp: ApiResponse, variables: Partial<ProfileModel>) => void,

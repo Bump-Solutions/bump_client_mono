@@ -3,8 +3,8 @@ import type { ProfileMetaModel } from "@bump/core/models";
 import { queryKeys } from "@bump/core/queries";
 import { uploadProfilePicture } from "@bump/core/services";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "../../context/auth/useAuth";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuth } from "@/context/auth/useAuth";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useUploadProfilePicture = (
   onSuccess?: (

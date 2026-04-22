@@ -1,10 +1,10 @@
 import { clearErroredFields } from "@bump/forms";
 import { useStore } from "@tanstack/react-form";
-import type { SellFormApi } from "../../../hooks/sell/useSellForm";
-import { SELL_FIELDS } from "../../../wizards/sell/fields";
-import { SELL_STEPS, useSellStepper } from "../../../wizards/sell/stepper";
+import type { SellFormApi } from "@/hooks/sell/useSellForm";
+import { SELL_FIELDS } from "@/wizards/sell/fields";
+import { SELL_STEPS, useSellStepper } from "@/wizards/sell/stepper";
 
-import Button from "../../../components/Button";
+import Button from "@/components/Button";
 import ItemForm from "../parts/ItemForm";
 import ItemsList from "../parts/ItemsList";
 

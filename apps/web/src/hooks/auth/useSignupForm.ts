@@ -1,6 +1,6 @@
 import type { SignupModel } from "@bump/core/models";
-import { useAppForm } from "../../forms/hooks";
-import { signupFormOptions } from "../../forms/signupFormOptions";
+import { useAppForm } from "@/forms/hooks";
+import { signupFormOptions } from "@/forms/signupFormOptions";
 
 import { toast } from "sonner";
 

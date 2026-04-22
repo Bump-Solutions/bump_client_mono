@@ -1,11 +1,11 @@
-import type { FacetProps } from "../../hooks/product/useFacetedSearch";
+import type { FacetProps } from "@/hooks/product/useFacetedSearch";
 
 import { CONDITION_LABELS, GENDER_LABELS } from "@bump/utils";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
-import Chip from "../../components/Chip";
+import Chip from "@/components/Chip";
 
 const FacetedSearch = ({
   genders,

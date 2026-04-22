@@ -10,9 +10,9 @@ import {
 } from "react";
 import { useClickAway, useToggle } from "react-use";
 import { toast } from "sonner";
-import { useUploadChatImages } from "../../../hooks/chat/useUploadChatImages";
+import { useUploadChatImages } from "@/hooks/chat/useUploadChatImages";
 
-import Button from "../../../components/Button";
+import Button from "@/components/Button";
 import ImageUpload from "./ImageUpload";
 import MessagesFooterImages from "./MessagesFooterImages";
 

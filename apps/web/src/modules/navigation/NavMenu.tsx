@@ -1,10 +1,11 @@
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import { useToggle } from "react-use";
-import { useNavbarTheme } from "../../context/navbartheme/useNavbarTheme";
-import { useClickOutside } from "../../hooks/common/useClickOutside";
+import { useNavbarTheme } from "@/context/navbartheme/useNavbarTheme";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
+import { useClickOutside } from "@/hooks/common/useClickOutside";
 
 import MenuBrowse from "./MenuBrowse";
 import MenuCommunity from "./MenuCommunity";
@@ -51,14 +52,7 @@ const NavMenu = () => {
     return () => mql.removeEventListener?.("change", update);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow =
-      browseOpen || communityOpen ? "hidden" : "auto";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [browseOpen, communityOpen]);
+  useBodyScrollLock(browseOpen || communityOpen);
 
   const onHoverOrTouch = (menu?: "browse" | "community") => {
     switch (menu) {

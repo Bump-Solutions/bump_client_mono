@@ -1,8 +1,8 @@
 import type { CartPackageModel, CartProductModel } from "@bump/core/models";
 import Fuse, { type FuseResult, type IFuseOptions } from "fuse.js";
 import { useMemo } from "react";
-import { useCart } from "../../context/cart/useCart";
-import type { FieldMatches, HighlightIndex } from "../../utils/highlight";
+import { useCart } from "@/context/cart/useCart";
+import type { FieldMatches, HighlightIndex } from "@/utils/highlight";
 
 type Doc = {
   sellerId: number;

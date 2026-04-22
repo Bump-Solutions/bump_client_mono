@@ -1,7 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-import Button from "../../../components/Button";
+import Button from "@/components/Button";
 
 import { Trash } from "lucide-react";
 

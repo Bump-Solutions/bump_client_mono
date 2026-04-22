@@ -4,11 +4,11 @@ import type { ReportType } from "@bump/types";
 import type { MouseEvent } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import { useAppForm } from "../../forms/hooks";
-import { useReport } from "../../hooks/report/useReport";
+import { useAppForm } from "@/forms/hooks";
+import { useReport } from "@/hooks/report/useReport";
 
-import Button from "../../components/Button";
-import StateButton from "../../components/StateButton";
+import Button from "@/components/Button";
+import StateButton from "@/components/StateButton";
 
 import { Flag } from "lucide-react";
 

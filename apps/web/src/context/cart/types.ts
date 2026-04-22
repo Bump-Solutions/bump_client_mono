@@ -4,8 +4,8 @@ import type {
   useAddItems,
   useClearCart,
   useRemovePackage,
-} from "../../hooks/cart/useCartMutations";
-import type { HighlightIndex } from "../../utils/highlight";
+} from "@/hooks/cart/useCartMutations";
+import type { HighlightIndex } from "@/utils/highlight";
 
 export type CartProviderProps = {
   children: ReactNode;

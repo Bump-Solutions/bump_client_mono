@@ -3,7 +3,7 @@ import type { ChatGroupModel, MessagesPageModel } from "@bump/core/models";
 import { queryKeys } from "@bump/core/queries";
 import { listMessages } from "@bump/core/services";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 const MAX_MESSAGES_PER_PAGE = 20;
 

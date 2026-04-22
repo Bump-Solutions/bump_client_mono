@@ -7,8 +7,8 @@ import {
   useQueryClient,
   type InfiniteData,
 } from "@tanstack/react-query";
-import { useAuth } from "../../context/auth/useAuth";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuth } from "@/context/auth/useAuth";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 type UploadProductVariables = {
   newProduct: CreateProductModel;

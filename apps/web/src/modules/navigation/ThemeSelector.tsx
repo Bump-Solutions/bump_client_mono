@@ -12,7 +12,7 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { Contrast, Moon, Sun } from "lucide-react";
 import { useState } from "react";
-import { useTheme } from "../../context/theme/useTheme";
+import { useTheme } from "@/context/theme/useTheme";
 
 export default function ThemeSelector() {
   const { theme, setTheme } = useTheme();

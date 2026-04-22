@@ -1,16 +1,17 @@
 import type { ProductListModel } from "@bump/core/models";
 import { buildListPriceLabels } from "@bump/utils";
 import { AnimatePresence } from "framer-motion";
-import { useCallback, useEffect, type MouseEvent } from "react";
+import { useCallback, type MouseEvent } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { useLongPress, useToggle } from "react-use";
 import { toast } from "sonner";
-import { useProfile } from "../../context/profile/useProfile";
-import { useLikeProduct } from "../../hooks/product/useLikeProduct";
-import { useUnlikeProduct } from "../../hooks/product/useUnlikeProduct";
-import { ROUTES } from "../../routes/routes";
+import { useProfile } from "@/context/profile/useProfile";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
+import { useLikeProduct } from "@/hooks/product/useLikeProduct";
+import { useUnlikeProduct } from "@/hooks/product/useUnlikeProduct";
+import { ROUTES } from "@/routes/routes";
 
-import Badges from "../../components/Badges";
+import Badges from "@/components/Badges";
 import Carousel from "./Carousel";
 import Delete from "./Delete";
 import ProductContextMenu from "./ProductContextMenu";
@@ -22,8 +23,8 @@ import {
   Images,
   Percent,
 } from "lucide-react";
-import { useSaveProduct } from "../../hooks/product/useSaveProduct";
-import { useUnsaveProduct } from "../../hooks/product/useUnsaveProduct";
+import { useSaveProduct } from "@/hooks/product/useSaveProduct";
+import { useUnsaveProduct } from "@/hooks/product/useUnsaveProduct";
 
 type ProductListItemProps = {
   product: ProductListModel;
@@ -38,15 +39,7 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
   const [isContextMenuOpen, toggleContextMenu] = useToggle(false);
   const [isDeleteOpen, toggleDelete] = useToggle(false);
 
-  useEffect(() => {
-    document.body.style.overflow = isContextMenuOpen ? "hidden" : "auto";
-    document.body.style.pointerEvents = isContextMenuOpen ? "none" : "auto";
-
-    return () => {
-      document.body.style.overflow = "auto";
-      document.body.style.pointerEvents = "auto";
-    };
-  }, [isContextMenuOpen]);
+  useBodyScrollLock(isContextMenuOpen, { disablePointerEvents: true });
 
   const onLongPress = useCallback(() => {
     toggleContextMenu(true);

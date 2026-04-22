@@ -1,4 +1,4 @@
-import "../../styles/css/authentication.css";
+import "@/styles/css/authentication.css";
 
 import { ENUM } from "@bump/utils";
 import { Outlet } from "react-router";

@@ -1,11 +1,11 @@
 import type { NotificationModel } from "@bump/core/models";
 import type { MouseEvent } from "react";
 import { useNavigate } from "react-router";
-import { useNotifications } from "../../context/notification/useNotifications";
-import { ROUTES } from "../../routes/routes";
+import { useNotifications } from "@/context/notification/useNotifications";
+import { ROUTES } from "@/routes/routes";
 
 import { formatRelativeTime } from "@bump/utils";
-import Image from "../../components/Image";
+import Image from "@/components/Image";
 
 interface NotificationsListItemProps {
   notification: NotificationModel;

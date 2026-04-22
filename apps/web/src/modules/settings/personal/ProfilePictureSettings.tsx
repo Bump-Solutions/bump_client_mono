@@ -8,18 +8,18 @@ import { Upload } from "lucide-react";
 import { useEffect, useMemo, useState, type MouseEvent } from "react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
-import { useAuth } from "../../../context/auth/useAuth";
-import { usePersonalSettings } from "../../../context/settings/usePersonalSettings";
-import { useAppForm } from "../../../forms/hooks";
-import { useUploadProfilePicture } from "../../../hooks/profile/useUploadProfilePicture";
-import { ROUTES } from "../../../routes/routes";
+import { useAuth } from "@/context/auth/useAuth";
+import { usePersonalSettings } from "@/context/settings/usePersonalSettings";
+import { useAppForm } from "@/forms/hooks";
+import { useUploadProfilePicture } from "@/hooks/profile/useUploadProfilePicture";
+import { ROUTES } from "@/routes/routes";
 import {
   getImageDominantColor,
   getImageDominantColorAndPalette,
-} from "../../../utils/colors";
+} from "@/utils/colors";
 
-import Back from "../../../components/Back";
-import StateButton from "../../../components/StateButton";
+import Back from "@/components/Back";
+import StateButton from "@/components/StateButton";
 
 const defaultValues: ProfilePictureValues = {
   image: undefined as unknown as File,

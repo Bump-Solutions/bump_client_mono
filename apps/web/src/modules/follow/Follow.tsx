@@ -1,17 +1,18 @@
-import "../../styles/css/follow.css";
+import "@/styles/css/follow.css";
 
 import type { FollowerModel, FollowingModel } from "@bump/core/models";
 import { ENUM } from "@bump/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { NavLink, Outlet, useNavigate } from "react-router";
 import { useToggle } from "react-use";
-import { useProfile } from "../../context/profile/useProfile";
-import { ROUTES } from "../../routes/routes";
+import { useProfile } from "@/context/profile/useProfile";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
+import { ROUTES } from "@/routes/routes";
 
-import Button from "../../components/Button";
-import Drawer from "../../components/Drawer";
+import Button from "@/components/Button";
+import Drawer from "@/components/Drawer";
 import ConfirmUnfollow from "./ConfirmUnfollow";
 
 import { X } from "lucide-react";
@@ -33,13 +34,7 @@ const Follow = ({ background }: FollowProps) => {
   >(null);
   const [confirmUnfollow, toggleConfirmUnfollow] = useToggle(false);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [confirmUnfollow]);
+  useBodyScrollLock(true);
 
   return (
     <>

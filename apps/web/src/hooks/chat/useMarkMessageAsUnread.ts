@@ -7,7 +7,7 @@ import {
   useQueryClient,
   type InfiniteData,
 } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useMarkMessageAsUnread = (
   onSuccess?: (resp: ApiResponse, variables: string) => void,

@@ -2,10 +2,10 @@ import { sellItemSchema, type SellItem } from "@bump/core/schemas";
 import { ENUM } from "@bump/utils";
 import { useStore } from "@tanstack/react-form";
 import { toast } from "sonner";
-import type { SellFormApi } from "../../../hooks/sell/useSellForm";
+import type { SellFormApi } from "@/hooks/sell/useSellForm";
 
-import Button from "../../../components/Button";
-import FieldGroup from "../../../forms/FieldGroup";
+import Button from "@/components/Button";
+import FieldGroup from "@/forms/FieldGroup";
 
 import { CirclePlus } from "lucide-react";
 
