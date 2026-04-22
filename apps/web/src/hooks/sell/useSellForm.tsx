@@ -1,10 +1,12 @@
 import type { CreateProductModel } from "@bump/core/models";
-import { useMounted } from "@bump/hooks";
+import { useCallback } from "react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 import { useAuth } from "@/context/auth/useAuth";
+import { FORM_INVALID_ERROR } from "@/forms/constants";
 import { useAppForm } from "@/forms/hooks";
 import { sellFormOptions } from "@/forms/sellFormOptions";
+import { useDelayedClose } from "@/hooks/common/useDelayedClose";
 import { ROUTES } from "@/routes/routes";
 import { useUploadProduct } from "../product/useUploadProduct";
 
@@ -12,15 +14,11 @@ export const useSellForm = () => {
   const { auth } = useAuth();
 
   const navigate = useNavigate();
-  const isMounted = useMounted();
 
-  const uploadMutation = useUploadProduct(() => {
-    setTimeout(() => {
-      if (isMounted()) {
-        navigate(-1);
-      }
-    }, 1000);
-  });
+  const goBack = useCallback(() => navigate(-1), [navigate]);
+  const delayedBack = useDelayedClose(goBack, 1000);
+
+  const uploadMutation = useUploadProduct(delayedBack);
 
   return useAppForm({
     ...sellFormOptions,
@@ -71,7 +69,7 @@ export const useSellForm = () => {
     },
 
     onSubmitInvalid: async () => {
-      throw new Error("Invalid form submission");
+      throw new Error(FORM_INVALID_ERROR);
     },
   });
 };

@@ -1,10 +1,12 @@
 import type { AddressModel } from "@bump/core/models";
 import { addressSchema, type AddressValues } from "@bump/core/schemas";
-import { useMounted } from "@bump/hooks";
 import type { MouseEvent } from "react";
 import { toast } from "sonner";
+import { FORM_INVALID_ERROR } from "@/forms/constants";
 import { useAppForm } from "@/forms/hooks";
+import { submitWithInvalidToast } from "@/forms/submitWithInvalidToast";
 import { useModifyAddress } from "@/hooks/address/useModifyAddress";
+import { useDelayedClose } from "@/hooks/common/useDelayedClose";
 
 import Button from "@/components/Button";
 import StateButton from "@/components/StateButton";
@@ -19,7 +21,7 @@ type ModifyProps = {
 };
 
 const Modify = ({ address, addresses, close }: ModifyProps) => {
-  const isMounted = useMounted();
+  const delayedClose = useDelayedClose(close, 500);
 
   const defaultValues: AddressValues = {
     name: address.name,
@@ -75,42 +77,15 @@ const Modify = ({ address, addresses, close }: ModifyProps) => {
     },
 
     onSubmitInvalid: async () => {
-      throw new Error("Invalid form submission");
+      throw new Error(FORM_INVALID_ERROR);
     },
   });
 
-  const modifyAddressMutation = useModifyAddress(
-    () => {
-      setTimeout(() => {
-        if (isMounted()) {
-          close();
-        }
-      }, 500);
-    },
-    /*
-    (error) => {
-      if (typeof error?.response?.data.message === "object") {
-        Object.entries(
-          error.response!.data.message as Record<string, string[]>
-        ).forEach(([field, messages]: [string, string[]]) => {
-          setErrors((prev) => ({
-            ...prev,
-            [field]: messages[0],
-          }));
-        });
-      }
-    }
-    */
-  );
+  const modifyAddressMutation = useModifyAddress(delayedClose);
 
   const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    await form.handleSubmit();
-    if (!form.store.state.isValid) {
-      toast.error("Kérjük javítsd a hibás mezőket!");
-      throw new Error("Invalid form submission");
-    }
+    await submitWithInvalidToast(form);
   };
 
   return (

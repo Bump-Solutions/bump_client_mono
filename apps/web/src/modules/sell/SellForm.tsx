@@ -1,5 +1,4 @@
-import { touchFields, validateFields, validateZodSection } from "@bump/forms";
-import { toast } from "sonner";
+import { useWizardStepAdvance } from "@/forms/useWizardStepAdvance";
 import { useSellForm } from "@/hooks/sell/useSellForm";
 import { SELL_FIELDS } from "@/wizards/sell/fields";
 import { useSellStepper } from "@/wizards/sell/stepper";
@@ -16,33 +15,13 @@ const SellForm = () => {
   const stepId = stepper.state.current.data.id;
   const stepData = stepper.state.current.data;
 
-  const next = async (): Promise<void> => {
-    const fields = SELL_FIELDS[stepId];
-    touchFields(form, fields);
-    await validateFields(form, fields, "submit");
-
-    const basePath = stepData.basePath as
-      | "select"
-      | "details"
-      | "items"
-      | "upload";
-    const schema = stepData.schema;
-    const sectionValue = form.state.values[basePath];
-
-    const result = validateZodSection(form, basePath, sectionValue, schema, {
-      writeToMeta: true,
-    });
-    if (!result.ok) {
-      toast.error("Kérjük javítsd a hibás mezőket!");
-      throw new Error("Invalid form submission");
-    }
-
-    if (!stepper.state.isLast) {
-      stepper.navigation.next();
-    } else {
-      form.handleSubmit();
-    }
-  };
+  const next = useWizardStepAdvance(
+    form,
+    stepper,
+    SELL_FIELDS[stepId],
+    stepData.basePath,
+    stepData.schema,
+  );
 
   return (
     <>

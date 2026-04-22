@@ -2,6 +2,7 @@ import { sellItemSchema, type SellItem } from "@bump/core/schemas";
 import { ENUM } from "@bump/utils";
 import { useStore } from "@tanstack/react-form";
 import { toast } from "sonner";
+import { FORM_INVALID_TOAST } from "@/forms/constants";
 import type { SellFormApi } from "@/hooks/sell/useSellForm";
 
 import Button from "@/components/Button";
@@ -52,7 +53,7 @@ const ItemForm = ({ form }: ItemFormProps) => {
         form.validateField(`items.draft.${fieldName}`, "change");
       });
 
-      toast.error("Kérjük javítsd a hibás mezőket!");
+      toast.error(FORM_INVALID_TOAST);
       return;
     }
 

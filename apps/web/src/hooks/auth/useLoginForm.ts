@@ -1,5 +1,6 @@
 import { loginRequestSchema, type LoginRequest } from "@bump/core/schemas";
 import { toast } from "sonner";
+import { FORM_INVALID_ERROR, FORM_INVALID_TOAST } from "@/forms/constants";
 import { useAppForm } from "@/forms/hooks";
 import { useLogin } from "./useLogin";
 
@@ -38,10 +39,10 @@ export const useLoginForm = () => {
       if (!email || !password) {
         toast.error("Kérjük töltsd ki a csillaggal jelölt mezőket!");
       } else {
-        toast.error("Kérjük javítsd a hibás mezőket!");
+        toast.error(FORM_INVALID_TOAST);
       }
 
-      throw new Error("Invalid form submission");
+      throw new Error(FORM_INVALID_ERROR);
     },
   });
 };
