@@ -182,6 +182,7 @@ const MessagesFooter = ({ chat, onSend }: MessagesFooterProps) => {
           <div className='btn__send'>
             <Button
               className='primary'
+              aria-label='Üzenet küldése'
               onClick={handleSend}
               disabled={disabled}
               loading={isSending}>

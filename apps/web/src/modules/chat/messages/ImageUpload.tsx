@@ -52,6 +52,7 @@ const ImageUpload = ({ setImages }: ImageUploadProps) => {
         <Tooltip content='Képek feltöltése' placement='top' showDelay={750}>
           <Button
             className='secondary'
+            aria-label='Képek feltöltése'
             onClick={() => uploaderRef.current?.open()}>
             <ImageUp className='svg-24' />
           </Button>

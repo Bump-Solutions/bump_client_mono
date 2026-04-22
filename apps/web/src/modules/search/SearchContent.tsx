@@ -28,6 +28,7 @@ const SearchContent = () => {
             type='text'
             autoFocus
             tabIndex={0}
+            aria-label='Keresés'
             value={searchKey}
             onChange={(e) => setSearchKey(e.target.value)}
             placeholder={

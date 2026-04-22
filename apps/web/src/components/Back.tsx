@@ -1,4 +1,3 @@
-import type { MouseEvent } from "react";
 import { Link, useNavigate } from "react-router";
 
 import { MoveLeft } from "lucide-react";
@@ -13,11 +12,10 @@ interface BackProps {
 const Back = ({ to, text, onClick, className = "link" }: BackProps) => {
   const navigate = useNavigate();
 
-  const handleClick = (e: MouseEvent) => {
+  const handleClick = () => {
     if (onClick) {
       onClick();
-    } else if (!to) {
-      e.preventDefault();
+    } else {
       navigate(-1);
     }
   };
@@ -38,9 +36,9 @@ const Back = ({ to, text, onClick, className = "link" }: BackProps) => {
 
   return (
     <p
+      role='button'
       onClick={handleClick}
       className={className}
-      role='button'
       style={{ cursor: "pointer" }}>
       {content}
     </p>

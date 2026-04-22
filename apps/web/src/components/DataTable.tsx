@@ -220,6 +220,7 @@ const DataTable = <T extends object>({
         header: ({ table }) => (
           <input
             type='checkbox'
+            aria-label='Összes sor kijelölése'
             {...{
               checked:
                 table.getState().rowSelection?.["all"] ||
@@ -232,6 +233,7 @@ const DataTable = <T extends object>({
         cell: ({ row }) => (
           <input
             type='checkbox'
+            aria-label='Sor kijelölése'
             {...{
               checked: row.getIsSelected(),
               disabled: !row.getCanSelect(),
@@ -333,6 +335,7 @@ const DataTable = <T extends object>({
         {enableGlobalFilter && (
           <input
             type='text'
+            aria-label={globalFilterPlaceholder || "Keresés a táblázatban"}
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.target.value)}
             placeholder={globalFilterPlaceholder}

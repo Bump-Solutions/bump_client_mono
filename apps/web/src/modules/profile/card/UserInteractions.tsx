@@ -115,7 +115,7 @@ const UserInteractions = () => {
       {/* IF FOLLOWING DISPLAY TOOLTIP */}
       <div className='user__interaction--tooltip'>
         <Tooltip content='Értesíts' showDelay={750} placement='top'>
-          <Button className='secondary'>
+          <Button className='secondary' aria-label='Értesíts'>
             <Bell />
           </Button>
         </Tooltip>

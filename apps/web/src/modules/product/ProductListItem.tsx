@@ -172,14 +172,36 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
           <div className='product__item-header'>
             <span
               className='product__item-actions'
-              onClick={handleContextClick}>
+              role='button'
+              tabIndex={0}
+              aria-label='Termék menü'
+              onClick={handleContextClick}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleContextClick(
+                    e as unknown as MouseEvent<HTMLSpanElement>,
+                  );
+                }
+              }}>
               <EllipsisVertical strokeWidth={3} />
             </span>
 
             {isOwnProfile && !product.discountedPrice && (
               <span
                 className='product__item-actions discount'
-                onClick={handleDiscountClick}>
+                role='button'
+                tabIndex={0}
+                aria-label='Kedvezmény hozzáadása'
+                onClick={handleDiscountClick}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleDiscountClick(
+                      e as unknown as MouseEvent<HTMLSpanElement>,
+                    );
+                  }
+                }}>
                 <Percent />
               </span>
             )}
@@ -200,7 +222,17 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
               <h3>{product.title}</h3>
 
               <span
+                role='button'
+                tabIndex={0}
+                aria-label={product.liked ? "Kedvelés visszavonása" : "Kedvelés"}
+                aria-pressed={product.liked}
                 onClick={handleLike}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleLike(e as unknown as MouseEvent<HTMLSpanElement>);
+                  }
+                }}
                 className={`${product.liked ? "liked" : ""}`}>
                 <Heart className='svg-18' />
                 {product.likes >= 1000
@@ -209,7 +241,17 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
               </span>
 
               <span
+                role='button'
+                tabIndex={0}
+                aria-label={product.saved ? "Mentés visszavonása" : "Mentés"}
+                aria-pressed={product.saved}
                 onClick={handleSave}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleSave(e as unknown as MouseEvent<HTMLSpanElement>);
+                  }
+                }}
                 className={`${product.saved ? "saved" : ""}`}>
                 <Bookmark className='svg-18' />
                 {product.saves >= 1000

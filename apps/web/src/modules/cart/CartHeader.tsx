@@ -45,6 +45,7 @@ const CartHeader = ({ searchKey, setSearchKey }: CartHeaderProps) => {
             <input
               type='search'
               className='form-control'
+              aria-label='Keresés a kosárban'
               placeholder='Keresés a kosárban...'
               value={deferredSearchKey}
               onChange={(e) => setSearchKey(e.target.value)}

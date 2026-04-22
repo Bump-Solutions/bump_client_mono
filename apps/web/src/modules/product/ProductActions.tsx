@@ -159,7 +159,10 @@ const ProductActions = ({
           content={product.saved ? "Mentve" : "Mentés"}
           showDelay={750}
           placement='top'>
-          <Button className='secondary' onClick={handleSave}>
+          <Button
+            className='secondary'
+            aria-label={product.saved ? "Mentve" : "Mentés"}
+            onClick={handleSave}>
             <Bookmark />
           </Button>
         </Tooltip>

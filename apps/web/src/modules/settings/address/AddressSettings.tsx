@@ -144,7 +144,18 @@ const AddressSettings = () => {
           ) : (
             <div className='address__wrapper'>
               <div className='address-box'>
-                <article className='add' onClick={() => openForm(CONTENTS.ADD)}>
+                <article
+                  className='add'
+                  role='button'
+                  tabIndex={0}
+                  aria-label='Új cím hozzáadása'
+                  onClick={() => openForm(CONTENTS.ADD)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      openForm(CONTENTS.ADD);
+                    }
+                  }}>
                   <CirclePlus />
                   <h4>Új cím hozzáadása</h4>
                 </article>
@@ -157,6 +168,7 @@ const AddressSettings = () => {
                     <article key={index} className='address'>
                       <Button
                         className='secondary delete'
+                        aria-label='Cím törlése'
                         onClick={() => openForm(CONTENTS.DELETE, address)}>
                         <Trash />
                       </Button>

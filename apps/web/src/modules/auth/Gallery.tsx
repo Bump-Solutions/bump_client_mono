@@ -15,7 +15,11 @@ const Gallery = ({ images, columns }: GalleryProps) => {
     for (let j = 0; j < imagePerColumn; j++) {
       column.push(
         <div key={startIndex + j} className='image'>
-          <img src={API.MEDIA_URL + images[startIndex + j]} alt='background' />
+          <img
+            src={API.MEDIA_URL + images[startIndex + j]}
+            alt=''
+            aria-hidden='true'
+          />
         </div>,
       );
     }

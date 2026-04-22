@@ -6,6 +6,7 @@ import { createPortal } from "react-dom";
 import { useMediaQuery } from "react-responsive";
 
 import { useBodyScrollLock } from "../hooks/common/useBodyScrollLock";
+import { useFocusTrap } from "../hooks/common/useFocusTrap";
 import Button from "./Button";
 
 import { X } from "lucide-react";
@@ -37,6 +38,8 @@ const ModalContent = ({
   dark = false,
   modalRef,
 }: ModalContentProps) => {
+  useFocusTrap(modalRef, { active: true, onEscape: close });
+
   return createPortal(
     <motion.section
       className={`modal__wrapper ${dark ? "dark" : ""}`}
@@ -47,12 +50,17 @@ const ModalContent = ({
       <motion.div
         className={`modal ${className ? className : ""} ${size || "sm"}`}
         ref={modalRef}
+        role='dialog'
+        aria-modal='true'
         initial={FADE_INITIAL}
         animate={FADE_ANIMATE}
         exit={FADE_INITIAL}
         transition={FADE_TRANSITION}>
         {size !== "xsm" && (
-          <Button className='secondary close' onClick={close}>
+          <Button
+            className='secondary close'
+            aria-label='Bezárás'
+            onClick={close}>
             <X />
           </Button>
         )}

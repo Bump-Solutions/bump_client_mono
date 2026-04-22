@@ -124,15 +124,28 @@ const Lightbox = ({
       style={{
         backgroundImage: `url(${attachments[currentIndex]})`,
       }}>
-      <Button className='secondary close' onClick={onClose}>
+      <Button
+        className='secondary close'
+        aria-label='Bezárás'
+        onClick={onClose}>
         <X />
       </Button>
 
       <article
         className='lightbox__stepper prev'
+        role='button'
+        tabIndex={0}
+        aria-label='Előző kép'
         onClick={(e) => {
           e.stopPropagation();
           prev();
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            e.stopPropagation();
+            prev();
+          }
         }}>
         <span>
           <ArrowLeft />
@@ -172,9 +185,19 @@ const Lightbox = ({
 
       <article
         className='lightbox__stepper next'
+        role='button'
+        tabIndex={0}
+        aria-label='Következő kép'
         onClick={(e) => {
           e.stopPropagation();
           next();
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            e.stopPropagation();
+            next();
+          }
         }}>
         <span>
           <ArrowRight />
