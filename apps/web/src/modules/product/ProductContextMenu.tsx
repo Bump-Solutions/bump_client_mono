@@ -10,13 +10,13 @@ import { ArrowUpRight, Percent } from "lucide-react";
 type ProductContextMenuProps = {
   product: ProductListModel;
   toggleContextMenu: (value?: boolean) => void;
-  toggleDelete: (value?: boolean) => void;
+  onDelete: () => void;
 };
 
 const ProductContextMenu = ({
   product,
   toggleContextMenu,
-  toggleDelete,
+  onDelete,
 }: ProductContextMenuProps) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -85,7 +85,7 @@ const ProductContextMenu = ({
                 onClick={(e) => {
                   e.preventDefault();
                   toggleContextMenu(false);
-                  toggleDelete(true);
+                  onDelete();
                 }}>
                 <span>Törlés</span>
               </div>

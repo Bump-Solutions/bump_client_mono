@@ -13,7 +13,6 @@ import { ROUTES } from "@/routes/routes";
 
 import Badges from "@/components/Badges";
 import Carousel from "./Carousel";
-import Delete from "./Delete";
 import ProductContextMenu from "./ProductContextMenu";
 
 import {
@@ -28,18 +27,25 @@ import { useUnsaveProduct } from "@/hooks/product/useUnsaveProduct";
 
 type ProductListItemProps = {
   product: ProductListModel;
+  onRequestDelete: (product: ProductListModel) => void;
 };
 
-const ProductListItem = ({ product }: ProductListItemProps) => {
+const ProductListItem = ({
+  product,
+  onRequestDelete,
+}: ProductListItemProps) => {
   const location = useLocation();
   const navigate = useNavigate();
 
   const { isOwnProfile } = useProfile();
 
   const [isContextMenuOpen, toggleContextMenu] = useToggle(false);
-  const [isDeleteOpen, toggleDelete] = useToggle(false);
 
   useBodyScrollLock(isContextMenuOpen, { disablePointerEvents: true });
+
+  const handleRequestDelete = useCallback(() => {
+    onRequestDelete(product);
+  }, [onRequestDelete, product]);
 
   const onLongPress = useCallback(() => {
     toggleContextMenu(true);
@@ -144,26 +150,15 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
     [navigate, product.id, location],
   );
 
-  const handleDeleteClose = useCallback(
-    () => toggleDelete(false),
-    [toggleDelete],
-  );
-
   return (
     <>
-      <Delete
-        product={product}
-        isOpen={isDeleteOpen}
-        close={handleDeleteClose}
-      />
-
       <li className='product__item'>
         <AnimatePresence mode='wait'>
           {isContextMenuOpen && (
             <ProductContextMenu
               product={product}
               toggleContextMenu={toggleContextMenu}
-              toggleDelete={toggleDelete}
+              onDelete={handleRequestDelete}
             />
           )}
         </AnimatePresence>
