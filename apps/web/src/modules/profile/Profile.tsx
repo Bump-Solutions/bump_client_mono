@@ -1,7 +1,7 @@
-import "../../styles/css/profile.css";
+import "@/styles/css/profile.css";
 
 import { Outlet } from "react-router";
-import { useNavbarTheme } from "../../context/navbartheme/useNavbarTheme";
+import { useNavbarTheme } from "@/context/navbartheme/useNavbarTheme";
 
 import { useEffect } from "react";
 import ProfileCard from "./card/ProfileCard";

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { ChromePicker, type ColorResult } from "react-color";
 import { toast } from "sonner";
-import { useProfile } from "../../context/profile/useProfile";
-import { useSetProfileBackgroundColor } from "../../hooks/profile/useSetProfileBackgroundColors";
+import { useProfile } from "@/context/profile/useProfile";
+import { useSetProfileBackgroundColor } from "@/hooks/profile/useSetProfileBackgroundColors";
 
-import Button from "../../components/Button";
-import Modal from "../../components/Modal";
-import StateButton from "../../components/StateButton";
+import Button from "@/components/Button";
+import Modal from "@/components/Modal";
+import StateButton from "@/components/StateButton";
 
 import { Check, Pencil } from "lucide-react";
 

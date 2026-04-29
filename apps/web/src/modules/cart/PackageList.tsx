@@ -1,6 +1,6 @@
 import type { CartPackageModel } from "@bump/core/models";
 import { useDeferredValue } from "react";
-import { useCartSearch } from "../../hooks/cart/useSearchCart";
+import { useCartSearch } from "@/hooks/cart/useSearchCart";
 
 import Package from "./Package";
 

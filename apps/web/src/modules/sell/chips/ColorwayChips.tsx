@@ -2,12 +2,12 @@ import type { ColorwayModel, ColorwaysPageModel } from "@bump/core/models";
 import { useStore } from "@tanstack/react-form";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { useToggle } from "react-use";
-import { useListAvailableColorways } from "../../../hooks/product/useListAvailableColorways";
-import type { SellFormApi } from "../../../hooks/sell/useSellForm";
-import { sellDetailsStepSchema } from "../../../schemas/sellWizard";
+import { useListAvailableColorways } from "@/hooks/product/useListAvailableColorways";
+import type { SellFormApi } from "@/hooks/sell/useSellForm";
+import { sellDetailsStepSchema } from "@/schemas/sellWizard";
 
-import Chip from "../../../components/Chip";
-import Spinner from "../../../components/Spinner";
+import Chip from "@/components/Chip";
+import Spinner from "@/components/Spinner";
 import SearchChip from "./SearchChip";
 
 import { X } from "lucide-react";

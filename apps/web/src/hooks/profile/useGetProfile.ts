@@ -3,7 +3,7 @@ import { queryKeys } from "@bump/core/queries";
 import { getProfile } from "@bump/core/services";
 import { ENUM } from "@bump/utils";
 import { useQuery } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useGetProfile = () => {
   const http = useAuthHttpClient();

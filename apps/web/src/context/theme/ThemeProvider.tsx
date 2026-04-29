@@ -1,4 +1,11 @@
-import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
+import {
+  type Dispatch,
+  type SetStateAction,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import { ThemeContext } from "./context";
 import type { Theme, ThemeProviderProps } from "./types";
@@ -26,18 +33,18 @@ const ThemeProvider = ({
     root.classList.add(resolved);
   }, [theme]);
 
-  const setTheme: Dispatch<SetStateAction<Theme>> = (next) => {
-    setThemeState((prev) => {
-      const resolvedNext = typeof next === "function" ? next(prev) : next;
-      localStorage.setItem(storageKey, resolvedNext);
-      return resolvedNext;
-    });
-  };
+  const setTheme = useCallback<Dispatch<SetStateAction<Theme>>>(
+    (next) => {
+      setThemeState((prev) => {
+        const resolvedNext = typeof next === "function" ? next(prev) : next;
+        localStorage.setItem(storageKey, resolvedNext);
+        return resolvedNext;
+      });
+    },
+    [storageKey],
+  );
 
-  const value = {
-    theme,
-    setTheme,
-  };
+  const value = useMemo(() => ({ theme, setTheme }), [theme, setTheme]);
 
   return <ThemeContext value={value}>{children}</ThemeContext>;
 };

@@ -1,10 +1,10 @@
 import type { FollowersPageModel } from "@bump/core/models";
 import { useState } from "react";
 import { useTitle } from "react-use";
-import { useProfile } from "../../context/profile/useProfile";
-import { useListFollowers } from "../../hooks/user/useListFollowers";
+import { useProfile } from "@/context/profile/useProfile";
+import { useListFollowers } from "@/hooks/user/useListFollowers";
 
-import Spinner from "../../components/Spinner";
+import Spinner from "@/components/Spinner";
 import FollowerList from "./FollowersList";
 import SearchBar from "./SearchBar";
 

@@ -2,8 +2,8 @@ import { logout } from "@bump/core/services";
 
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { useAuth } from "../../context/auth/useAuth";
-import { usePublicHttpClient } from "../../http/useHttpClient";
+import { useAuth } from "@/context/auth/useAuth";
+import { usePublicHttpClient } from "@/http/useHttpClient";
 
 export const useLogout = (): (() => Promise<void>) => {
   const http = usePublicHttpClient();

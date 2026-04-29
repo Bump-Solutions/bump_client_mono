@@ -3,7 +3,7 @@ import type { SearchHistoryItemModel } from "@bump/core/models";
 import { queryKeys } from "@bump/core/queries";
 import { listSearchHistory } from "@bump/core/services";
 import { useQuery } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useListSearchHistory = () => {
   const http = useAuthHttpClient();

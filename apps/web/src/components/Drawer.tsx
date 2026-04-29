@@ -4,9 +4,11 @@ import {
   useDragControls,
   useMotionValue,
 } from "framer-motion";
-import type { PointerEvent, ReactNode } from "react";
+import { useRef, type PointerEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import useMeasure from "react-use-measure";
+
+import { useFocusTrap } from "../hooks/common/useFocusTrap";
 
 type DrawerProps = {
   children: ReactNode;
@@ -23,6 +25,7 @@ const Drawer = ({
 }: DrawerProps) => {
   const [scope, animate] = useAnimate();
   const [drawerRef, { height }] = useMeasure();
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   const y = useMotionValue(0);
   const controls = useDragControls();
@@ -39,6 +42,8 @@ const Drawer = ({
     close();
   };
 
+  useFocusTrap(contentRef, { active: true, onEscape: handleClose });
+
   return createPortal(
     <motion.section
       ref={scope}
@@ -50,7 +55,12 @@ const Drawer = ({
       className='drawer__wrapper'>
       <motion.div
         id='drawer'
-        ref={drawerRef}
+        ref={(el) => {
+          drawerRef(el);
+          contentRef.current = el;
+        }}
+        role='dialog'
+        aria-modal='true'
         onClick={(e) => e.stopPropagation()}
         initial={{ y: "100%" }}
         animate={{ y: "0%" }}
@@ -72,6 +82,7 @@ const Drawer = ({
           <div className='drawer__dragger'>
             <button
               type='button'
+              aria-label='Húzd lefelé a bezáráshoz'
               title='Húzd lefelé a bezáráshoz'
               onPointerDown={(e: PointerEvent<HTMLButtonElement>) => {
                 e.stopPropagation();

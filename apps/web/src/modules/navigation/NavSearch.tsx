@@ -1,6 +1,6 @@
 import { Search } from "lucide-react";
 import { Link, useLocation } from "react-router";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 const NavSearch = () => {
   const location = useLocation();

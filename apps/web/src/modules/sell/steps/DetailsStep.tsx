@@ -1,11 +1,11 @@
 import { clearErroredFields } from "@bump/forms";
 import { useStore } from "@tanstack/react-form";
-import type { SellFormApi } from "../../../hooks/sell/useSellForm";
-import { sellDetailsStepSchema } from "../../../schemas/sellWizard";
-import { SELL_FIELDS } from "../../../wizards/sell/fields";
-import { SELL_STEPS, useSellStepper } from "../../../wizards/sell/stepper";
+import type { SellFormApi } from "@/hooks/sell/useSellForm";
+import { sellDetailsStepSchema } from "@/schemas/sellWizard";
+import { SELL_FIELDS } from "@/wizards/sell/fields";
+import { SELL_STEPS, useSellStepper } from "@/wizards/sell/stepper";
 
-import Button from "../../../components/Button";
+import Button from "@/components/Button";
 import BrandChips from "../chips/BrandChips";
 import ColorwayChips from "../chips/ColorwayChips";
 import ModelChips from "../chips/ModelChips";

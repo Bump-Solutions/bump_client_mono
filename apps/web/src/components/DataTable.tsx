@@ -29,6 +29,8 @@ import {
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { useClickAway } from "react-use";
 
+import { useBodyScrollLock } from "../hooks/common/useBodyScrollLock";
+
 import {
   ArrowDown,
   ArrowDownUp,
@@ -193,19 +195,7 @@ const DataTable = <T extends object>({
   const [expanded, setExpanded] = useState<ExpandedState>({});
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
-  useEffect(() => {
-    // Disable scroll on body when column menu is open
-    if (showColumnMenu) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    // Cleanup function to reset overflow when component unmounts
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [showColumnMenu]);
+  useBodyScrollLock(showColumnMenu);
 
   // ha a szülő megváltoztatja, szinkronizáljuk
   useEffect(() => {
@@ -230,6 +220,7 @@ const DataTable = <T extends object>({
         header: ({ table }) => (
           <input
             type='checkbox'
+            aria-label='Összes sor kijelölése'
             {...{
               checked:
                 table.getState().rowSelection?.["all"] ||
@@ -242,6 +233,7 @@ const DataTable = <T extends object>({
         cell: ({ row }) => (
           <input
             type='checkbox'
+            aria-label='Sor kijelölése'
             {...{
               checked: row.getIsSelected(),
               disabled: !row.getCanSelect(),
@@ -343,6 +335,7 @@ const DataTable = <T extends object>({
         {enableGlobalFilter && (
           <input
             type='text'
+            aria-label={globalFilterPlaceholder || "Keresés a táblázatban"}
             value={globalFilter}
             onChange={(e) => setGlobalFilter(e.target.value)}
             placeholder={globalFilterPlaceholder}
@@ -607,7 +600,7 @@ const sampleData: Person[] = [
   { id: 3, firstName: "Csaba", lastName: "Tóth", age: 22 },
 ];
 
-const sampleColumns: ColumnDef<Person, any>[] = [
+const sampleColumns: ColumnDef<Person, unknown>[] = [
   { accessorKey: "id", header: "ID" },
   { accessorKey: "firstName", header: "Keresztnév", enableSorting: true },
   { accessorKey: "lastName", header: "Vezetéknév", enableSorting: true },

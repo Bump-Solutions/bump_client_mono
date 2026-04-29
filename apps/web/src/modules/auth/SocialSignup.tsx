@@ -1,7 +1,7 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { toast } from "sonner";
 
-import Button from "../../components/Button";
+import Button from "@/components/Button";
 
 import { FcGoogle } from "react-icons/fc";
 import { ImFacebook } from "react-icons/im";

@@ -3,10 +3,10 @@ import { Search, Settings } from "lucide-react";
 import { useRef, useState, type ChangeEvent } from "react";
 import { Link } from "react-router";
 import { useToggle } from "react-use";
-import { ROUTES } from "../../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
-import Button from "../../../components/Button";
-import Tooltip from "../../../components/Tooltip";
+import Button from "@/components/Button";
+import Tooltip from "@/components/Tooltip";
 
 type InboxHeaderProps = {
   searchKeyDebounced: string;

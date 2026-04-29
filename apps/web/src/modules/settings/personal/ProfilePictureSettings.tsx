@@ -2,24 +2,31 @@ import {
   profilePictureSchema,
   type ProfilePictureValues,
 } from "@bump/core/schemas";
-import { useMounted } from "@bump/hooks";
 import { useStore } from "@tanstack/react-form";
 import { Upload } from "lucide-react";
-import { useEffect, useMemo, useState, type MouseEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type MouseEvent,
+} from "react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
-import { useAuth } from "../../../context/auth/useAuth";
-import { usePersonalSettings } from "../../../context/settings/usePersonalSettings";
-import { useAppForm } from "../../../forms/hooks";
-import { useUploadProfilePicture } from "../../../hooks/profile/useUploadProfilePicture";
-import { ROUTES } from "../../../routes/routes";
+import { useAuth } from "@/context/auth/useAuth";
+import { usePersonalSettings } from "@/context/settings/usePersonalSettings";
+import { FORM_INVALID_ERROR } from "@/forms/constants";
+import { useAppForm } from "@/forms/hooks";
+import { useDelayedClose } from "@/hooks/common/useDelayedClose";
+import { useUploadProfilePicture } from "@/hooks/profile/useUploadProfilePicture";
+import { ROUTES } from "@/routes/routes";
 import {
   getImageDominantColor,
   getImageDominantColorAndPalette,
-} from "../../../utils/colors";
+} from "@/utils/colors";
 
-import Back from "../../../components/Back";
-import StateButton from "../../../components/StateButton";
+import Back from "@/components/Back";
+import StateButton from "@/components/StateButton";
 
 const defaultValues: ProfilePictureValues = {
   image: undefined as unknown as File,
@@ -33,16 +40,16 @@ const ProfilePictureSettings = () => {
   const [colorPreview, setColorPreview] = useState<string | null>(null);
 
   const navigate = useNavigate();
-  const isMounted = useMounted();
+
+  const goToSettings = useCallback(
+    () => navigate(ROUTES.SETTINGS.ROOT, { replace: true }),
+    [navigate],
+  );
+  const delayedNav = useDelayedClose(goToSettings, 500);
 
   const uploadMutation = useUploadProfilePicture((response) => {
     setData({ profilePicture: response.message });
-
-    setTimeout(() => {
-      if (isMounted()) {
-        navigate(ROUTES.SETTINGS.ROOT, { replace: true });
-      }
-    }, 500);
+    delayedNav();
   });
 
   const form = useAppForm({
@@ -91,7 +98,7 @@ const ProfilePictureSettings = () => {
 
     onSubmitInvalid: () => {
       toast.warning("Először tölts fel egy képet a módosításhoz.");
-      throw new Error("Invalid form submission");
+      throw new Error(FORM_INVALID_ERROR);
     },
   });
 
@@ -100,7 +107,7 @@ const ProfilePictureSettings = () => {
 
     await form.handleSubmit();
     if (!form.state.isValid) {
-      throw new Error("Invalid form submission");
+      throw new Error(FORM_INVALID_ERROR);
     }
   };
 

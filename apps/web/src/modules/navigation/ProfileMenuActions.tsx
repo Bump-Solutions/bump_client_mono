@@ -1,10 +1,10 @@
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 import { useRef, type JSX } from "react";
 import { Link, useLocation } from "react-router";
 import { useClickAway } from "react-use";
-import { useAuthWithMeta } from "../../hooks/auth/useAuthWithMeta";
-import { useLogout } from "../../hooks/auth/useLogout";
+import { useAuthWithMeta } from "@/hooks/auth/useAuthWithMeta";
+import { useLogout } from "@/hooks/auth/useLogout";
 
 import { motion } from "framer-motion";
 

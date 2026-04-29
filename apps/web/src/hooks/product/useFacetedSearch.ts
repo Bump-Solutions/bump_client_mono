@@ -1,6 +1,6 @@
 import type { ProductModel } from "@bump/core/models";
 import { useMemo, useState } from "react";
-import { useProduct } from "../../context/product/useProduct";
+import { useProduct } from "@/context/product/useProduct";
 
 export type FacetProps = {
   quantity: number;

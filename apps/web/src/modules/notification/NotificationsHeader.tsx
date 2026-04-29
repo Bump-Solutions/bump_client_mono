@@ -1,7 +1,7 @@
 import { toast } from "sonner";
-import { useGetProfileMeta } from "../../hooks/profile/useGetProfileMeta";
+import { useGetProfileMeta } from "@/hooks/profile/useGetProfileMeta";
 
-import Back from "../../components/Back";
+import Back from "@/components/Back";
 
 const NotificationsHeader = () => {
   const { data: meta, isError, error } = useGetProfileMeta();

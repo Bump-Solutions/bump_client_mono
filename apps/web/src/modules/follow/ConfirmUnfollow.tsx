@@ -3,14 +3,14 @@ import { useQueryClient } from "@tanstack/react-query";
 import type { Dispatch, MouseEvent, SetStateAction } from "react";
 import { Link } from "react-router";
 import { toast } from "sonner";
-import { useProfile } from "../../context/profile/useProfile";
-import { useUnfollow } from "../../hooks/user/useUnfollow";
-import { ROUTES } from "../../routes/routes";
+import { useProfile } from "@/context/profile/useProfile";
+import { useUnfollow } from "@/hooks/user/useUnfollow";
+import { ROUTES } from "@/routes/routes";
 
-import Button from "../../components/Button";
-import Image from "../../components/Image";
-import Modal from "../../components/Modal";
-import StateButton from "../../components/StateButton";
+import Button from "@/components/Button";
+import Image from "@/components/Image";
+import Modal from "@/components/Modal";
+import StateButton from "@/components/StateButton";
 
 import { queryKeys } from "@bump/core/queries";
 import { UserX } from "lucide-react";

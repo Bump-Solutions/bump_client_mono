@@ -2,10 +2,10 @@ import type { AddressModel } from "@bump/core/models";
 import { useMounted } from "@bump/hooks";
 import type { MouseEvent } from "react";
 import { toast } from "sonner";
-import { useDeleteAddress } from "../../../hooks/address/useDeleteAddress";
+import { useDeleteAddress } from "@/hooks/address/useDeleteAddress";
 
-import Button from "../../../components/Button";
-import StateButton from "../../../components/StateButton";
+import Button from "@/components/Button";
+import StateButton from "@/components/StateButton";
 
 import { Trash } from "lucide-react";
 

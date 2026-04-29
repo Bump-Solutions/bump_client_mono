@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 
 import type { MessageModel } from "@bump/core/models";
-import Image from "../../../components/Image";
+import Image from "@/components/Image";
 
 type MessageListItemProps = {
   message: MessageModel;

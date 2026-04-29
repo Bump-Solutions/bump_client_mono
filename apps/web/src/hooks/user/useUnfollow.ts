@@ -1,7 +1,7 @@
 import type { ApiError, ApiResponse } from "@bump/core/api";
 import { unfollow } from "@bump/core/services";
 import { useMutation } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useUnfollow = (
   onSuccess?: (resp: ApiResponse, variables: number) => void,

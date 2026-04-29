@@ -1,7 +1,7 @@
 import { Link } from "react-router";
-import { ROUTES } from "../../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
-import Button from "../../../components/Button";
+import Button from "@/components/Button";
 
 import { Pencil, WandSparkles } from "lucide-react";
 

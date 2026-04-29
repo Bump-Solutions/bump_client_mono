@@ -5,7 +5,7 @@ import {
   sellItemsStepSchema,
   sellSelectStepSchema,
   sellUploadStepSchema,
-} from "../../schemas/sellWizard";
+} from "@/schemas/sellWizard";
 
 import { ArrowUpRight } from "lucide-react";
 

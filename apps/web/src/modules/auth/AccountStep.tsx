@@ -1,9 +1,9 @@
 import { useStore } from "@tanstack/react-form";
-import type { SignupFormApi } from "../../hooks/auth/useSignupForm";
-import { signupAccountStepSchema } from "../../schemas/signupWizard";
+import type { SignupFormApi } from "@/hooks/auth/useSignupForm";
+import { signupAccountStepSchema } from "@/schemas/signupWizard";
 
-import Button from "../../components/Button";
-import FieldGroup from "../../forms/FieldGroup";
+import Button from "@/components/Button";
+import FieldGroup from "@/forms/FieldGroup";
 
 import { MoveRight } from "lucide-react";
 

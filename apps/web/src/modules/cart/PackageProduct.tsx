@@ -1,11 +1,11 @@
 import type { CartItemModel, CartProductModel } from "@bump/core/models";
 import { CURRENCY_LABELS, ENUM, formatMinorHU } from "@bump/utils";
 import { Link } from "react-router";
-import Button from "../../components/Button";
-import Image from "../../components/Image";
-import { usePackage } from "../../context/cart/usePackage";
-import { ROUTES } from "../../routes/routes";
-import { highlightTextParts } from "../../utils/highlight";
+import Button from "@/components/Button";
+import Image from "@/components/Image";
+import { usePackage } from "@/context/cart/usePackage";
+import { ROUTES } from "@/routes/routes";
+import { highlightTextParts } from "@/utils/highlight";
 
 type PackageProductProps = {
   product: CartProductModel;

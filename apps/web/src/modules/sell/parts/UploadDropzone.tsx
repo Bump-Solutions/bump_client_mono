@@ -1,5 +1,5 @@
-import type { SellFormApi } from "../../../hooks/sell/useSellForm";
-import { sellUploadStepSchema } from "../../../schemas/sellWizard";
+import type { SellFormApi } from "@/hooks/sell/useSellForm";
+import { sellUploadStepSchema } from "@/schemas/sellWizard";
 
 type UploadDropzoneProps = {
   form: SellFormApi;

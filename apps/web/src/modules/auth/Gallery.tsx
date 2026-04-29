@@ -1,5 +1,5 @@
 import type { JSX } from "react";
-import { API } from "../../utils/api";
+import { API } from "@/utils/api";
 
 type GalleryProps = {
   images: string[];
@@ -15,7 +15,11 @@ const Gallery = ({ images, columns }: GalleryProps) => {
     for (let j = 0; j < imagePerColumn; j++) {
       column.push(
         <div key={startIndex + j} className='image'>
-          <img src={API.MEDIA_URL + images[startIndex + j]} alt='background' />
+          <img
+            src={API.MEDIA_URL + images[startIndex + j]}
+            alt=''
+            aria-hidden='true'
+          />
         </div>,
       );
     }

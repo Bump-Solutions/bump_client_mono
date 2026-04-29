@@ -1,11 +1,11 @@
 import type { FileUpload } from "@bump/types";
 import { useRef, type Dispatch, type SetStateAction } from "react";
 import { toast } from "sonner";
-import type { UploaderHandle } from "../../../components/Uploader";
+import type { UploaderHandle } from "@/components/Uploader";
 
-import Button from "../../../components/Button";
-import Tooltip from "../../../components/Tooltip";
-import Uploader from "../../../components/Uploader";
+import Button from "@/components/Button";
+import Tooltip from "@/components/Tooltip";
+import Uploader from "@/components/Uploader";
 
 import { ImageUp } from "lucide-react";
 
@@ -52,6 +52,7 @@ const ImageUpload = ({ setImages }: ImageUploadProps) => {
         <Tooltip content='Képek feltöltése' placement='top' showDelay={750}>
           <Button
             className='secondary'
+            aria-label='Képek feltöltése'
             onClick={() => uploaderRef.current?.open()}>
             <ImageUp className='svg-24' />
           </Button>

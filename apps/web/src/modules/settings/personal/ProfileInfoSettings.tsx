@@ -1,17 +1,19 @@
 import { profileInfoSchema, type ProfileInfoValues } from "@bump/core/schemas";
-import { useMounted } from "@bump/hooks";
+import { useCallback } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../../context/auth/useAuth";
-import { usePersonalSettings } from "../../../context/settings/usePersonalSettings";
-import { useAppForm } from "../../../forms/hooks";
-import { useLogout } from "../../../hooks/auth/useLogout";
-import { useUpdateProfile } from "../../../hooks/profile/useUpdateProfile";
-import { ROUTES } from "../../../routes/routes";
+import { useAuth } from "@/context/auth/useAuth";
+import { usePersonalSettings } from "@/context/settings/usePersonalSettings";
+import { FORM_INVALID_ERROR, FORM_INVALID_TOAST } from "@/forms/constants";
+import { useAppForm } from "@/forms/hooks";
+import { useLogout } from "@/hooks/auth/useLogout";
+import { useDelayedClose } from "@/hooks/common/useDelayedClose";
+import { useUpdateProfile } from "@/hooks/profile/useUpdateProfile";
+import { ROUTES } from "@/routes/routes";
 
-import Back from "../../../components/Back";
-import Spinner from "../../../components/Spinner";
-import StateButton from "../../../components/StateButton";
-import FieldGroup from "../../../forms/FieldGroup";
+import Back from "@/components/Back";
+import Spinner from "@/components/Spinner";
+import StateButton from "@/components/StateButton";
+import FieldGroup from "@/forms/FieldGroup";
 
 import { Download } from "lucide-react";
 import { toast } from "sonner";
@@ -30,7 +32,6 @@ const ProfileInfoSettings = () => {
   const { data, setData, isLoading } = usePersonalSettings();
 
   const navigate = useNavigate();
-  const isMounted = useMounted();
 
   const logout = useLogout();
 
@@ -75,14 +76,14 @@ const ProfileInfoSettings = () => {
       if (requiredFields.some((field) => !field || field.trim() === "")) {
         toast.error("Kérjük töltsd ki a csillaggal jelölt mezőket!");
       } else {
-        toast.error("Kérjük javítsd a hibás mezőket!");
+        toast.error(FORM_INVALID_TOAST);
       }
 
-      throw new Error("Invalid form submission");
+      throw new Error(FORM_INVALID_ERROR);
     },
   });
 
-  const updateProfileMutation = useUpdateProfile(() => {
+  const handleSuccess = useCallback(() => {
     const values = form.store.state.values;
     if (!values) return;
 
@@ -96,17 +97,17 @@ const ProfileInfoSettings = () => {
     });
 
     // Username változás esetén: logout + info, különben vissza a Settings-re
-    setTimeout(() => {
-      if (isMounted()) {
-        if (values.username !== auth?.user?.username) {
-          logout();
-          toast.info("Kijelentkezés: a felhasználónév megváltozott.");
-        } else {
-          navigate(ROUTES.SETTINGS.ROOT, { replace: true });
-        }
-      }
-    }, 500);
-  });
+    if (values.username !== auth?.user?.username) {
+      logout();
+      toast.info("Kijelentkezés: a felhasználónév megváltozott.");
+    } else {
+      navigate(ROUTES.SETTINGS.ROOT, { replace: true });
+    }
+  }, [auth?.user?.username, form.store, logout, navigate, setData]);
+
+  const delayedSuccess = useDelayedClose(handleSuccess, 500);
+
+  const updateProfileMutation = useUpdateProfile(delayedSuccess);
 
   if (isLoading) {
     return (

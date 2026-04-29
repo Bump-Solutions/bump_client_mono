@@ -3,9 +3,9 @@ import { queryKeys } from "@bump/core/queries";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo, type ReactNode } from "react";
 import { Navigate, useParams } from "react-router";
-import Spinner from "../../components/Spinner";
-import { useGetProduct } from "../../hooks/product/useGetProduct";
-import { ROUTES } from "../../routes/routes";
+import Spinner from "@/components/Spinner";
+import { useGetProduct } from "@/hooks/product/useGetProduct";
+import { ROUTES } from "@/routes/routes";
 import { ProductContext } from "./context";
 import type { ProductContextValue, ProductProviderProps } from "./types";
 

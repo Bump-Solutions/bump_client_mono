@@ -1,12 +1,12 @@
-import "../../styles/css/settings.css";
+import "@/styles/css/settings.css";
 
 import { ENUM } from "@bump/utils";
 import { useMediaQuery } from "react-responsive";
 import { Outlet } from "react-router";
 import { useLocation, useTitle } from "react-use";
 
-import Back from "../../components/Back";
-import BasicSettingsProvider from "../../context/settings/PersonalSettingsProvider";
+import Back from "@/components/Back";
+import BasicSettingsProvider from "@/context/settings/PersonalSettingsProvider";
 import SettingsNav from "./SettingsNav";
 
 const Settings = () => {

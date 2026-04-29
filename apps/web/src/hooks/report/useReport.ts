@@ -2,7 +2,7 @@ import type { ApiError, ApiResponse } from "@bump/core/api";
 import { reportProduct, reportUser } from "@bump/core/services";
 import type { ReportType } from "@bump/types";
 import { useMutation } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 type ReportPayload = {
   id: number;

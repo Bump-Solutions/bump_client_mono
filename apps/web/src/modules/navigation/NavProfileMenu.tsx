@@ -1,11 +1,11 @@
 import { Link, NavLink, useNavigate } from "react-router";
 import { toast } from "sonner";
-import { useCart } from "../../context/cart/useCart";
-import { useAuthWithMeta } from "../../hooks/auth/useAuthWithMeta";
-import { ROUTES } from "../../routes/routes";
+import { useCart } from "@/context/cart/useCart";
+import { useAuthWithMeta } from "@/hooks/auth/useAuthWithMeta";
+import { ROUTES } from "@/routes/routes";
 
-import Image from "../../components/Image";
-import Tooltip from "../../components/Tooltip";
+import Image from "@/components/Image";
+import Tooltip from "@/components/Tooltip";
 
 import { ArrowUpRight, Bell, ShoppingBag } from "lucide-react";
 

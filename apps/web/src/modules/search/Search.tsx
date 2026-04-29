@@ -1,4 +1,4 @@
-import "../../styles/css/search.css";
+import "@/styles/css/search.css";
 
 import { ENUM } from "@bump/utils";
 import { AnimatePresence, motion } from "framer-motion";
@@ -7,7 +7,7 @@ import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router";
 import { useClickAway, useTitle } from "react-use";
 
-import Drawer from "../../components/Drawer";
+import Drawer from "@/components/Drawer";
 import SearchContent from "./SearchContent";
 
 const Search = () => {

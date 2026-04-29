@@ -1,4 +1,4 @@
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 import type { ApiError } from "@bump/core/api";
 import type { LoginRequestDTO } from "@bump/core/dtos";
@@ -7,8 +7,8 @@ import { login } from "@bump/core/services";
 
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context/auth/useAuth";
-import { usePublicHttpClient } from "../../http/useHttpClient";
+import { useAuth } from "@/context/auth/useAuth";
+import { usePublicHttpClient } from "@/http/useHttpClient";
 
 export const useLogin = () => {
   const http = usePublicHttpClient();

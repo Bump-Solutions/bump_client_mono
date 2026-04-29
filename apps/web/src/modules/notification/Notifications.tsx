@@ -1,15 +1,15 @@
-import "../../styles/css/notification.css";
+import "@/styles/css/notification.css";
 
 import type { NotificationsPageModel } from "@bump/core/models";
 import { ENUM } from "@bump/utils";
 import { useState } from "react";
 import { useLocation } from "react-router";
 import { useTitle } from "react-use";
-import type { NotificationType } from "../../context/notification/types";
-import { useListNotifications } from "../../hooks/notification/useListNotifications";
+import type { NotificationType } from "@/context/notification/types";
+import { useListNotifications } from "@/hooks/notification/useListNotifications";
 
-import Empty from "../../components/Empty";
-import Spinner from "../../components/Spinner";
+import Empty from "@/components/Empty";
+import Spinner from "@/components/Spinner";
 import NotificationsHeader from "./NotificationsHeader";
 import NotificationsList from "./NotificationsList";
 import NotificationsNav from "./NotificationsNav";

@@ -14,12 +14,12 @@ import {
 } from "@dnd-kit/sortable";
 import { useStore } from "@tanstack/react-form";
 import { useEffect, useMemo, type MouseEvent } from "react";
-import type { SellFormApi } from "../../../hooks/sell/useSellForm";
-import { SELL_FIELDS } from "../../../wizards/sell/fields";
-import { SELL_STEPS, useSellStepper } from "../../../wizards/sell/stepper";
+import type { SellFormApi } from "@/hooks/sell/useSellForm";
+import { SELL_FIELDS } from "@/wizards/sell/fields";
+import { SELL_STEPS, useSellStepper } from "@/wizards/sell/stepper";
 
-import Button from "../../../components/Button";
-import StateButton from "../../../components/StateButton";
+import Button from "@/components/Button";
+import StateButton from "@/components/StateButton";
 import SortableImage from "../parts/SortableImage";
 import UploadDropzone from "../parts/UploadDropzone";
 

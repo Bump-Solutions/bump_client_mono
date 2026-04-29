@@ -1,18 +1,20 @@
-import "../../styles/css/sell.css";
+import "@/styles/css/sell.css";
 
 import { ENUM } from "@bump/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect } from "react";
+import { useCallback, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router";
 import { useTitle } from "react-use";
 
-import Button from "../../components/Button";
-import Drawer from "../../components/Drawer";
+import Button from "@/components/Button";
+import Drawer from "@/components/Drawer";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
+import { useFocusTrap } from "@/hooks/common/useFocusTrap";
 import SellForm from "./SellForm";
 
 import { X } from "lucide-react";
-import { SellScoped } from "../../wizards/sell/stepper";
+import { SellScoped } from "@/wizards/sell/stepper";
 
 const Sell = () => {
   useTitle(`Eladás - ${ENUM.BRAND.NAME}`);
@@ -22,19 +24,17 @@ const Sell = () => {
     query: `(max-width: ${ENUM.MEDIA_MOBILE}px)`,
   });
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  const close = useCallback(() => navigate(-1), [navigate]);
 
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
+  useBodyScrollLock(true);
+  useFocusTrap(modalRef, { active: !isMobile, onEscape: close });
 
   return (
     <AnimatePresence mode='wait'>
       <SellScoped initialStep='select'>
         {isMobile ? (
-          <Drawer className='sell' close={() => navigate(-1)}>
+          <Drawer className='sell' close={close}>
             <SellForm />
           </Drawer>
         ) : (
@@ -47,10 +47,15 @@ const Sell = () => {
               duration: 0.2,
               ease: [0.25, 0.46, 0.45, 0.94],
             }}>
-            <motion.div className='modal sell'>
+            <motion.div
+              ref={modalRef}
+              role='dialog'
+              aria-modal='true'
+              className='modal sell'>
               <Button
                 className={`secondary close`}
-                onClick={() => navigate(-1)}>
+                aria-label='Bezárás'
+                onClick={close}>
                 <X />
               </Button>
 

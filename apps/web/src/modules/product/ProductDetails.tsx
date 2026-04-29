@@ -1,11 +1,11 @@
 import { clampDiscount } from "@bump/utils";
 import { Link } from "react-router";
-import { useProduct } from "../../context/product/useProduct";
-import { useFacetedSearch } from "../../hooks/product/useFacetedSearch";
-import { ROUTES } from "../../routes/routes";
+import { useProduct } from "@/context/product/useProduct";
+import { useFacetedSearch } from "@/hooks/product/useFacetedSearch";
+import { ROUTES } from "@/routes/routes";
 
-import Badges from "../../components/Badges";
-import Stepper from "../../components/Stepper";
+import Badges from "@/components/Badges";
+import Stepper from "@/components/Stepper";
 import FacetedSearch from "./FacetedSearch";
 import PriceTag from "./PriceTag";
 import ProductActions from "./ProductActions";

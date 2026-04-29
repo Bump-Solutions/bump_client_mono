@@ -12,9 +12,9 @@ import {
 } from "@bump/core/presentation";
 import { displayUuid, isToday, MS, pad } from "@bump/utils";
 import type { ColumnDef } from "@tanstack/react-table";
-import { useState } from "react";
 import { Link } from "react-router";
-import { useHarmonicIntervalFn } from "react-use";
+import { TickProvider } from "../context/tick/TickProvider";
+import { useNow } from "../context/tick/useNow";
 
 import DataTable from "../components/DataTable";
 import Image from "../components/Image";
@@ -27,31 +27,10 @@ type RemainingTimeCellProps = {
 };
 
 const RemainingTimeCell = ({ expiresAt }: RemainingTimeCellProps) => {
-  // NOTE(perf / future):
-  // Jelenleg soronként fut egy saját másodperces tick (useHarmonicIntervalFn, 1000 ms).
-  // Ez tipikusan rendben van ~20–30 sornál. Ha a rendeléslista mérete nő (pl. 100+ sor),
-  // vagy CPU/akku terhelés látszik, érdemes egy közös, megosztott “global tick”-re váltani
-  // (Context + Provider), és a sorok csak a context.now-t olvassák. Előnye: 1 timer az
-  // egész táblára, kevesebb render és jobb erőforrás-használat. Inaktív böngészőfülnél
-  // a frissítést célszerű szüneteltetni (Page Visibility API).
-  //
-  // TODO(perf, ha szükséges lesz):
-  //  1) Készíts <TimeProvider> komponenst (harmonikus 1000 ms tick, visibility-aware).
-  //  2) Vezess be useNow() hookot, ami a context.now-t adja vissza.
-  //  3) Cseréld le a soronkénti useHarmonicIntervalFn-t a context.now használatára.
-  //  4) Nagy listáknál fontold meg a virtualizációt (pl. @tanstack/react-virtual).
+  const now = useNow();
 
-  const [now, setNow] = useState(() => Date.now());
-
-  // diff a render pillanatában – ennek alapján döntjük el az ütemet is
   const exp = new Date(expiresAt).getTime();
   const diff = Math.max(0, exp - now);
-
-  // ≥1h: percenként frissítünk; <1h: másodpercenként (drift-mentes)
-  useHarmonicIntervalFn(
-    () => setNow(Date.now()),
-    diff >= MS.hour ? 60_000 : 1_000,
-  );
 
   const days = Math.floor(diff / MS.day);
   const hours = Math.floor((diff % MS.day) / MS.hour);
@@ -243,25 +222,27 @@ const OrdersDataTable = ({
   ];
 
   return (
-    <DataTable
-      data={orders}
-      columns={columns}
-      // szerver oldali lapozás
-      manualPagination
-      pageCount={data.totalPages}
-      rowCount={data.count}
-      pageIndex0={pageIndex0} // 0-based index
-      pageSize={pageSize}
-      onPageChange={onPageChange} // Orders: setPage(pageIndex + 1)
-      // Global filter
-      enableGlobalFilter
-      globalFilterColumns={["uuid", "party", "createdAt"]}
-      globalFilterPlaceholder='Keresés: rendelés #, partner, létrehozva...'
-      // Hiding
-      enableHiding
-      className='dt-orders'
-      footerVisible={false}
-    />
+    <TickProvider>
+      <DataTable
+        data={orders}
+        columns={columns}
+        // szerver oldali lapozás
+        manualPagination
+        pageCount={data.totalPages}
+        rowCount={data.count}
+        pageIndex0={pageIndex0} // 0-based index
+        pageSize={pageSize}
+        onPageChange={onPageChange} // Orders: setPage(pageIndex + 1)
+        // Global filter
+        enableGlobalFilter
+        globalFilterColumns={["uuid", "party", "createdAt"]}
+        globalFilterPlaceholder='Keresés: rendelés #, partner, létrehozva...'
+        // Hiding
+        enableHiding
+        className='dt-orders'
+        footerVisible={false}
+      />
+    </TickProvider>
   );
 };
 

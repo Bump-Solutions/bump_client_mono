@@ -1,12 +1,13 @@
-import type { InventoryModel } from "@bump/core/models";
+import type { InventoryModel, ProductListModel } from "@bump/core/models";
 import type { PaginatedListProps } from "@bump/types";
-import { Fragment, useEffect } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { Link, useLocation } from "react-router";
-import { useProfile } from "../../context/profile/useProfile";
-import { ROUTES } from "../../routes/routes";
+import { useProfile } from "@/context/profile/useProfile";
+import { ROUTES } from "@/routes/routes";
 
-import Spinner from "../../components/Spinner";
+import Spinner from "@/components/Spinner";
+import Delete from "./Delete";
 import ProductListItem from "./ProductListItem";
 
 import { CirclePlus } from "lucide-react";
@@ -22,6 +23,17 @@ const ProductList = ({
 
   const { ref, inView } = useInView();
 
+  const [productToDelete, setProductToDelete] =
+    useState<ProductListModel | null>(null);
+
+  const requestDelete = useCallback((product: ProductListModel) => {
+    setProductToDelete(product);
+  }, []);
+
+  const closeDelete = useCallback(() => {
+    setProductToDelete(null);
+  }, []);
+
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
@@ -33,6 +45,10 @@ const ProductList = ({
 
   return (
     <>
+      {productToDelete && (
+        <Delete product={productToDelete} isOpen close={closeDelete} />
+      )}
+
       <ul className='products__list'>
         {/* If isOwnProfile, place a dummy ProductListItem to quick add a product */}
         {isOwnProfile && !isSavedPage && (
@@ -46,8 +62,12 @@ const ProductList = ({
 
         {pages.map((page, index) => (
           <Fragment key={index}>
-            {page.products.map((product, idx) => (
-              <ProductListItem key={idx} product={product} />
+            {page.products.map((product) => (
+              <ProductListItem
+                key={product.id}
+                product={product}
+                onRequestDelete={requestDelete}
+              />
             ))}
           </Fragment>
         ))}

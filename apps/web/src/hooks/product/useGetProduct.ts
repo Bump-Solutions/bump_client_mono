@@ -4,7 +4,7 @@ import { queryKeys } from "@bump/core/queries";
 import { getProduct } from "@bump/core/services";
 import { ENUM } from "@bump/utils";
 import { useQuery } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useGetProduct = (productId: ProductModel["id"]) => {
   const http = useAuthHttpClient();

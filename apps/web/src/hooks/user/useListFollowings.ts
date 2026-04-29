@@ -4,7 +4,7 @@ import { queryKeys } from "@bump/core/queries";
 import { listFollowing } from "@bump/core/services";
 import { ENUM } from "@bump/utils";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 const MAX_FOLLOWINGS_PER_PAGE = 10;
 

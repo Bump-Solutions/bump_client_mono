@@ -1,11 +1,11 @@
-import "../../styles/css/error.css";
+import "@/styles/css/error.css";
 
 import { Link, useLocation, useNavigate } from "react-router";
 import { useTitle } from "react-use";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
-import Button from "../../components/Button";
-import Reveal from "../../components/Reveal";
+import Button from "@/components/Button";
+import Reveal from "@/components/Reveal";
 
 import { MoveLeft } from "lucide-react";
 

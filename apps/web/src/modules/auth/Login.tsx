@@ -1,5 +1,5 @@
 import { ENUM } from "@bump/utils";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 import { useEffect, useRef } from "react";
 import { Link } from "react-router";

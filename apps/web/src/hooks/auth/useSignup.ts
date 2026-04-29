@@ -3,7 +3,7 @@ import type { SignupModel } from "@bump/core/models";
 import type { ApiError, ApiResponse } from "@bump/core/api";
 import { signup } from "@bump/core/services";
 import { useMutation } from "@tanstack/react-query";
-import { usePublicHttpClient } from "../../http/useHttpClient";
+import { usePublicHttpClient } from "@/http/useHttpClient";
 
 export const useSignup = (
   onSuccess?: (resp: ApiResponse, variables: SignupModel) => void,

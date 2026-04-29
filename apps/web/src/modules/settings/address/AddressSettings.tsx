@@ -1,18 +1,18 @@
 import type { AddressModel } from "@bump/core/models";
 import { useEffect, useReducer } from "react";
 import { toast } from "sonner";
-import { usePersonalSettings } from "../../../context/settings/usePersonalSettings";
-import { useListAddresses } from "../../../hooks/address/useListAddresses";
-import { ROUTES } from "../../../routes/routes";
+import { usePersonalSettings } from "@/context/settings/usePersonalSettings";
+import { useListAddresses } from "@/hooks/address/useListAddresses";
+import { ROUTES } from "@/routes/routes";
 
 import Add from "./Add";
 import Delete from "./Delete";
 import Modify from "./Modify";
 
-import Back from "../../../components/Back";
-import Button from "../../../components/Button";
-import Modal from "../../../components/Modal";
-import Spinner from "../../../components/Spinner";
+import Back from "@/components/Back";
+import Button from "@/components/Button";
+import Modal from "@/components/Modal";
+import Spinner from "@/components/Spinner";
 
 import { Check, CirclePlus, Pencil, Trash } from "lucide-react";
 
@@ -144,7 +144,18 @@ const AddressSettings = () => {
           ) : (
             <div className='address__wrapper'>
               <div className='address-box'>
-                <article className='add' onClick={() => openForm(CONTENTS.ADD)}>
+                <article
+                  className='add'
+                  role='button'
+                  tabIndex={0}
+                  aria-label='Új cím hozzáadása'
+                  onClick={() => openForm(CONTENTS.ADD)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      openForm(CONTENTS.ADD);
+                    }
+                  }}>
                   <CirclePlus />
                   <h4>Új cím hozzáadása</h4>
                 </article>
@@ -157,6 +168,7 @@ const AddressSettings = () => {
                     <article key={index} className='address'>
                       <Button
                         className='secondary delete'
+                        aria-label='Cím törlése'
                         onClick={() => openForm(CONTENTS.DELETE, address)}>
                         <Trash />
                       </Button>

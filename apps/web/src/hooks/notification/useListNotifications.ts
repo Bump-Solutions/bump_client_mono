@@ -4,8 +4,8 @@ import { queryKeys } from "@bump/core/queries";
 import { listNotifications } from "@bump/core/services";
 import { ENUM } from "@bump/utils";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useAuth } from "../../context/auth/useAuth";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuth } from "@/context/auth/useAuth";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 const MAX_NOTIFICATIONS_PER_PAGE = 5;
 

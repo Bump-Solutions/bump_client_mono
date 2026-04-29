@@ -6,12 +6,12 @@ import type {
 import { useEffect, type Dispatch, type SetStateAction } from "react";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router";
-import { useSearch } from "../../hooks/search/useSearch";
-import { ROUTES } from "../../routes/routes";
+import { useSearch } from "@/hooks/search/useSearch";
+import { ROUTES } from "@/routes/routes";
 
-import Button from "../../components/Button";
-import Image from "../../components/Image";
-import Spinner from "../../components/Spinner";
+import Button from "@/components/Button";
+import Image from "@/components/Image";
+import Spinner from "@/components/Spinner";
 
 import { Footprints, Search, User } from "lucide-react";
 

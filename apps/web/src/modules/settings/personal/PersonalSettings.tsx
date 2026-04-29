@@ -1,9 +1,9 @@
 import { Link } from "react-router";
-import { usePersonalSettings } from "../../../context/settings/usePersonalSettings";
-import { ROUTES } from "../../../routes/routes";
+import { usePersonalSettings } from "@/context/settings/usePersonalSettings";
+import { ROUTES } from "@/routes/routes";
 
-import Image from "../../../components/Image";
-import Spinner from "../../../components/Spinner";
+import Image from "@/components/Image";
+import Spinner from "@/components/Spinner";
 
 import { CircleUser, Pencil } from "lucide-react";
 

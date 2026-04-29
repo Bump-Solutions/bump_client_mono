@@ -1,11 +1,13 @@
+import { FORM_INVALID_TOAST } from "@/forms/constants";
+import type { SellFormApi } from "@/hooks/sell/useSellForm";
 import { sellItemSchema, type SellItem } from "@bump/core/schemas";
 import { ENUM } from "@bump/utils";
-import { useStore } from "@tanstack/react-form";
+import { useStore, type AnyFieldApi } from "@tanstack/react-form";
+import { useEffect } from "react";
 import { toast } from "sonner";
-import type { SellFormApi } from "../../../hooks/sell/useSellForm";
 
-import Button from "../../../components/Button";
-import FieldGroup from "../../../forms/FieldGroup";
+import Button from "@/components/Button";
+import FieldGroup from "@/forms/FieldGroup";
 
 import { CirclePlus } from "lucide-react";
 
@@ -21,11 +23,40 @@ const DEFAULT_DRAFT = {
   count: 1,
 };
 
+const DRAFT_FIELD_NAMES = [
+  "gender",
+  "size",
+  "condition",
+  "price",
+  "count",
+] as const;
+
+const clearDraftMetaOnChange = ({ fieldApi }: { fieldApi: AnyFieldApi }) => {
+  fieldApi.setMeta((prev) => ({
+    ...prev,
+    errors: [],
+    errorMap: {},
+  }));
+};
+
 const ItemForm = ({ form }: ItemFormProps) => {
   const items = useStore(
     form.store,
     (state) => state.values.items.items,
   ) as SellItem[];
+
+  useEffect(() => {
+    return () => {
+      DRAFT_FIELD_NAMES.forEach((fieldName) => {
+        form.setFieldMeta(`items.draft.${fieldName}`, (prev) => ({
+          ...prev,
+          isTouched: false,
+          errors: [],
+          errorMap: {},
+        }));
+      });
+    };
+  }, [form]);
 
   const handleAddItem = () => {
     const draft = form.getFieldValue("items.draft") ?? DEFAULT_DRAFT;
@@ -43,16 +74,17 @@ const ItemForm = ({ form }: ItemFormProps) => {
     if (!result.success) {
       result.error.issues.forEach((issue) => {
         const fieldName = issue.path[0] as keyof typeof draft;
+        const message = issue.message;
 
         form.setFieldMeta(`items.draft.${fieldName}`, (prev) => ({
           ...prev,
           isTouched: true,
+          errors: [message],
+          errorMap: { ...prev.errorMap, onChange: message },
         }));
-
-        form.validateField(`items.draft.${fieldName}`, "change");
       });
 
-      toast.error("Kérjük javítsd a hibás mezőket!");
+      toast.error(FORM_INVALID_TOAST);
       return;
     }
 
@@ -62,15 +94,19 @@ const ItemForm = ({ form }: ItemFormProps) => {
     // Frissíti a tömböt
     form.setFieldValue("items.items", [...items, ...newItems]);
 
-    // Reset
-    form.resetField("items.draft.gender");
-    form.resetField("items.draft.size");
-    form.resetField("items.draft.condition");
-    form.resetField("items.draft.price");
-    form.resetField("items.draft.count");
-
-    // Visszaállítja a draftot
-    form.setFieldValue("items.draft", DEFAULT_DRAFT);
+    // Visszaállítja a draftot + meta (errors/touched) tisztítása
+    DRAFT_FIELD_NAMES.forEach((fieldName) => {
+      form.setFieldValue(
+        `items.draft.${fieldName}`,
+        DEFAULT_DRAFT[fieldName],
+      );
+      form.setFieldMeta(`items.draft.${fieldName}`, (prev) => ({
+        ...prev,
+        isTouched: false,
+        errors: [],
+        errorMap: {},
+      }));
+    });
   };
 
   return (
@@ -78,7 +114,7 @@ const ItemForm = ({ form }: ItemFormProps) => {
       {/* --- Nem mező --- */}
       <form.AppField
         name='items.draft.gender'
-        validators={{ onChange: sellItemSchema.shape.gender }}>
+        listeners={{ onChange: clearDraftMetaOnChange }}>
         {(field) => (
           <field.Select
             label='Nem'
@@ -91,7 +127,7 @@ const ItemForm = ({ form }: ItemFormProps) => {
       {/* --- Méret mező --- */}
       <form.AppField
         name='items.draft.size'
-        validators={{ onChange: sellItemSchema.shape.size }}>
+        listeners={{ onChange: clearDraftMetaOnChange }}>
         {(field) => (
           <field.Select
             label='Méret'
@@ -105,7 +141,7 @@ const ItemForm = ({ form }: ItemFormProps) => {
       {/* --- Állapot mező --- */}
       <form.AppField
         name='items.draft.condition'
-        validators={{ onChange: sellItemSchema.shape.condition }}>
+        listeners={{ onChange: clearDraftMetaOnChange }}>
         {(field) => (
           <field.Select
             label='Állapot'
@@ -118,7 +154,7 @@ const ItemForm = ({ form }: ItemFormProps) => {
       {/* --- Ár mező --- */}
       <form.AppField
         name='items.draft.price'
-        validators={{ onChange: sellItemSchema.shape.price }}>
+        listeners={{ onChange: clearDraftMetaOnChange }}>
         {(field) => (
           <field.Currency
             label='Ár'

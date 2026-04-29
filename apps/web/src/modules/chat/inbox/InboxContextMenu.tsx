@@ -2,7 +2,7 @@ import type { ChatGroupModel } from "@bump/core/models";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useClickAway } from "react-use";
-import { useMarkMessageAsUnread } from "../../../hooks/chat/useMarkMessageAsUnread";
+import { useMarkMessageAsUnread } from "@/hooks/chat/useMarkMessageAsUnread";
 
 type InboxContextMenuProps = {
   group: ChatGroupModel;

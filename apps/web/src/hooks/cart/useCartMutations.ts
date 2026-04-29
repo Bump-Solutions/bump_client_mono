@@ -8,7 +8,7 @@ import {
   removePackage,
 } from "@bump/core/services";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 type MutationCtx = {
   prev?: CartModel;

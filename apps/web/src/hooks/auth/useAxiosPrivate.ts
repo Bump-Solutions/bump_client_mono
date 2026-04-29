@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useAuth } from "../../context/auth/useAuth";
-import { axiosPrivate } from "../../http/Axios";
+import { useAuth } from "@/context/auth/useAuth";
+import { axiosPrivate } from "@/http/Axios";
 import { useRefreshToken } from "./useRefreshToken";
 
 export const useAxiosPrivate = (): typeof axiosPrivate => {

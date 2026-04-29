@@ -3,12 +3,12 @@ import { CURRENCY_LABELS, formatMinorHU } from "@bump/utils";
 import { type MouseEvent } from "react";
 import { Link } from "react-router";
 import { toast } from "sonner";
-import { useAuth } from "../../context/auth/useAuth";
-import { usePackage } from "../../context/cart/usePackage";
-import { useCreateOrder } from "../../hooks/order/useCreateOrder";
-import { ROUTES } from "../../routes/routes";
+import { useAuth } from "@/context/auth/useAuth";
+import { usePackage } from "@/context/cart/usePackage";
+import { useCreateOrder } from "@/hooks/order/useCreateOrder";
+import { ROUTES } from "@/routes/routes";
 
-import StateButton from "../../components/StateButton";
+import StateButton from "@/components/StateButton";
 
 import { Send } from "lucide-react";
 

@@ -1,9 +1,9 @@
-import { API } from "../../utils/api";
+import { API } from "@/utils/api";
 
 import { fromRefreshResponseDTO } from "@bump/core/mappers";
 import type { AuthModel } from "@bump/core/models";
-import { useAuth } from "../../context/auth/useAuth";
-import { usePublicHttpClient } from "../../http/useHttpClient";
+import { useAuth } from "@/context/auth/useAuth";
+import { usePublicHttpClient } from "@/http/useHttpClient";
 
 export const useRefreshToken = (): (() => Promise<string>) => {
   const http = usePublicHttpClient();

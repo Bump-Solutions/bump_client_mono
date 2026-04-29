@@ -1,4 +1,4 @@
-import { usePackage } from "../../context/cart/usePackage";
+import { usePackage } from "@/context/cart/usePackage";
 import PackageProduct from "./PackageProduct";
 
 const PackageContent = () => {

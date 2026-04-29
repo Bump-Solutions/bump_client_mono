@@ -9,7 +9,7 @@ import { searchProducts, searchUsers } from "@bump/core/services";
 import { useDebounce } from "@bump/hooks";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
-import { useAuthHttpClient } from "../../http/useHttpClient";
+import { useAuthHttpClient } from "@/http/useHttpClient";
 
 const MAX_SEARCH_RESULTS = 25;
 

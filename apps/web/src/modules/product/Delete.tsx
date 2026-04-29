@@ -1,12 +1,12 @@
+import { useDeleteProduct } from "@/hooks/product/useDeleteProduct";
 import type { ProductListModel } from "@bump/core/models";
 import type { MouseEvent } from "react";
 import { toast } from "sonner";
-import { useDeleteProduct } from "../../hooks/product/useDeleteProduct";
 
-import Button from "../../components/Button";
-import Image from "../../components/Image";
-import Modal from "../../components/Modal";
-import StateButton from "../../components/StateButton";
+import Button from "@/components/Button";
+import Image from "@/components/Image";
+import Modal from "@/components/Modal";
+import StateButton from "@/components/StateButton";
 
 import { Trash } from "lucide-react";
 
@@ -22,7 +22,7 @@ const Delete = ({ product, isOpen, close }: DeleteProps) => {
   const deleteProductMutation = useDeleteProduct(() => {
     setTimeout(() => {
       close();
-    }, 250);
+    }, 1000);
   });
 
   const handleDelete = (e: MouseEvent<HTMLButtonElement>) => {

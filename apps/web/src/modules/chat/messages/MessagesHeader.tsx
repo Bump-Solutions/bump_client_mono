@@ -1,11 +1,11 @@
 import { useMediaQuery } from "react-responsive";
 import { Link, useLocation } from "react-router";
 
-import Image from "../../../components/Image";
+import Image from "@/components/Image";
 
 import type { UserModel } from "@bump/core/models";
 import { ArrowLeft, MoveRight } from "lucide-react";
-import { ROUTES } from "../../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 const MessagesHeader = () => {
   const location = useLocation();

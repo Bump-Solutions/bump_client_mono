@@ -3,7 +3,7 @@ import type { PaginatedListProps } from "@bump/types";
 import { Fragment, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-import Spinner from "../../components/Spinner";
+import Spinner from "@/components/Spinner";
 import FollowerListItem from "./FollowerListItem";
 
 const FollowerList = ({

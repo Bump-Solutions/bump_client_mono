@@ -1,38 +1,41 @@
-import { OrderState, OrderUserRole } from "@bump/core/models";
+import { useOrder } from "@/context/order/useOrder";
 import {
+  ORDER_ACTION_LABELS,
   ORDER_STATE_LABELS,
   ORDER_STATE_VARIANTS,
 } from "@bump/core/presentation";
-import { useOrder } from "../../context/order/useOrder";
 
-const OrderHeaderBadge = ({
-  state,
-  role,
-}: {
-  state: OrderState;
-  role: OrderUserRole;
-}) => {
-  const variantMap = ORDER_STATE_VARIANTS(role);
-  const variant = variantMap[state] ?? "neutral";
-  const label = ORDER_STATE_LABELS[state] ?? "Ismeretlen";
+const OrderHeaderBadge = () => {
+  const { order, role, machineState, pendingAction, error } = useOrder();
 
+  if (machineState === "error" && error) {
+    return <span className='badge critical'>Hiba</span>;
+  }
+
+  if (machineState === "executingAction" && pendingAction !== null) {
+    return (
+      <span className='badge info'>{ORDER_ACTION_LABELS[pendingAction]}…</span>
+    );
+  }
+
+  if (machineState === "awaitingSystem") {
+    return <span className='badge info'>Feldolgozás alatt</span>;
+  }
+
+  const variant = ORDER_STATE_VARIANTS(role)[order.state] ?? "neutral";
+  const label = ORDER_STATE_LABELS[order.state] ?? "Ismeretlen";
   return <span className={`badge ${variant}`}>{label}</span>;
 };
 
 const OrderHeader = () => {
-  const { order, pretty } = useOrder();
-
-  const role: OrderUserRole = order.isSeller
-    ? OrderUserRole.SELLER
-    : OrderUserRole.BUYER;
-
+  const { pretty } = useOrder();
   return (
     <header className='order__header'>
       <div>
         <h1>
           Rendelés <b className='fc-blue-500 fw-700'>{pretty}</b>
         </h1>
-        <OrderHeaderBadge state={order.state} role={role} />
+        <OrderHeaderBadge />
       </div>
     </header>
   );

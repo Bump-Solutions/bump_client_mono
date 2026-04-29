@@ -1,6 +1,7 @@
 import type { SignupModel } from "@bump/core/models";
-import { useAppForm } from "../../forms/hooks";
-import { signupFormOptions } from "../../forms/signupFormOptions";
+import { FORM_INVALID_ERROR } from "@/forms/constants";
+import { useAppForm } from "@/forms/hooks";
+import { signupFormOptions } from "@/forms/signupFormOptions";
 
 import { toast } from "sonner";
 
@@ -47,7 +48,7 @@ export const useSignupForm = () => {
     },
 
     onSubmitInvalid: async () => {
-      throw new Error("Invalid form submission");
+      throw new Error(FORM_INVALID_ERROR);
     },
   });
 };

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import ProductProvider from "../../context/product/ProductProvider";
+import ProductProvider from "@/context/product/ProductProvider";
 
 const ProductLayout = () => {
   return (

@@ -2,8 +2,8 @@ import { type SellItem } from "@bump/core/schemas";
 import { ENUM } from "@bump/utils";
 import { useStore } from "@tanstack/react-form";
 import { Trash } from "lucide-react";
-import type { SellFormApi } from "../../../hooks/sell/useSellForm";
-import { sellItemsStepSchema } from "../../../schemas/sellWizard";
+import type { SellFormApi } from "@/hooks/sell/useSellForm";
+import { sellItemsStepSchema } from "@/schemas/sellWizard";
 
 type ItemsListProps = {
   form: SellFormApi;

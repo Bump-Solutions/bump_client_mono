@@ -1,6 +1,6 @@
-import { useProfile } from "../../../context/profile/useProfile";
+import { useProfile } from "@/context/profile/useProfile";
 
-import Image from "../../../components/Image";
+import Image from "@/components/Image";
 import UserDetails from "./UserDetails";
 
 const ProfileCardHeader = () => {

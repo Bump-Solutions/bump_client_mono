@@ -1,12 +1,12 @@
 import type { ChatGroupModel } from "@bump/core/models";
 import { formatDate, isThisYear, isToday, now } from "@bump/utils";
 import { AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
 import { NavLink } from "react-router";
 import { useLongPress, useToggle } from "react-use";
-import { ROUTES } from "../../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
-import Image from "../../../components/Image";
+import Image from "@/components/Image";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
 import InboxContextMenu from "./InboxContextMenu";
 
 import { EllipsisVertical } from "lucide-react";
@@ -18,15 +18,7 @@ type InboxListItemProps = {
 const InboxListItem = ({ group }: InboxListItemProps) => {
   const [isContextMenuOpen, toggleContextMenu] = useToggle(false);
 
-  useEffect(() => {
-    document.body.style.overflow = isContextMenuOpen ? "hidden" : "auto";
-    document.body.style.pointerEvents = isContextMenuOpen ? "none" : "auto";
-
-    return () => {
-      document.body.style.overflow = "auto";
-      document.body.style.pointerEvents = "auto";
-    };
-  }, [isContextMenuOpen]);
+  useBodyScrollLock(isContextMenuOpen, { disablePointerEvents: true });
 
   const onLongPress = () => {
     toggleContextMenu(true);

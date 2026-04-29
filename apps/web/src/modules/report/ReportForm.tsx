@@ -1,14 +1,16 @@
 import { reportSchema, type ReportInput } from "@bump/core/schemas";
-import { useMounted } from "@bump/hooks";
 import type { ReportType } from "@bump/types";
-import type { MouseEvent } from "react";
+import { useCallback, type MouseEvent } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-import { useAppForm } from "../../forms/hooks";
-import { useReport } from "../../hooks/report/useReport";
+import { FORM_INVALID_ERROR } from "@/forms/constants";
+import { useAppForm } from "@/forms/hooks";
+import { submitWithInvalidToast } from "@/forms/submitWithInvalidToast";
+import { useDelayedClose } from "@/hooks/common/useDelayedClose";
+import { useReport } from "@/hooks/report/useReport";
 
-import Button from "../../components/Button";
-import StateButton from "../../components/StateButton";
+import Button from "@/components/Button";
+import StateButton from "@/components/StateButton";
 
 import { Flag } from "lucide-react";
 
@@ -97,17 +99,13 @@ const defaultValues: ReportInput = {
 
 const ReportForm = ({ id, type }: ReportFormProps) => {
   const navigate = useNavigate();
-  const isMounted = useMounted();
 
   const numericId = id ? Number(id) : NaN;
 
-  const reportMutation = useReport(() => {
-    setTimeout(() => {
-      if (isMounted()) {
-        navigate(-1);
-      }
-    }, 1000);
-  });
+  const goBack = useCallback(() => navigate(-1), [navigate]);
+  const delayedBack = useDelayedClose(goBack, 1000);
+
+  const reportMutation = useReport(delayedBack);
 
   const form = useAppForm({
     defaultValues,
@@ -147,18 +145,13 @@ const ReportForm = ({ id, type }: ReportFormProps) => {
     },
 
     onSubmitInvalid: async () => {
-      throw new Error("Invalid form submission");
+      throw new Error(FORM_INVALID_ERROR);
     },
   });
 
   const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    await form.handleSubmit();
-    if (!form.store.state.isValid) {
-      toast.error("Kérjük javítsd a hibás mezőket!");
-      throw new Error("Invalid form submission");
-    }
+    await submitWithInvalidToast(form);
   };
 
   const reasonOptions = REASON_OPTIONS[type];

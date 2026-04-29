@@ -9,8 +9,8 @@ import { queryKeys } from "@bump/core/queries";
 import { useQueryClient, type InfiniteData } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import useWebSocket from "react-use-websocket";
-import { useMarkNotificationAsRead } from "../../hooks/notification/useMarkNotificationAsRead";
-import { API } from "../../utils/api";
+import { useMarkNotificationAsRead } from "@/hooks/notification/useMarkNotificationAsRead";
+import { API } from "@/utils/api";
 import { useAuth } from "../auth/useAuth";
 import { NotificationsContext } from "./context";
 import type { NotificationsProviderProps, NotificationType } from "./types";
@@ -143,10 +143,10 @@ const NotificationsProvider = ({ children }: NotificationsProviderProps) => {
     Boolean(socketUrl && token), // only connect when we have a URL and token
   );
 
+  const value = useMemo(() => ({ markAsRead }), [markAsRead]);
+
   return (
-    <NotificationsContext value={{ markAsRead }}>
-      {children}
-    </NotificationsContext>
+    <NotificationsContext value={value}>{children}</NotificationsContext>
   );
 };
 

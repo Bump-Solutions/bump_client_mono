@@ -1,7 +1,7 @@
 import type { CartPackageModel } from "@bump/core/models";
 import { useMemo } from "react";
-import { PackageContext } from "../../context/cart/context";
-import type { HighlightIndex } from "../../utils/highlight";
+import { PackageContext } from "@/context/cart/context";
+import type { HighlightIndex } from "@/utils/highlight";
 
 import PackageContent from "./PackageContent";
 import PackageHeader from "./PackageHeader";

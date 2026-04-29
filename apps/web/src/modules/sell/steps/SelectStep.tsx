@@ -1,8 +1,8 @@
 import { useStore } from "@tanstack/react-form";
-import type { SellFormApi } from "../../../hooks/sell/useSellForm";
-import { SELL_STEPS, useSellStepper } from "../../../wizards/sell/stepper";
+import type { SellFormApi } from "@/hooks/sell/useSellForm";
+import { SELL_STEPS, useSellStepper } from "@/wizards/sell/stepper";
 
-import Button from "../../../components/Button";
+import Button from "@/components/Button";
 
 import { FileEdit, MoveRight, PackageSearch } from "lucide-react";
 

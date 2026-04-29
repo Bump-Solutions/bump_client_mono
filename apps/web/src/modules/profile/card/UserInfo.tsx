@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router";
-import { useProfile } from "../../../context/profile/useProfile";
-import { ROUTES } from "../../../routes/routes";
+import { useProfile } from "@/context/profile/useProfile";
+import { ROUTES } from "@/routes/routes";
 
 interface Stat {
   label: string;

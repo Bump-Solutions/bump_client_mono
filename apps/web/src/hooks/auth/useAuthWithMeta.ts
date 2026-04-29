@@ -1,4 +1,4 @@
-import { useAuth } from "../../context/auth/useAuth";
+import { useAuth } from "@/context/auth/useAuth";
 import { useGetProfileMeta } from "../profile/useGetProfileMeta";
 
 export const useAuthWithMeta = () => {

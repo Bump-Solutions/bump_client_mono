@@ -9,7 +9,7 @@ import { useCallback, useEffect, useMemo, useState, type JSX } from "react";
 import { useInView } from "react-intersection-observer";
 import { useLocation } from "react-router";
 import { useToggle } from "react-use";
-import { useAuth } from "../../../context/auth/useAuth";
+import { useAuth } from "@/context/auth/useAuth";
 
 import {
   differenceInMinutes,
@@ -17,9 +17,9 @@ import {
   isSameDay,
   startOfDay,
 } from "@bump/utils";
-import Image from "../../../components/Image";
-import Lightbox from "../../../components/Lightbox";
-import Spinner from "../../../components/Spinner";
+import Image from "@/components/Image";
+import Lightbox from "@/components/Lightbox";
+import Spinner from "@/components/Spinner";
 import MessageDateDivider from "./MessageDateDivider";
 import MessageListItem from "./MessageListItem";
 

@@ -1,19 +1,19 @@
-import "../../styles/css/order.css";
+import "@/styles/css/order.css";
 
 import { ENUM } from "@bump/utils";
-import { ROUTES } from "../../routes/routes";
+import { ROUTES } from "@/routes/routes";
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { useTitle } from "react-use";
-import { useAuthHttpClient } from "../../http/useHttpClient";
-import { listOrdersQueryOptions } from "../../utils/queryOptions";
+import { useAuthHttpClient } from "@/http/useHttpClient";
+import { listOrdersQueryOptions } from "@/utils/queryOptions";
 
-import Button from "../../components/Button";
-import Empty from "../../components/Empty";
-import Spinner from "../../components/Spinner";
-import OrdersDataTable from "../../datatable/OrdersDataTable";
+import Button from "@/components/Button";
+import Empty from "@/components/Empty";
+import Spinner from "@/components/Spinner";
+import OrdersDataTable from "@/datatable/OrdersDataTable";
 import ConnectStripeBanner from "../stripe/ConnectStripeBanner";
 import OrdersHeader from "./OrdersHeader";
 

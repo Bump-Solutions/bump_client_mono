@@ -1,17 +1,19 @@
-import "../../styles/css/follow.css";
+import "@/styles/css/follow.css";
 
 import type { FollowerModel, FollowingModel } from "@bump/core/models";
 import { ENUM } from "@bump/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { NavLink, Outlet, useNavigate } from "react-router";
 import { useToggle } from "react-use";
-import { useProfile } from "../../context/profile/useProfile";
-import { ROUTES } from "../../routes/routes";
+import { useProfile } from "@/context/profile/useProfile";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
+import { useFocusTrap } from "@/hooks/common/useFocusTrap";
+import { ROUTES } from "@/routes/routes";
 
-import Button from "../../components/Button";
-import Drawer from "../../components/Drawer";
+import Button from "@/components/Button";
+import Drawer from "@/components/Drawer";
 import ConfirmUnfollow from "./ConfirmUnfollow";
 
 import { X } from "lucide-react";
@@ -33,21 +35,20 @@ const Follow = ({ background }: FollowProps) => {
   >(null);
   const [confirmUnfollow, toggleConfirmUnfollow] = useToggle(false);
 
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
+  const modalRef = useRef<HTMLDivElement | null>(null);
+  const close = useCallback(
+    () => navigate(background.pathname),
+    [navigate, background.pathname],
+  );
 
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [confirmUnfollow]);
+  useBodyScrollLock(true);
+  useFocusTrap(modalRef, { active: !isMobile, onEscape: close });
 
   return (
     <>
       <AnimatePresence mode='wait'>
         {isMobile ? (
-          <Drawer
-            close={() => navigate(background.pathname)}
-            className='follow'>
+          <Drawer close={close} className='follow'>
             <h1 className='modal__title'>
               <NavLink
                 to={ROUTES.PROFILE(user.username).FOLLOWERS}
@@ -75,10 +76,15 @@ const Follow = ({ background }: FollowProps) => {
               duration: 0.2,
               ease: [0.25, 0.46, 0.45, 0.94],
             }}>
-            <motion.div className='modal follow'>
+            <motion.div
+              ref={modalRef}
+              role='dialog'
+              aria-modal='true'
+              className='modal follow'>
               <Button
                 className={`secondary close`}
-                onClick={() => navigate(background.pathname)}>
+                aria-label='Bezárás'
+                onClick={close}>
                 <X />
               </Button>
 

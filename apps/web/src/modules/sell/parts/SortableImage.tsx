@@ -1,7 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-import Button from "../../../components/Button";
+import Button from "@/components/Button";
 
 import { Trash } from "lucide-react";
 
@@ -34,11 +34,14 @@ const SortableImage = ({ id, url, onRemove }: SortableImageProps) => {
       {...attributes}
       {...listeners}
       className='image'>
-      <Button className='secondary delete' onClick={onRemove}>
+      <Button
+        className='secondary delete'
+        aria-label='Kép törlése'
+        onClick={onRemove}>
         <Trash />
       </Button>
 
-      <img src={url} draggable={false} alt={id} />
+      <img src={url} draggable={false} alt='Feltöltött termékkép' />
     </div>
   );
 };

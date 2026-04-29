@@ -1,12 +1,12 @@
 import { AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
 import { Link } from "react-router";
 import { useToggle } from "react-use";
-import { usePackage } from "../../context/cart/usePackage";
-import { ROUTES } from "../../routes/routes";
-import { highlightTextParts } from "../../utils/highlight";
+import { usePackage } from "@/context/cart/usePackage";
+import { useBodyScrollLock } from "@/hooks/common/useBodyScrollLock";
+import { ROUTES } from "@/routes/routes";
+import { highlightTextParts } from "@/utils/highlight";
 
-import Image from "../../components/Image";
+import Image from "@/components/Image";
 import PackageContextMenu from "./PackageContextMenu";
 
 import { EllipsisVertical, Star } from "lucide-react";
@@ -19,15 +19,7 @@ const PackageHeader = () => {
   const seller = pkg.seller;
   const ranges = highlightIndex?.perSeller?.[seller.id]?.sellerUsername ?? [];
 
-  useEffect(() => {
-    document.body.style.overflow = isContextMenuOpen ? "hidden" : "auto";
-    document.body.style.pointerEvents = isContextMenuOpen ? "none" : "auto";
-
-    return () => {
-      document.body.style.overflow = "auto";
-      document.body.style.pointerEvents = "auto";
-    };
-  }, [isContextMenuOpen]);
+  useBodyScrollLock(isContextMenuOpen, { disablePointerEvents: true });
 
   return (
     <header className='package__header'>

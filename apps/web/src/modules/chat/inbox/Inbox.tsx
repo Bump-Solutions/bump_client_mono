@@ -1,8 +1,8 @@
 import type { InboxModel } from "@bump/core/models";
 import { useState } from "react";
-import { useListChatGroups } from "../../../hooks/chat/useListChatGroups";
+import { useListChatGroups } from "@/hooks/chat/useListChatGroups";
 
-import Spinner from "../../../components/Spinner";
+import Spinner from "@/components/Spinner";
 import InboxHeader from "./InboxHeader";
 import InboxList from "./InboxList";
 
