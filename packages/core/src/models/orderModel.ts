@@ -115,84 +115,17 @@ export type CreateOrderFromCart = {
 
 export type CreateOrderModel = CreateOrderFromProduct | CreateOrderFromCart;
 
-// Erősen típusos action mapping a kliensen (UI/guardokhoz) ---
-// Tuple-ként deklaráljuk, hogy a TypeScript literál szinten megőrizze az értékeket.
+export const TERMINAL_STATES: readonly OrderState[] = [
+  OrderState.COMPLETED,
+  OrderState.CANCELLED,
+  OrderState.EXPIRED,
+  OrderState.FAILED,
+];
 
-const SELLER_ACTIONS = {
-  [OrderState.SELLER_CONFIRMATION]: [
-    OrderAction.CONFIRM_ORDER,
-    OrderAction.CANCEL_ORDER,
-  ],
-  [OrderState.WAITING_FOR_INITIATE_CHECKOUT]: [],
-  [OrderState.WAITING_FOR_EXTERNAL_TASKS]: [],
-  [OrderState.CHECKOUT_SUCCESSFUL_NOT_PAID]: [],
-  [OrderState.PAID_WAITING_FOR_SHIPMENT]: [OrderAction.GET_SHIPMENT_DETAILS],
-  [OrderState.SHIPPED_WAITING_FOR_ARRIVAL]: [],
-  [OrderState.ARRIVED_WAITING_FOR_PICKUP]: [],
-  [OrderState.RECEIVED_WAITING_FOR_RESPONSE]: [],
-  [OrderState.COMPLETED]: [OrderAction.SUBMIT_BUYER_RATING],
-  [OrderState.CANCELLED]: [],
-  [OrderState.EXPIRED]: [],
-  [OrderState.FAILED]: [],
-} as const satisfies Readonly<Record<OrderState, readonly OrderAction[]>>;
-
-const BUYER_ACTIONS = {
-  [OrderState.SELLER_CONFIRMATION]: [OrderAction.CANCEL_ORDER],
-  [OrderState.WAITING_FOR_INITIATE_CHECKOUT]: [
-    OrderAction.CANCEL_ORDER,
-    OrderAction.INITIATE_CHECKOUT,
-  ],
-  [OrderState.WAITING_FOR_EXTERNAL_TASKS]: [
-    OrderAction.GET_ORDER_PAYMENT_STATUS,
-  ],
-  [OrderState.CHECKOUT_SUCCESSFUL_NOT_PAID]: [
-    OrderAction.GET_ORDER_PAYMENT_STATUS,
-  ],
-  [OrderState.PAID_WAITING_FOR_SHIPMENT]: [],
-  [OrderState.SHIPPED_WAITING_FOR_ARRIVAL]: [],
-  [OrderState.ARRIVED_WAITING_FOR_PICKUP]: [],
-  [OrderState.RECEIVED_WAITING_FOR_RESPONSE]: [
-    OrderAction.SUBMIT_SELLER_RATING,
-  ],
-  [OrderState.COMPLETED]: [],
-  [OrderState.CANCELLED]: [],
-  [OrderState.EXPIRED]: [],
-  [OrderState.FAILED]: [],
-} as const satisfies Readonly<Record<OrderState, readonly OrderAction[]>>;
-
-export const ACTION_MAPPING: Readonly<
-  Record<OrderUserRole, Readonly<Record<OrderState, readonly OrderAction[]>>>
-> = {
-  [OrderUserRole.SELLER]: SELLER_ACTIONS,
-  [OrderUserRole.BUYER]: BUYER_ACTIONS,
-} as const;
-
-// Helper: kliens oldali ellenőrzés (UI-hoz)
-export const canPerform = (
-  action: OrderAction,
-  state: OrderState,
-  role: OrderUserRole,
-): boolean => {
-  return ACTION_MAPPING[role][state].includes(action);
-};
-
-export const isTerminalOrderState = (state: OrderState): boolean => {
-  const terminalStates: OrderState[] = [
-    OrderState.COMPLETED,
-    OrderState.CANCELLED,
-    OrderState.EXPIRED,
-    OrderState.FAILED,
-  ];
-
-  return terminalStates.includes(state);
-};
-
-export const shouldPollOrderState = (state: OrderState): boolean => {
-  return state === OrderState.WAITING_FOR_EXTERNAL_TASKS;
-};
+export const isTerminalOrderState = (state: OrderState): boolean =>
+  TERMINAL_STATES.includes(state);
 
 export const getOrderUserRole = (
   order: Pick<OrderModel, "isSeller">,
-): OrderUserRole => {
-  return order.isSeller ? OrderUserRole.SELLER : OrderUserRole.BUYER;
-};
+): OrderUserRole =>
+  order.isSeller ? OrderUserRole.SELLER : OrderUserRole.BUYER;

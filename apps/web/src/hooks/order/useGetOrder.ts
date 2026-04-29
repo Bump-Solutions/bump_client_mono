@@ -1,10 +1,9 @@
+import { useAuthHttpClient } from "@/http/useHttpClient";
 import type { ApiError } from "@bump/core/api";
 import type { OrderModel } from "@bump/core/models";
 import { queryKeys } from "@bump/core/queries";
 import { getOrder } from "@bump/core/services";
-import { ENUM } from "@bump/utils";
 import { useQuery } from "@tanstack/react-query";
-import { useAuthHttpClient } from "@/http/useHttpClient";
 
 export const useGetOrder = (uuid: string) => {
   const http = useAuthHttpClient();
@@ -14,6 +13,10 @@ export const useGetOrder = (uuid: string) => {
     queryFn: ({ signal }) => getOrder(http, uuid, signal),
     enabled: Boolean(uuid),
     retry: 1,
-    staleTime: ENUM.GLOBALS.staleTime5,
+    refetchOnWindowFocus: true,
+    refetchOnReconnect: true,
+    refetchOnMount: true,
+    staleTime: 0, // No caching
+    gcTime: 0, // No caching
   });
 };
